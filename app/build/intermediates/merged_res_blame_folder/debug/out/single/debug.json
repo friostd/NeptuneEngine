@@ -1,0 +1,66 @@
+[
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.frio.neptune.app-main-27:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/layout_act_main.xml.flat",
+        "source": "com.frio.neptune.app-main-27:/layout/act_main.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/menu_menu.xml.flat",
+        "source": "com.frio.neptune.app-main-27:/menu/menu.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable-anydpi-v24_ic_launcher_foreground.xml.flat",
+        "source": "com.frio.neptune.app-pngs-20:/drawable-anydpi-v24/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.frio.neptune.app-main-27:/mipmap-xxhdpi/ic_launcher_round.webp"
+    }
+]

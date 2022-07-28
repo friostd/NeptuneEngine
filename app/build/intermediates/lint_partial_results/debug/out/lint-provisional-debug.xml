@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.2.0" type="conditional_incidents">
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 21">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement="">
+            <range
+                file="${:app*debug*sourceProvider*0*resDir*0}/values/themes.xml"
+                startOffset="798"
+                endOffset="817"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/values/themes.xml"
+            line="16"
+            column="45"
+            startOffset="798"
+            endLine="16"
+            endColumn="64"
+            endOffset="817"/>
+        <map>
+            <condition minGE="21"/>
+        </map>
+    </incident>
+
+    <incident
+        id="ObsoleteSdkInt"
+        severity="warning"
+        message="Unnecessary; SDK_INT is always >= 21">
+        <fix-replace
+            description="Delete tools:targetApi"
+            replacement="">
+            <range
+                file="${:app*debug*sourceProvider*0*resDir*0}/values-night/themes.xml"
+                startOffset="798"
+                endOffset="817"/>
+        </fix-replace>
+        <location
+            file="${:app*debug*sourceProvider*0*resDir*0}/values-night/themes.xml"
+            line="16"
+            column="45"
+            startOffset="798"
+            endLine="16"
+            endColumn="64"
+            endOffset="817"/>
+        <map>
+            <condition minGE="21"/>
+        </map>
+    </incident>
+
+</incidents>

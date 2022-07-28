@@ -1,0 +1,4 @@
+#Tue Jul 26 23:54:22 GMT 2022
+base.0=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

@@ -1,0 +1,32 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.frio.neptune.test" >
+4
+5    <uses-sdk
+5-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:5:5-74
+6        android:minSdkVersion="21"
+6-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:5:15-41
+7        android:targetSdkVersion="32" />
+7-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:5:42-71
+8
+9    <instrumentation
+9-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:11:5-15:66
+10        android:name="android.test.InstrumentationTestRunner"
+10-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:11:22-75
+11        android:functionalTest="false"
+11-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:14:22-52
+12        android:handleProfiling="false"
+12-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:13:22-53
+13        android:label="Tests for com.frio.neptune"
+13-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:15:22-64
+14        android:targetPackage="com.frio.neptune" />
+14-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:12:22-62
+15
+16    <application android:debuggable="true" >
+16-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:7:5-9:19
+17        <uses-library android:name="android.test.runner" />
+17-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:8:9-60
+17-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/tmp/manifest/androidTest/debug/tempFile1ProcessTestManifest16091416681747392573.xml:8:23-57
+18    </application>
+19
+20</manifest>
