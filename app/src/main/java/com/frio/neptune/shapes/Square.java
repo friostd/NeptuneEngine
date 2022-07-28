@@ -107,6 +107,9 @@ public class Square {
 
     GLES32.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
 
+    int modelHandle = GLES32.glGetUniformLocation(mProgram, "model");
+    GLES32.glUniformMatrix4fv(modelHandle, 1, false, model, 0);
+
     GLES32.glDrawArrays(GLES32.GL_TRIANGLE_FAN, 0, vertexCount);
 
     GLES32.glDisableVertexAttribArray(positionHandle);
