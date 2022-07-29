@@ -115,7 +115,7 @@ public class Square {
 
     projectionMatrixHandle = GLES32.glGetUniformLocation(mProgram, "projectionMatrix");
 
-    GLES32.glUniformMatrix4fv(vPMatrixHandle, 1, false, projectionMatrix, 0);
+    GLES32.glUniformMatrix4fv(projectionMatrixHandle, 1, false, projectionMatrix, 0);
 
     int modelHandle = GLES32.glGetUniformLocation(mProgram, "model");
     GLES32.glUniformMatrix4fv(modelHandle, 1, false, model, 0);
