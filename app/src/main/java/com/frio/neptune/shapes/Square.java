@@ -18,9 +18,8 @@ public class Square {
   private final String vertexShaderCode =
       "uniform mat4 uMVPMatrix;"
           + "attribute vec4 vPosition;"
-          + "uniform mat4 model;"
           + "void main() {"
-          + "  gl_Position = uMVPMatrix * model * vPosition;"
+          + "  gl_Position = uMVPMatrix * vPosition;"
           + "}";
 
   private final String fragmentShaderCode =
@@ -89,22 +88,22 @@ public class Square {
   public void draw(float[] mvpMatrix, float[] color) {
     float positionM[] = new float[16];
     Matrix.setIdentityM(positionM, 0);
-    Matrix.translateM(positionM, 0, position.x, position.y, position.z);
+    Matrix.translateM(positionM, 0, position.getX(), position.getY(), position.getZ());
 
     float rotationM[] = new float[16];
     Matrix.setIdentityM(rotationM, 0);
-    Matrix.setRotateM(rotationM, 0, rotation.x, 1, 0, 0);
-    Matrix.setRotateM(rotationM, 0, rotation.y, 0, 1, 0);
-    Matrix.setRotateM(rotationM, 0, rotation.z, 0, 0, 1);
+    Matrix.setRotateM(rotationM, 0, rotation.getX(), 1, 0, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.getY(), 0, 1, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.getZ(), 0, 0, 1);
 
     float scaleM[] = new float[16];
     Matrix.setIdentityM(scaleM, 0);
-    Matrix.scaleM(scaleM, 0, scale.x, scale.y, scale.z);
+    Matrix.scaleM(scaleM, 0, scale.getX(), scale.getY(), scale.getZ());
 
     float model[] = new float[16];
     Matrix.multiplyMM(model, 0, scaleM, 0, rotationM, 0);
     Matrix.multiplyMM(model, 0, model, 0, positionM, 0);
-    
+
     GLES32.glUseProgram(mProgram);
 
     positionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
