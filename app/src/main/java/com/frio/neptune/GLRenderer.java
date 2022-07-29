@@ -17,9 +17,7 @@ import android.opengl.GLSurfaceView;
 
 public class GLRenderer implements GLSurfaceView.Renderer {
 
-  private final float[] vPMatrix = new float[16];
   private final float[] projectionMatrix = new float[16];
-  private final float[] viewMatrix = new float[16];
 
   private float[] mCamForward = new float[3];
   private float[] mCamPosition = new float[3];
@@ -42,34 +40,19 @@ public class GLRenderer implements GLSurfaceView.Renderer {
   public void onDrawFrame(GL10 unused) {
     GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
 
-    Matrix.setLookAtM(
-        viewMatrix,
-        0,
-        mCamPosition[0],
-        mCamPosition[1],
-        mCamPosition[2],
-        mCamForward[0] + mCamPosition[0],
-        mCamForward[1] + mCamPosition[1],
-        mCamForward[2] + mCamPosition[2],
-        0,
-        1,
-        0);
-
-    Matrix.multiplyMM(vPMatrix, 0, projectionMatrix, 0, viewMatrix, 0);
-
     for (Object2D list : objects) {
       switch (list.getType()) {
         case "Square":
           Square square = new Square();
-          square.draw(vPMatrix, list.getColor());
+          square.draw(projectionMatrix, list.getColor());
           break;
         case "Triangle":
           Triangle triangle = new Triangle();
-          triangle.draw(vPMatrix, list.getColor());
+          triangle.draw(projectionMatrix, list.getColor());
           break;
         case "Circle":
           Circle circle = new Circle();
-          circle.draw(vPMatrix, list.getColor());
+          circle.draw(projectionMatrix, list.getColor());
       }
     }
   }
