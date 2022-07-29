@@ -78,7 +78,7 @@ public class Square {
 
     GLES32.glLinkProgram(mProgram);
 
-    Matrix.setIdentityM(position, 0);
+    Matrix.setIdentityM(position, 1);
     Matrix.setIdentityM(scale, 0);
     Matrix.scaleM(scale, 0, 1, 1, 1);
 
@@ -113,5 +113,7 @@ public class Square {
     GLES32.glDrawArrays(GLES32.GL_TRIANGLE_FAN, 0, vertexCount);
 
     GLES32.glDisableVertexAttribArray(positionHandle);
+    
+    position[0] = 1;
   }
 }
