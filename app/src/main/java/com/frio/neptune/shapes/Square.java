@@ -59,8 +59,6 @@ public class Square {
   // rotacao do quadrado
   private Vector3 rotation = new Vector3(0, 0, 0);
 
-  private float[] model = new float[16];
-
   public Square() {
     ByteBuffer bb = ByteBuffer.allocateDirect(squareCoords.length * 4);
 
@@ -89,18 +87,23 @@ public class Square {
   }
 
   public void draw(float[] mvpMatrix, float[] color) {
-    Matrix.setRotateM(model, 0, rotation.x, 1, 0, 0);
-    
-    Matrix.rotateM(model, 0, rotation.y, 0, 1, 0);
-    Matrix.rotateM(model, 0, rotation.z, 0, 0, 1);
+    float positionM[] = new float[16];
+    Matrix.setIdentityM(positionM, 0);
+    Matrix.translateM(positionM, 0, position.x, position.y, position.z);
 
-    Matrix.scaleM(model, 0, scale.x, scale.y, scale.z);
+    float rotationM[] = new float[16];
+    Matrix.setIdentityM(rotationM, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.x, 1, 0, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.y, 0, 1, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.z, 0, 0, 1);
 
-    Matrix.translateM(model, 0, position.x, position.y, position.z);
-    
-    position.x = 1;
-    rotation.x = 45;
-    scale.x = 2;
+    float scaleM[] = new float[16];
+    Matrix.setIdentityM(scaleM, 0);
+    Matrix.scaleM(scaleM, 0, scale.x, scale.y, scale.z);
+
+    float model[] = new float[16];
+    Matrix.multiplyMM(model, 0, scaleM, 0, rotationM, 0);
+    Matrix.multiplyMM(model, 0, model, 0, positionM, 0);
     
     GLES32.glUseProgram(mProgram);
 
