@@ -50,13 +50,8 @@ public class Square {
   private final int vertexCount = squareCoords.length / COORDS_PER_VERTEX;
   private final int vertexStride = COORDS_PER_VERTEX * 4;
 
-  // posicao do quadrado
   private Vector3 position = new Vector3(0, 0, 0);
-
-  // escala do quadrado
   private Vector3 scale = new Vector3(1, 1, 1);
-
-  // rotacao do quadrado
   private Vector3 rotation = new Vector3(0, 0, 0);
 
   public Square() {

@@ -1,7 +1,9 @@
 package com.frio.neptune.shapes;
 
 import android.opengl.GLES32;
+import android.opengl.Matrix;
 import com.frio.neptune.GLRenderer;
+import com.frio.neptune.utils.Vector3;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
@@ -13,8 +15,9 @@ public class Triangle {
   private final String vertexShaderCode =
       "uniform mat4 uMVPMatrix;"
           + "attribute vec4 vPosition;"
+          + "uniform mat4 model;"
           + "void main() {"
-          + "  gl_Position = uMVPMatrix * vPosition;"
+          + "  gl_Position = uMVPMatrix * vPosition * model;"
           + "}";
 
   private final String fragmentShaderCode =
@@ -24,10 +27,8 @@ public class Triangle {
           + "  gl_FragColor = vColor;"
           + "}";
 
-  // Use to access and set the view transformation
   private int vPMatrixHandle;
 
-  // number of coordinates per vertex in this array
   static final int COORDS_PER_VERTEX = 3;
   static float triangleCoords[] = { // in counterclockwise order:
     0.0f, 0.25f, 0.0f, // top
@@ -41,70 +42,73 @@ public class Triangle {
   private int colorHandle;
 
   private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
-  private final int vertexStride = COORDS_PER_VERTEX * 4; // 4 bytes per vertex
+  private final int vertexStride = COORDS_PER_VERTEX * 4;
+
+  private Vector3 position = new Vector3(0, 0, 0);
+  private Vector3 scale = new Vector3(1, 1, 1);
+  private Vector3 rotation = new Vector3(0, 0, 0);
 
   public Triangle() {
-    // initialize vertex byte buffer for shape coordinates
-    ByteBuffer bb =
-        ByteBuffer.allocateDirect(
-            // (number of coordinate values * 4 bytes per float)
-            triangleCoords.length * 4);
-    // use the device hardware's native byte order
-    bb.order(ByteOrder.nativeOrder());
+    ByteBuffer bb = ByteBuffer.allocateDirect(triangleCoords.length * 4);
 
-    // create a floating point buffer from the ByteBuffer
+    bb.order(ByteOrder.nativeOrder());
     vertexBuffer = bb.asFloatBuffer();
-    // add the coordinates to the FloatBuffer
     vertexBuffer.put(triangleCoords);
-    // set the buffer to read the first coordinate
     vertexBuffer.position(0);
 
     int vertexShader = GLRenderer.loadShader(GLES32.GL_VERTEX_SHADER, vertexShaderCode);
     int fragmentShader = GLRenderer.loadShader(GLES32.GL_FRAGMENT_SHADER, fragmentShaderCode);
 
-    // create empty OpenGL ES Program
     mProgram = GLES32.glCreateProgram();
 
-    // add the vertex shader to program
     GLES32.glAttachShader(mProgram, vertexShader);
 
-    // add the fragment shader to program
     GLES32.glAttachShader(mProgram, fragmentShader);
 
-    // creates OpenGL ES program executables
     GLES32.glLinkProgram(mProgram);
   }
 
   public void draw(float[] mvpMatrix, float[] color) {
-    // Add program to OpenGL ES environment
+    float positionM[] = new float[16];
+    Matrix.setIdentityM(positionM, 0);
+    Matrix.translateM(positionM, 0, position.getX(), position.getY(), position.getZ());
+
+    float rotationM[] = new float[16];
+    Matrix.setIdentityM(rotationM, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.getX(), 1, 0, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.getY(), 0, 1, 0);
+    Matrix.setRotateM(rotationM, 0, rotation.getZ(), 0, 0, 1);
+
+    float scaleM[] = new float[16];
+    Matrix.setIdentityM(scaleM, 0);
+    Matrix.scaleM(scaleM, 0, scale.getX(), scale.getY(), scale.getZ());
+
+    float model[] = new float[16];
+    Matrix.multiplyMM(model, 0, scaleM, 0, rotationM, 0);
+    Matrix.multiplyMM(model, 0, model, 0, positionM, 0);
+
     GLES32.glUseProgram(mProgram);
 
-    // get handle to vertex shader's vPosition member
     positionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
 
-    // Enable a handle to the triangle vertices
     GLES32.glEnableVertexAttribArray(positionHandle);
 
-    // Prepare the triangle coordinate data
     GLES32.glVertexAttribPointer(
         positionHandle, COORDS_PER_VERTEX, GLES32.GL_FLOAT, false, vertexStride, vertexBuffer);
 
-    // get handle to fragment shader's vColor member
     colorHandle = GLES32.glGetUniformLocation(mProgram, "vColor");
 
-    // Set color for drawing the triangle
     GLES32.glUniform4fv(colorHandle, 1, color, 0);
 
-    // get handle to shape's transformation matrix
     vPMatrixHandle = GLES32.glGetUniformLocation(mProgram, "uMVPMatrix");
 
-    // Pass the projection and view transformation to the shader
     GLES32.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
 
-    // Draw the triangle
+    int modelHandle = GLES32.glGetUniformLocation(mProgram, "model");
+    GLES32.glUniformMatrix4fv(modelHandle, 1, false, model, 0);
+
     GLES32.glDrawArrays(GLES32.GL_TRIANGLES, 0, vertexCount);
 
-    // Disable vertex array
     GLES32.glDisableVertexAttribArray(positionHandle);
   }
 }
