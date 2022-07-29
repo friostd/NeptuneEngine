@@ -13,11 +13,11 @@ public class Circle {
   private FloatBuffer vertexBuffer;
 
   private final String vertexShaderCode =
-      "uniform mat4 uMVPMatrix;"
+      "uniform mat4 projectionMatrix;"
           + "attribute vec4 vPosition;"
           + "uniform mat4 model;"
           + "void main() {"
-          + "  gl_Position = uMVPMatrix * vPosition * model;"
+          + "  gl_Position = projectionMatrix * vPosition * model;"
           + "}";
 
   private final String fragmentShaderCode =
@@ -28,7 +28,7 @@ public class Circle {
           + "}";
 
   // Use to access and set the view transformation
-  private int vPMatrixHandle;
+  private int projectionMatrixHandle;
 
   static float circleCoords[] = new float[364 * 3];
 
@@ -73,7 +73,7 @@ public class Circle {
     GLES32.glLinkProgram(mProgram);
   }
 
-  public void draw(float[] mvpMatrix, float[] color) {
+  public void draw(float[] projectionMatrix, float[] color) {
     float positionM[] = new float[16];
     Matrix.setIdentityM(positionM, 0);
     Matrix.translateM(positionM, 0, position.getX(), position.getY(), position.getZ());
@@ -104,9 +104,9 @@ public class Circle {
 
     GLES32.glUniform4fv(colorHandle, 1, color, 0);
 
-    vPMatrixHandle = GLES32.glGetUniformLocation(mProgram, "uMVPMatrix");
+    projectionMatrixHandle = GLES32.glGetUniformLocation(mProgram, "projectionMatrix");
 
-    GLES32.glUniformMatrix4fv(vPMatrixHandle, 1, false, mvpMatrix, 0);
+    GLES32.glUniformMatrix4fv(projectionMatrixHandle, 1, false, projectionMatrix, 0);
 
     int modelHandle = GLES32.glGetUniformLocation(mProgram, "model");
     GLES32.glUniformMatrix4fv(modelHandle, 1, false, model, 0);
