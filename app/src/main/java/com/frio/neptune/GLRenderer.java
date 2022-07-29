@@ -81,7 +81,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
     // this projection matrix is applied to object coordinates
     // in the onDrawFrame() method
-    Matrix.frustumM(projectionMatrix, 0, -ratio, ratio, -1, 1, 3, 4);
+    Matrix.orthoM(projectionMatrix, 0, -ratio, ratio, -1, 1, 0, 50);
   }
 
   public static int loadShader(int type, String shaderCode) {

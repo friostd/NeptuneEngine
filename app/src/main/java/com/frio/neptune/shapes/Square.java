@@ -50,14 +50,16 @@ public class Square {
   private final int vertexCount = squareCoords.length / COORDS_PER_VERTEX;
   private final int vertexStride = COORDS_PER_VERTEX * 4;
 
-  //posicao do quadrado
+  // posicao do quadrado
   private Vector3 position = new Vector3(0, 0, 0);
-  
-  //escala do quadrado
+
+  // escala do quadrado
   private Vector3 scale = new Vector3(1, 1, 1);
 
-  //rotacao do quadrado
+  // rotacao do quadrado
   private Vector3 rotation = new Vector3(0, 0, 0);
+
+  private float[] model = new float[16];
 
   public Square() {
     ByteBuffer bb = ByteBuffer.allocateDirect(squareCoords.length * 4);
@@ -84,24 +86,22 @@ public class Square {
     GLES32.glAttachShader(mProgram, fragmentShader);
 
     GLES32.glLinkProgram(mProgram);
-
-    Matrix.setIdentityM(position, 1);
-    Matrix.setIdentityM(scale, 0);
-    Matrix.scaleM(scale, 0, 1, 1, 1);
-
-    Matrix.setRotateM(rotation, 0, 0, 0, 0, 1);
   }
 
   public void draw(float[] mvpMatrix, float[] color) {
-    float model[] = new float[16];
     Matrix.setRotateM(model, 0, rotation.x, 1, 0, 0);
-    Matrix.setRotateM(model, 0, rotation.y, 0, 1, 0);
-    Matrix.setRotateM(model, 0, rotation.z, 0, 0, 1);
     
-    Matrix.scaleM(model, 0, scale.x, scale.y, scale.z);
-   
-    Matrix.translateM(model, 0, position.x, position.y, position.z);
+    Matrix.rotateM(model, 0, rotation.y, 0, 1, 0);
+    Matrix.rotateM(model, 0, rotation.z, 0, 0, 1);
 
+    Matrix.scaleM(model, 0, scale.x, scale.y, scale.z);
+
+    Matrix.translateM(model, 0, position.x, position.y, position.z);
+    
+    position.x = 1;
+    rotation.x = 45;
+    scale.x = 2;
+    
     GLES32.glUseProgram(mProgram);
 
     positionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
@@ -125,7 +125,5 @@ public class Square {
     GLES32.glDrawArrays(GLES32.GL_TRIANGLE_FAN, 0, vertexCount);
 
     GLES32.glDisableVertexAttribArray(positionHandle);
-    
-    position[0] = 1;
   }
 }
