@@ -66,6 +66,8 @@ public class Triangle {
     GLES32.glAttachShader(mProgram, fragmentShader);
 
     GLES32.glLinkProgram(mProgram);
+    
+    position.setX(2);
   }
 
   public void draw(float[] mvpMatrix, float[] color) {
