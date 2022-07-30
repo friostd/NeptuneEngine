@@ -20,7 +20,7 @@ public class Square {
           + "attribute vec4 vPosition;"
           + "uniform mat4 model;"
           + "void main() {"
-          + "  gl_Position = projectionMatrix * vPosition * model;"
+          + "  gl_Position = projectionMatrix * model * vPosition;"
           + "}";
 
   private final String fragmentShaderCode =
