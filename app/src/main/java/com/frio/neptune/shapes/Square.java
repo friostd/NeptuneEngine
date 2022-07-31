@@ -32,7 +32,6 @@ public class Square {
 
   private int projectionMatrixHandle;
 
-  static final int COORDS_PER_VERTEX = 3;
   static float squareCoords[] = {
     -0.25f, 0.25f, 0.0f,
     -0.25f, -0.25f, 0.0f,
@@ -46,9 +45,9 @@ public class Square {
 
   private int positionHandle;
   private int colorHandle;
+  private int modelHandle;
 
-  private final int vertexCount = squareCoords.length / COORDS_PER_VERTEX;
-  private final int vertexStride = COORDS_PER_VERTEX * 4;
+  private final int vertexCount = squareCoords.length / 3;
 
   private Vector3 position = new Vector3(0, 0, 0);
   private Vector3 scale = new Vector3(1, 1, 1);
@@ -75,7 +74,6 @@ public class Square {
     mProgram = GLES32.glCreateProgram();
 
     GLES32.glAttachShader(mProgram, vertexShader);
-
     GLES32.glAttachShader(mProgram, fragmentShader);
 
     GLES32.glLinkProgram(mProgram);
@@ -84,44 +82,45 @@ public class Square {
   public void draw(float[] projectionMatrix, float[] color) {
     float positionM[] = new float[16];
     Matrix.setIdentityM(positionM, 0);
-    Matrix.translateM(positionM, 0, position.getX(), position.getY(), position.getZ());
+    Matrix.translateM(
+        positionM, 0, this.position.getX(), this.position.getY(), this.position.getZ());
 
     float rotationM[] = new float[16];
     Matrix.setIdentityM(rotationM, 0);
-    Matrix.setRotateM(rotationM, 0, rotation.getX(), 1, 0, 0);
-    Matrix.setRotateM(rotationM, 0, rotation.getY(), 0, 1, 0);
-    Matrix.setRotateM(rotationM, 0, rotation.getZ(), 0, 0, 1);
+    Matrix.setRotateM(rotationM, 0, this.rotation.getX(), 1, 0, 0);
+    Matrix.setRotateM(rotationM, 0, this.rotation.getY(), 0, 1, 0);
+    Matrix.setRotateM(rotationM, 0, this.rotation.getZ(), 0, 0, 1);
 
     float scaleM[] = new float[16];
     Matrix.setIdentityM(scaleM, 0);
-    Matrix.scaleM(scaleM, 0, scale.getX(), scale.getY(), scale.getZ());
+    Matrix.scaleM(scaleM, 0, this.scale.getX(), this.scale.getY(), this.scale.getZ());
 
     float model[] = new float[16];
     Matrix.multiplyMM(model, 0, scaleM, 0, rotationM, 0);
     Matrix.multiplyMM(model, 0, model, 0, positionM, 0);
 
-    GLES32.glUseProgram(mProgram);
+    GLES32.glUseProgram(this.mProgram);
 
-    positionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
+    positionHandle = GLES32.glGetAttribLocation(this.mProgram, "vPosition");
 
-    GLES32.glEnableVertexAttribArray(positionHandle);
+    GLES32.glEnableVertexAttribArray(this.positionHandle);
 
     GLES32.glVertexAttribPointer(
-        positionHandle, COORDS_PER_VERTEX, GLES32.GL_FLOAT, false, vertexStride, vertexBuffer);
+        this.positionHandle, 3, GLES32.GL_FLOAT, false, 12, this.vertexBuffer);
 
-    colorHandle = GLES32.glGetUniformLocation(mProgram, "vColor");
+    this.colorHandle = GLES32.glGetUniformLocation(this.mProgram, "vColor");
 
-    GLES32.glUniform4fv(colorHandle, 1, color, 0);
+    GLES32.glUniform4fv(this.colorHandle, 1, color, 0);
 
-    projectionMatrixHandle = GLES32.glGetUniformLocation(mProgram, "projectionMatrix");
+    this.projectionMatrixHandle = GLES32.glGetUniformLocation(this.mProgram, "projectionMatrix");
 
-    GLES32.glUniformMatrix4fv(projectionMatrixHandle, 1, false, projectionMatrix, 0);
+    GLES32.glUniformMatrix4fv(this.projectionMatrixHandle, 1, false, projectionMatrix, 0);
 
-    int modelHandle = GLES32.glGetUniformLocation(mProgram, "model");
-    GLES32.glUniformMatrix4fv(modelHandle, 1, false, model, 0);
+    this.modelHandle = GLES32.glGetUniformLocation(this.mProgram, "model");
+    GLES32.glUniformMatrix4fv(this.modelHandle, 1, false, model, 0);
 
-    GLES32.glDrawArrays(GLES32.GL_TRIANGLE_FAN, 0, vertexCount);
+    GLES32.glDrawArrays(GLES32.GL_TRIANGLE_FAN, 0, this.vertexCount);
 
-    GLES32.glDisableVertexAttribArray(positionHandle);
+    GLES32.glDisableVertexAttribArray(this.positionHandle);
   }
 }

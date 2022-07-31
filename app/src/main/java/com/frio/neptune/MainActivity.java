@@ -1,5 +1,7 @@
 package com.frio.neptune;
 
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,14 +14,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.Random;
 import java.util.UUID;
+import javax.microedition.khronos.egl.EGL;
 
 public class MainActivity extends AppCompatActivity {
 
   private GLSurfaceView mGLSurface;
   private GLRenderer mRenderer;
 
-  private float previousX;
-  private float previousY;
+  private ScaleGestureDetector mScaleDetector;
+  private float mScaleFactor = 1.0f;
 
   @Override
   protected void onCreate(Bundle bundle) {
@@ -38,35 +41,34 @@ public class MainActivity extends AppCompatActivity {
     this.mGLSurface.setRenderer(this.mRenderer);
     this.mGLSurface.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
+    this.mScaleDetector = new ScaleGestureDetector(this, new ScaleListener());
+
     this.mGLSurface.setOnTouchListener(
         (view, event) -> {
-          // MotionEvent reports input details from the touch screen
-          // and other input controls. In this case, you are only
-          // interested in events where the touch position changed.
-
-          float x = event.getX();
-          float y = event.getY();
-
-          switch (event.getAction()) {
-            case MotionEvent.ACTION_MOVE:
-              float dx = x - previousX;
-              float dy = y - previousY;
-
-              this.mRenderer.setPositionX(this.mRenderer.getPositionX() + (dx / x));
-              this.mRenderer.setPositionY(this.mRenderer.getPositionY() + (dy / y));
-
-              this.mGLSurface.requestRender();
-          }
-
-          previousX = x;
-          previousY = y;
-
+          mScaleDetector.onTouchEvent(event);
+          mGLSurface.requestRender();
           return true;
         });
   }
 
   protected void initializeViews() {
     this.mGLSurface = this.findViewById(R.id.mGLSurface);
+  }
+
+  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    @Override
+    public boolean onScale(ScaleGestureDetector detector) {
+      mScaleFactor *= detector.getScaleFactor();
+
+      // Don't let the object get too small or too large.
+      mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 50.0f));
+      mRenderer.setCameraZoom(mScaleFactor);
+
+      mGLSurface.requestRender();
+      
+      getSupportActionBar().setTitle(mRenderer.getCameraZoom() + "");
+      return true;
+    }
   }
 
   // Override methods
@@ -87,28 +89,28 @@ public class MainActivity extends AppCompatActivity {
         float gs = 0 + new Random().nextFloat() * (1 - 0);
         float bs = 0 + new Random().nextFloat() * (1 - 0);
 
-        this.mRenderer.addObject(
+        this.mRenderer.addNewObject(
             UUID.randomUUID().toString(), "Square", new float[] {rs, gs, bs, 1.0f});
         this.mGLSurface.requestRender();
         return true;
-      case R.id.triangle:
-        float rt = 0 + new Random().nextFloat() * (1 - 0);
-        float gt = 0 + new Random().nextFloat() * (1 - 0);
-        float bt = 0 + new Random().nextFloat() * (1 - 0);
+        /*case R.id.triangle:
+          float rt = 0 + new Random().nextFloat() * (1 - 0);
+          float gt = 0 + new Random().nextFloat() * (1 - 0);
+          float bt = 0 + new Random().nextFloat() * (1 - 0);
 
-        this.mRenderer.addObject(
-            UUID.randomUUID().toString(), "Triangle", new float[] {rt, gt, bt, 1.0f});
-        this.mGLSurface.requestRender();
-        return true;
-      case R.id.circle:
-        float rc = 0 + new Random().nextFloat() * (1 - 0);
-        float gc = 0 + new Random().nextFloat() * (1 - 0);
-        float bc = 0 + new Random().nextFloat() * (1 - 0);
+          this.mRenderer.addNewObject(
+              UUID.randomUUID().toString(), "Triangle", new float[] {rt, gt, bt, 1.0f});
+          this.mGLSurface.requestRender();
+          return true;
+        case R.id.circle:
+          float rc = 0 + new Random().nextFloat() * (1 - 0);
+          float gc = 0 + new Random().nextFloat() * (1 - 0);
+          float bc = 0 + new Random().nextFloat() * (1 - 0);
 
-        this.mRenderer.addObject(
-            UUID.randomUUID().toString(), "Circle", new float[] {rc, gc, bc, 1.0f});
-        this.mGLSurface.requestRender();
-        return true;
+          this.mRenderer.addNewObject(
+              UUID.randomUUID().toString(), "Circle", new float[] {rc, gc, bc, 1.0f});
+          this.mGLSurface.requestRender();
+          return true;*/
       default:
         return super.onOptionsItemSelected(item);
     }

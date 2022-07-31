@@ -10,12 +10,6 @@
             <item
                 android:id="@+id/square"
                 android:title="Quadrado"/>
-            <item
-                android:id="@+id/triangle"
-                android:title="Triângulo"/>
-            <item
-                android:id="@+id/circle"
-                android:title="Círculo"/>
         </menu>
     </item>
 
