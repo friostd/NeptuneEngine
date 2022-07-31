@@ -28,7 +28,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
   }
 
   public void setCameraZoom(float cameraZoom) {
-    this.cameraZoom = cameraZoom;
+    this.cameraZoom = Math.min(1.f / 10, Math.max(cameraZoom, 10));;
   }
   
   public float getCameraZoom() {
