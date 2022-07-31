@@ -12,6 +12,7 @@ import android.view.ScaleGestureDetector;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import com.frio.neptune.utils.Math;
 import java.util.Random;
 import java.util.UUID;
 import javax.microedition.khronos.egl.EGL;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
       mScaleFactor *= detector.getScaleFactor();
 
       // Don't let the object get too small or too large.
-      mScaleFactor = Math.max(1.0f, Math.min(mScaleFactor, 50.0f));
+      mScaleFactor = Math.clamp(1, mScaleFactor, 10);
       mRenderer.setCameraZoom(mScaleFactor);
 
       mGLSurface.requestRender();
