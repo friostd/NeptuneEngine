@@ -42,7 +42,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
   public void onDrawFrame(GL10 unused) {
     GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
     
-    Matrix.orthoM(this.projectionMatrix, 0, -ratio * cameraZoom, ratio * cameraZoom, -cameraZoom, cameraZoom, -1, 50);
+    Matrix.orthoM(this.projectionMatrix, 0, -ratio / cameraZoom, ratio / cameraZoom, -1 / cameraZoom, 1 / cameraZoom, -1, 50);
 
     // Draw objects
 
