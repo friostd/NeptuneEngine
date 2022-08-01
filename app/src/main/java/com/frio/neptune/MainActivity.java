@@ -1,21 +1,23 @@
 package com.frio.neptune;
 
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
-import android.opengl.GLSurfaceView;
+import com.frio.neptune.utils.*;
+
 import android.os.Bundle;
-import android.view.Menu;
+
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.View;
-import android.widget.Toast;
+import android.view.Menu;
+
 import androidx.appcompat.app.AppCompatActivity;
-import com.frio.neptune.utils.Math;
+
 import java.util.Random;
 import java.util.UUID;
+
 import javax.microedition.khronos.egl.EGL;
+import android.opengl.GLSurfaceView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +25,12 @@ public class MainActivity extends AppCompatActivity {
   private GLRenderer mRenderer;
 
   private ScaleGestureDetector mScaleDetector;
+
   private float mScaleFactor = 1.0f;
+  private float mPreviousX;
+  private float mPreviousY;
+
+  private String mode = "NONE";
 
   @Override
   protected void onCreate(Bundle bundle) {
@@ -46,30 +53,43 @@ public class MainActivity extends AppCompatActivity {
 
     this.mGLSurface.setOnTouchListener(
         (view, event) -> {
+          float x = event.getX();
+          float y = event.getY();
+
+          switch (event.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+              if (mode != "ZOOM") {
+                if ((x >= 0)
+                    & (x <= mGLSurface.getWidth())
+                    & (y >= 0)
+                    & (y <= mGLSurface.getHeight())) {
+                  float dx = x - mPreviousX;
+                  float dy = y - mPreviousY;
+
+                  Vector3 vector3 = mRenderer.getCamera().getTransform().getPosition();
+                  vector3.set(vector3.getX() + (dx / x), vector3.getY() + (-dy / y), 0);
+
+                  mGLSurface.requestRender();
+                  mode = "MOVE";
+                }
+              }
+              break;
+
+            case MotionEvent.ACTION_UP:
+              mode = "NONE";
+              break;
+          }
+
+          mPreviousX = x;
+          mPreviousY = y;
+
           mScaleDetector.onTouchEvent(event);
-          mGLSurface.requestRender();
           return true;
         });
   }
 
   protected void initializeViews() {
     this.mGLSurface = this.findViewById(R.id.mGLSurface);
-  }
-
-  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    @Override
-    public boolean onScale(ScaleGestureDetector detector) {
-      mScaleFactor *= detector.getScaleFactor();
-
-      // Don't let the object get too small or too large.
-      mScaleFactor = Math.clamp(1, mScaleFactor, 10);
-      mRenderer.setCameraZoom(mScaleFactor);
-
-      mGLSurface.requestRender();
-      
-      getSupportActionBar().setTitle(mRenderer.getCameraZoom() + "");
-      return true;
-    }
   }
 
   // Override methods
@@ -114,6 +134,28 @@ public class MainActivity extends AppCompatActivity {
           return true;*/
       default:
         return super.onOptionsItemSelected(item);
+    }
+  }
+
+  // Classes
+
+  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    @Override
+    public boolean onScale(ScaleGestureDetector detector) {
+      mScaleFactor *= detector.getScaleFactor();
+      mRenderer.getCamera().setZoom(mScaleFactor);
+
+      mGLSurface.requestRender();
+
+      getSupportActionBar().setTitle(mRenderer.getCamera().getZoom() + "");
+      return true;
+    }
+
+    @Override
+    public boolean onScaleBegin(ScaleGestureDetector detector) {
+      mode = "ZOOM";
+
+      return true;
     }
   }
 }
