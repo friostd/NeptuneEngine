@@ -10,23 +10,31 @@ android {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
+        
+        multiDexEnabled true
     }
     
     signingConfigs {
-      create("release") {
-        storeFile = file("key.keystore")
-        storePassword = "neptuneengine"
-        keyAlias = "neptuneengine"
-        keyPassword = "neptuneengine"
-        v1SigningEnabled = true
-        v2SigningEnabled = true
+      debug {
+        storeFile file ("key.keystore")
+        storePassword "neptuneengine"
+        keyAlias "neptuneengine"
+        keyPassword "neptuneengine"
+      }
+      
+      release {
+        storeFile file ("key.keystore")
+        storePassword "neptuneengine"
+        keyAlias "neptuneengine"
+        keyPassword "neptuneengine"
       }
     }
 
     buildTypes {
         release {
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -36,6 +44,10 @@ android {
 		sourceCompatibility JavaVersion.VERSION_11
 		targetCompatibility JavaVersion.VERSION_11
 	}
+    
+    lint {
+      abortOnError false
+    }
 	
 	buildFeatures {
         viewBinding true

@@ -15,9 +15,8 @@
         <item name="android:colorBackground">#121212</item>
         <item name="android:statusBarColor" tools:targetApi="l">#1D1D1D</item>
         <item name="android:popupMenuStyle">@style/popupMenuStyle</item>
-        <item name="android:itemBackground">#121212</item>
     </style>
-    
+
     <style name="NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <item name="colorPrimary">#FFFFFF</item>
         <item name="colorPrimaryVariant">#FFFFFF</item>
@@ -32,11 +31,10 @@
         <item name="android:colorBackground">#121212</item>
         <item name="android:statusBarColor" tools:targetApi="l">#1D1D1D</item>
         <item name="android:popupMenuStyle">@style/popupMenuStyle</item>
-        <item name="android:itemBackground">#121212</item>
     </style>
 
     <style name="popupMenuStyle" parent="Widget.AppCompat.PopupMenu">
-        <item name="android:popupBackground">#121212</item>
+        <item name="android:background">#121212</item>
     </style>
 
 </resources>

@@ -4,6 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools" >
 
     <item
+        android:id="@+id/save"
+        android:icon="@drawable/ic_save"
+        android:title="Salvar"/>
+    <item
         android:id="@+id/newObj"
         android:title="Novo objeto">
         <menu>
