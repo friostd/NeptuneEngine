@@ -4,9 +4,9 @@
 
 > Demonstration 1:
 >  
-> ![demo1](https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/neptune_engine_demo1.jpg)
+> ![demo1](https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/demo1.jpg)
 >  
 > Demonstration 2:
-> ![demo2](https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/neptune_engine_demo2.jpg)
+> ![demo2](https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/demo2.jpg)
 
 :warning: This game engine is currently in development! :warning:
