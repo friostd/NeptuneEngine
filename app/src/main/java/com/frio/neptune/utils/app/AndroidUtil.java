@@ -25,16 +25,47 @@
 
 package com.frio.neptune.utils.app;
 
+import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 public class AndroidUtil {
-  
+
   public static void showToast(Context context, String message) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
   }
-  
+
   public static void throwsException(Context context, String exception) {
     FilesUtil.writeFile(context, context.getExternalFilesDir("logs") + "/log.txt", exception);
+  }
+
+  public static void write(Context context, String file, String message) {
+    FilesUtil.writeFile(context, context.getExternalFilesDir("logs") + file, message);
+  }
+
+  public static float[] toArray(String string) {
+    String[] strArray = string.split(", ");
+
+    float[] numbers = new float[strArray.length];
+    for (int i = 0; i < strArray.length; ++i) {
+      float number = Float.parseFloat(strArray[i]);
+      numbers[i] = number;
+    }
+
+    return numbers;
+  }
+
+  public static void closeKeyboard(Activity activity) {
+    InputMethodManager imm =
+        (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+    View view = activity.getCurrentFocus();
+
+    if (view == null) {
+      view = new View(activity);
+    }
+
+    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
   }
 }

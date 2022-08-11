@@ -11,28 +11,34 @@ android {
         targetSdk rootProject.ext.targetSdk
         versionCode 1
         versionName "0.0.1"
-        
-        multiDexEnabled true
+        resConfigs "en", "pt-rBR"
     }
     
     signingConfigs {
       debug {
         storeFile file ("key.keystore")
-        storePassword "neptuneengine"
-        keyAlias "neptuneengine"
-        keyPassword "neptuneengine"
+        keyAlias "engine"
+        keyPassword "nep22en8"
+        storePassword "nep22en8"
       }
       
       release {
         storeFile file ("key.keystore")
-        storePassword "neptuneengine"
-        keyAlias "neptuneengine"
-        keyPassword "neptuneengine"
+        keyAlias "engine"
+        keyPassword "nep22en8"
+        storePassword "nep22en8"
       }
     }
 
     buildTypes {
         release {
+            minifyEnabled true
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        
+        debug {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'

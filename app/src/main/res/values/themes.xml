@@ -34,7 +34,7 @@
     </style>
 
     <style name="popupMenuStyle" parent="Widget.AppCompat.PopupMenu">
-        <item name="android:background">#121212</item>
+        <item name="android:popupBackground">#FF1F1B1C</item>
     </style>
 
 </resources>
