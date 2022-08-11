@@ -1,12 +1,17 @@
-## Neptune engine
+<h1 align="center">Neptune Engine</h1>
 
- - Neptune engine is an simple game engine written in Java for Android devices using OpenGL ES
+- Neptune engine is an simple game engine written in Java for Android devices using OpenGL ES.
+With this Engine, you will be able to create games and 3D models using OpenGLES graphics directly on your device 
 
-> Demonstration 1:
->  
-> ![demo1](https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/demo1.jpg)
->  
-> Demonstration 2:
-> ![demo2](https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/demo2.jpg)
+<h1 align="center">Examples</h1>
 
-:warning: This game engine is currently in development! :warning:
+- Demonstration 1:
+  <img width=200 src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/demo1.jpg"></img>
+
+- Demonstration 2:
+  <img width=200 src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/screenshots/demo2.jpg"></img>
+
+<h1 align="center">Note</h1>
+
+> **Warning**:
+> This game engine is currently in development, wait until the stable releases.
