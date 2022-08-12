@@ -29,96 +29,93 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
-import android.view.ScaleGestureDetector;
 import androidx.appcompat.app.AppCompatActivity;
+import com.frio.neptune.databinding.ActEditorBinding;
 import com.frio.neptune.project.Project;
 import com.frio.neptune.utils.*;
 import com.frio.neptune.utils.app.*;
-import java.util.Random;
+import java.util.Arrays;
 import java.util.UUID;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class EditorActivity extends AppCompatActivity {
 
-  private GLSurfaceView mGLSurface;
-  private GLRenderer mRenderer;
-
-  private ScaleGestureDetector mScaleDetector;
-
-  private float mScaleFactor = 1.0f;
-  private float mPreviousX;
-  private float mPreviousY;
-
-  private String mode = "NONE";
+  private ActEditorBinding binding;
+  private GLRenderer renderer;
   private Project mProject;
+
+  /**
+   * Temporarily removed (Doesn't work on some devices).
+   *
+   * <p>private ScaleGestureDetector mScaleDetector;
+   */
+  private float mLastX;
+
+  private float mLastY;
 
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.setContentView(R.layout.act_editor);
 
-    main();
+    this.binding = ActEditorBinding.inflate(getLayoutInflater());
+    this.setContentView(binding.getRoot());
+
+    this.main();
   }
 
   protected void main() {
-    initializeViews();
-
     mProject = getIntent().getParcelableExtra("project");
 
-    mGLSurface.setEGLContextClientVersion(3);
-    mRenderer = new GLRenderer(this);
+    binding.glSurface.setEGLContextClientVersion(3);
+    renderer = new GLRenderer(this);
 
-    mGLSurface.setRenderer(mRenderer);
-    mGLSurface.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+    binding.glSurface.setRenderer(renderer);
+    binding.glSurface.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
-    mRenderer.loadObjects(mProject.getPath() + "/scene.world");
-    mGLSurface.requestRender();
+    renderer.loadObjects(mProject.getPath() + "/scene.world");
+    binding.glSurface.requestRender();
 
-    mScaleDetector = new ScaleGestureDetector(this, new ScaleListener());
-
-    mGLSurface.setOnTouchListener(
+    binding.glSurface.setOnTouchListener(
         (view, event) -> {
-          float x = event.getX();
-          float y = event.getY();
+          float dx = 0;
+          float dy = 0;
 
           switch (event.getAction()) {
-            case MotionEvent.ACTION_MOVE:
-              if (mode != "ZOOM") {
-                if ((x >= 0)
-                    & (x <= mGLSurface.getWidth())
-                    & (y >= 0)
-                    & (y <= mGLSurface.getHeight())) {
-                  float dx = x - mPreviousX;
-                  float dy = y - mPreviousY;
+            case MotionEvent.ACTION_DOWN:
+              {
+                final float x = event.getX();
+                final float y = event.getY();
 
-                  Vector3 vector3 = mRenderer.getCamera().getTransform().getPosition();
-                  vector3.set(vector3.getX() + (dx / x), vector3.getY() + (-dy / y), 0);
-
-                  mGLSurface.requestRender();
-                  mode = "MOVE";
-                }
+                mLastX = x;
+                mLastY = y;
+                break;
               }
-              break;
+            case MotionEvent.ACTION_MOVE:
+              {
+                final float x = event.getX();
+                final float y = event.getY();
 
-            case MotionEvent.ACTION_UP:
-              mode = "NONE";
-              break;
+                dx = x - mLastX;
+                dy = y - mLastY;
+
+                Vector3 vector3 = renderer.getCamera().getTransform().getPosition();
+                vector3.set(vector3.getX() + dx / x, vector3.getY() - dy / y, 0);
+
+                binding.glSurface.requestRender();
+
+                mLastX = x;
+                mLastY = y;
+                break;
+              }
           }
 
-          mPreviousX = x;
-          mPreviousY = y;
-
-          mScaleDetector.onTouchEvent(event);
           return true;
         });
   }
 
-  protected void initializeViews() {
-    mGLSurface = findViewById(R.id.glSurfaceView);
-  }
-
-  // Override methods
+  // @Override methods
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
@@ -133,67 +130,53 @@ public class EditorActivity extends AppCompatActivity {
     switch (item.getItemId()) {
       case R.id.square:
         {
-          float red = 0 + new Random().nextFloat() * (1 - 0);
-          float green = 0 + new Random().nextFloat() * (1 - 0);
-          float blue = 0 + new Random().nextFloat() * (1 - 0);
+          {
+            String uid = UUID.randomUUID().toString().replace("-", "");
+            String type = "Square";
+            float[] color = new float[] {1f, 1f, 1f, 1f};
 
-          String uid = UUID.randomUUID().toString().replace("-", "");
-          String type = "Square";
-
-          mRenderer.addNewObject(uid, type, new float[] {red, green, blue, 1.0f});
-          mGLSurface.requestRender();
+            renderer.addNewObject(uid, type, color);
+            binding.glSurface.requestRender();
+          }
 
           return true;
         }
       case R.id.save:
-        float red = 0 + new Random().nextFloat() * (1 - 0);
-        float green = 0 + new Random().nextFloat() * (1 - 0);
-        float blue = 0 + new Random().nextFloat() * (1 - 0);
-
-        String uid = UUID.randomUUID().toString().replace("-", "");
-        String type = "Square";
-        String color = String.valueOf(red + "," + green + "," + blue + ",1.0f");
-
-        try {
-          JSONObject json = new JSONObject(FilesUtil.readFile(mProject.getPath() + "/scene.world"));
+        {
+          JSONObject main = new JSONObject();
+          JSONArray array = new JSONArray();
 
           JSONObject objects = new JSONObject();
-          objects.put("uid", uid);
-          objects.put("type", type);
-          objects.put("color", color);
+          JSONObject object = new JSONObject();
 
-          json.accumulate("objects", objects);
+          try {
+            for (Object2D obj : renderer.getObjectsList()) {
+              object.put("type", obj.getType());
+              object.put("color", Arrays.toString(obj.getColor()));
 
-          FilesUtil.writeFile(this, mProject.getPath() + "/scene.world", json.toString(2));
-        } catch (JSONException e) {
-          AndroidUtil.throwsException(this, e.getMessage());
-        } finally {
-          AndroidUtil.showToast(this, "Mundo salvo com sucesso!");
+              objects.put(obj.getUid(), object);
+            }
+
+            array.put(objects);
+
+            main.accumulate("objects", array);
+            FilesUtil.writeFile(this, mProject.getPath() + "/scene.world", main.toString(2));
+          } catch (JSONException e) {
+            AndroidUtil.throwsException(this, e.getMessage());
+          } finally {
+            AndroidUtil.showToast(this, "Mundo salvo com sucesso!");
+          }
+          return true;
         }
-
-        return true;
+      case R.id.resetCamera:
+        {
+          renderer.getCamera().getTransform().setPosition(0, 0, 0);
+          binding.glSurface.requestRender();
+          return true;
+        }
       default:
         return super.onOptionsItemSelected(item);
     }
   }
-
-  // Classes
-
-  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
-    @Override
-    public boolean onScale(ScaleGestureDetector detector) {
-      mScaleFactor *= detector.getScaleFactor();
-      mRenderer.getCamera().setZoom(mScaleFactor);
-
-      mGLSurface.requestRender();
-      return true;
-    }
-
-    @Override
-    public boolean onScaleBegin(ScaleGestureDetector detector) {
-      mode = "ZOOM";
-
-      return true;
-    }
-  }
 }
+

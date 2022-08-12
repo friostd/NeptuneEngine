@@ -26,49 +26,50 @@ package com.frio.neptune;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import com.frio.neptune.databinding.ActMainBinding;
 import com.frio.neptune.project.Project;
 import com.frio.neptune.project.adapter.ProjectsAdapter;
 import com.frio.neptune.utils.app.*;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-  private RecyclerView mProjectsView;
   private ProjectsAdapter mAdapter;
-
-  private FloatingActionButton mFab;
-
   private List<Project> mProjectsList = new LinkedList<>();
+  private ActMainBinding binding;
 
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
-    this.setContentView(R.layout.act_main);
 
-    main();
+    this.binding = ActMainBinding.inflate(getLayoutInflater());
+    this.setContentView(binding.getRoot());
+
+    this.main();
   }
 
   protected void main() {
-    initializeViews();
+    observer();
 
     mAdapter = new ProjectsAdapter(mProjectsList);
     mAdapter.setOnClickListener(
-        (view, pos) -> {
+        (pos) -> {
           Project project = mProjectsList.get(pos);
 
           Intent intent = new Intent(MainActivity.this, EditorActivity.class);
@@ -77,33 +78,53 @@ public class MainActivity extends AppCompatActivity {
           startActivity(intent);
         });
 
-    mProjectsView.setAdapter(mAdapter);
-    mProjectsView.setLayoutManager(new LinearLayoutManager(this));
+    mAdapter.setOnLongClickListener(
+        (view, pos) -> {
+          Project project = mProjectsList.get(pos);
+
+          PopupMenu popup = new PopupMenu(this, view);
+          Menu menu = popup.getMenu();
+          menu.add(0, 0, 0, "Excluir");
+
+          popup.setOnMenuItemClickListener(
+              (item) -> {
+                switch (item.getItemId()) {
+                  case 0:
+                    FilesUtil.delete(this, project.getPath());
+                    refreshProjects();
+                    break;
+                  default:
+                    break;
+                }
+
+                return true;
+              });
+
+          popup.show();
+
+          return true;
+        });
+
+    binding.projects.setAdapter(mAdapter);
+    binding.projects.setLayoutManager(new LinearLayoutManager(this));
   }
 
-  protected void initializeViews() {
-    mProjectsView = findViewById(R.id.rv_projects);
-    mFab = findViewById(R.id.fab);
-
-    events();
-  }
-
-  protected void events() {
-    mFab.setOnClickListener(
+  protected void observer() {
+    binding.fab.setOnClickListener(
         (view) -> {
           AlertDialog dialog = new AlertDialog.Builder(this).create();
-          View v = dialog.getLayoutInflater().inflate(R.layout.ln_new_project, null);
+          View inflater = dialog.getLayoutInflater().inflate(R.layout.ln_new_project, null);
 
-          dialog.setView(v);
+          dialog.setView(inflater);
           dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0x00FFFFFF));
 
-          EditText input = v.findViewById(R.id.txt_name);
-          TextView ok = v.findViewById(R.id.btn_ok);
-          TextView cancel = v.findViewById(R.id.btn_cancel);
+          EditText input = inflater.findViewById(R.id.txt_name);
+          TextView ok = inflater.findViewById(R.id.btn_ok);
+          TextView cancel = inflater.findViewById(R.id.btn_cancel);
 
           input.setFocusableInTouchMode(true);
           ok.setOnClickListener(
-              (view1) -> {
+              (otherView) -> {
                 final String name = input.getText().toString().trim();
 
                 if (name == null || name.isEmpty()) {
@@ -112,13 +133,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 createNewProject(name);
-                closeKeyboard();
+                AndroidUtil.closeKeyboard(this);
                 dialog.dismiss();
               });
 
           cancel.setOnClickListener(
-              (view2) -> {
-                closeKeyboard();
+              (someView) -> {
+                AndroidUtil.closeKeyboard(this);
                 dialog.dismiss();
               });
 
@@ -131,25 +152,34 @@ public class MainActivity extends AppCompatActivity {
   private void refreshProjects() {
     mProjectsList.clear();
 
-    File file = new File(getExternalFilesDir("projects").toString());
-    for (File f : file.listFiles()) {
-      if (f.isHidden() || f.isFile()) return;
+    File root = new File(getExternalFilesDir("projects").toString());
+    File[] listFiles = root.listFiles();
 
-      mProjectsList.add(new Project(f.getName(), f.getAbsolutePath()));
-      Collections.sort(mProjectsList, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
-
-      mAdapter.notifyDataSetChanged();
+    if (listFiles == null || listFiles.length == 0) {
+      binding.noProjects.setVisibility(0);
+      return;
     }
+
+    binding.noProjects.setVisibility(8);
+
+    for (File file : listFiles) {
+      if (file.isDirectory()) {
+        mProjectsList.add(new Project(file.getName(), file.getAbsolutePath()));
+        Collections.sort(mProjectsList, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
+      }
+    }
+
+    mAdapter.notifyDataSetChanged();
   }
 
   private void createNewProject(String name) {
     if (FilesUtil.exists(getExternalFilesDir("projects") + "/" + name)) {
       AndroidUtil.showToast(this, "Projeto já existente");
-      closeKeyboard();
+      AndroidUtil.closeKeyboard(this);
       return;
     }
 
-    final String projectPath = getExternalFilesDir("projects") + "/" + name;
+    String projectPath = getExternalFilesDir("projects") + "/" + name;
 
     FilesUtil.createDir(projectPath);
     FilesUtil.writeFile(this, projectPath + "/scene.world", setupProject());
@@ -158,32 +188,28 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private String setupProject() {
-    JSONObject json = new JSONObject();
+    JSONObject main = new JSONObject();
+
+    JSONObject object = new JSONObject();
     JSONObject objects = new JSONObject();
+    JSONArray array = new JSONArray();
 
     try {
       String uid = UUID.randomUUID().toString().replace("-", "");
       String type = "Square";
-      String color = "1.0f,0.0f,0.0f,1.0f";
+      float[] color = new float[] {1f, 0f, 0f, 1f};
 
-      json.put("uid", uid);
-      json.put("type", type);
-      json.put("color", color);
+      object.put("type", type);
+      object.put("color", Arrays.toString(color));
 
-      objects.put("objects", json);
+      objects.put(uid, object);
+      array.put(objects);
 
-      return objects.toString(2);
+      main.put("objects", array);
+      return main.toString(2);
     } catch (JSONException e) {
       AndroidUtil.showToast(this, e.getMessage());
       return null;
-    }
-  }
-
-  private void closeKeyboard() {
-    if (this.getCurrentFocus() != null) {
-      InputMethodManager imm =
-          (InputMethodManager) getSystemService(MainActivity.INPUT_METHOD_SERVICE);
-      imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
     }
   }
 
@@ -196,3 +222,4 @@ public class MainActivity extends AppCompatActivity {
     super.onStart();
   }
 }
+

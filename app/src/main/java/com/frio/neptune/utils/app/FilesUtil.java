@@ -85,4 +85,30 @@ public class FilesUtil {
       return null;
     }
   }
+
+  public static void deleteDirectory(String path) {
+    File file = new File(path);
+    if (file.isDirectory() && file.exists()) {
+      String[] children = file.list();
+      for (int i = 0; i < children.length; i++) {
+        new File(file, children[i]).delete();
+      }
+    }
+  }
+
+  // Test
+
+  public static void delete(Context context, String path) {
+    File file = new File(path);
+    if (file.exists()) {
+      try {
+        Process process = Runtime.getRuntime().exec("rm -rf " + file.getAbsolutePath());
+        process.waitFor();
+      } catch (IOException e) {
+        AndroidUtil.throwsException(context, e.getMessage());
+      } catch (InterruptedException e) {
+        AndroidUtil.throwsException(context, e.getMessage());
+      }
+    }
+  }
 }

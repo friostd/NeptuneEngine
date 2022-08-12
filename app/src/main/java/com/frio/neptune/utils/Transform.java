@@ -32,6 +32,10 @@ public class Transform {
   public Transform(Vector3 vector3) {
     this.mVector3 = vector3;
   }
+  
+  public void setPosition(float x, float y, float z) {
+    this.mVector3.set(x, y, z);
+  }
 
   public Vector3 getPosition() {
     return this.mVector3;

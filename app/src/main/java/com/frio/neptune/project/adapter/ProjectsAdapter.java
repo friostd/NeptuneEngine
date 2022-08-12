@@ -39,11 +39,29 @@ import java.util.List;
 public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Holder> {
 
   private List<Project> mProjectsList;
-
-  private TouchListener listener;
+  private ClickListener clickListener;
+  private LongClickListener longClickListener;
 
   public ProjectsAdapter(List<Project> list) {
     mProjectsList = list;
+  }
+
+  public void setOnClickListener(ClickListener listener) {
+    this.clickListener = listener;
+  }
+
+  public boolean setOnLongClickListener(LongClickListener listener) {
+    this.longClickListener = listener;
+
+    return true;
+  }
+
+  public interface ClickListener {
+    void clickListener(int position);
+  }
+
+  public interface LongClickListener {
+    boolean longClickListener(View view, int position);
   }
 
   public class Holder extends RecyclerView.ViewHolder {
@@ -60,25 +78,27 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Holder
       view.setTag(view);
       view.setOnClickListener(
           v -> {
-            if (listener != null) {
-              listener.setOnClickListener(v, getAdapterPosition());
+            if (clickListener != null) {
+              clickListener.clickListener(getAdapterPosition());
             }
           });
+
+      view.setOnLongClickListener(
+          vi -> {
+            if (longClickListener != null) {
+              longClickListener.longClickListener(vi, getAdapterPosition());
+            }
+
+            return true;
+          });
     }
-  }
-
-  public void setOnClickListener(TouchListener listener) {
-    this.listener = listener;
-  }
-
-  public interface TouchListener {
-    void setOnClickListener(View view, int position);
   }
 
   @NonNull
   @Override
   public ProjectsAdapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ln_project, parent, false);
+    View view =
+        LayoutInflater.from(parent.getContext()).inflate(R.layout.ln_project, parent, false);
 
     return new Holder(view);
   }

@@ -48,18 +48,10 @@ public class GLRenderer implements GLSurfaceView.Renderer {
   private Camera mCamera;
   private Vector3 mCameraPosition;
 
-  private Context mContext;
+  private Context context;
 
-  public GLRenderer(Context mContext) {
-    this.mContext = mContext;
-  }
-
-  public void addNewObject(String uid, String type, float[] color) {
-    mObjectsList.add(new Object2D(uid, type, color));
-  }
-
-  public Camera getCamera() {
-    return mCamera;
+  public GLRenderer(Context context) {
+    this.context = context;
   }
 
   public void onSurfaceCreated(GL10 unused, EGLConfig config) {
@@ -101,42 +93,27 @@ public class GLRenderer implements GLSurfaceView.Renderer {
           break;
       }
     }
+
+    // AndroidUtil.showToast(context, mObjectsList.size() + " Objetos(s)");
   }
 
   public void loadObjects(String path) {
     try {
-      JSONObject jsonObject = new JSONObject(FilesUtil.readFile(path));
-      JSONObject objects = jsonObject.optJSONObject("objects");
+      JSONObject json = new JSONObject(FilesUtil.readFile(path));
+      JSONArray array = json.getJSONArray("objects");
 
-      if (objects != null) {
-        for (int a = 0; a < objects.length(); a++) {
-          String[] colorArray = objects.getString("color").split(",");
-          float[] color = new float[colorArray.length];
+      JSONObject objects = array.getJSONObject(0);
 
-          for (int b = 0; b < colorArray.length; b++) {
-            color[b] = Float.parseFloat(colorArray[b].toString());
-          }
+      for (int i = 0; i < objects.length(); i++) {
+        JSONObject object = objects.getJSONObject(objects.names().getString(i));
 
-          addNewObject(
-              objects.getString("uid").toString(), objects.getString("type").toString(), color);
-        }
-      } else {
-        JSONArray array = jsonObject.optJSONArray("objects");
-        for (int a = 0; a < array.length(); a++) {
-          JSONObject obj = array.optJSONObject(a);
-          String[] colorArray = obj.getString("color").split(",");
-          float[] color = new float[colorArray.length];
+        float[] color =
+            AndroidUtil.toArray(object.getString("color").replace("[", "").replace("]", ""));
 
-          for (int b = 0; b < colorArray.length; b++) {
-            color[b] = Float.parseFloat(colorArray[b].toString());
-          }
-
-          addNewObject(obj.getString("uid").toString(), obj.getString("type").toString(), color);
-        }
+        addNewObject(objects.names().getString(i), object.getString("type"), color);
       }
     } catch (JSONException e) {
-      FilesUtil.writeFile(
-          mContext, mContext.getExternalFilesDir("logs") + "/log.txt", e.getMessage());
+      AndroidUtil.throwsException(context, e.getMessage());
     }
   }
 
@@ -153,6 +130,18 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         mCamera.getZoom(),
         -1,
         50);
+  }
+
+  public List<Object2D> getObjectsList() {
+    return this.mObjectsList;
+  }
+
+  public void addNewObject(String uid, String type, float[] color) {
+    mObjectsList.add(new Object2D(uid, type, color));
+  }
+
+  public Camera getCamera() {
+    return mCamera;
   }
 
   public static int loadShader(int type, String shaderCode) {

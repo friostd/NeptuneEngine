@@ -21,9 +21,11 @@
  * SOFTWARE.
 */
 
-// Util
-
 package com.frio.neptune.utils;
+
+import com.frio.neptune.GLRenderer;
+import java.util.Random;
+import java.util.UUID;
 
 public class Object2D {
 
