@@ -28,6 +28,8 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import com.frio.neptune.databinding.ActSplashBinding;
 import com.frio.neptune.utils.app.FilesUtil;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -44,14 +46,21 @@ public class SplashActivity extends AppCompatActivity {
   }
 
   protected void main() {
-    binding.txtProgress.setText("Iniciando aplicativo.");
-
     FilesUtil.createDir(getExternalFilesDir("projects").toString());
 
     // TODO: Remove this line when the application doesn't need logs
     FilesUtil.createDir(getExternalFilesDir("logs").toString());
 
-    startActivity(new Intent(SplashActivity.this, MainActivity.class));
-    finish();
+    new Timer()
+        .schedule(
+            new TimerTask() {
+              @Override
+              public void run() {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
+              }
+            },
+            2500);
   }
 }
+
