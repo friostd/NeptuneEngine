@@ -23,11 +23,11 @@
 
 package com.frio.neptune.utils;
 
-import com.frio.neptune.GLRenderer;
-import java.util.Random;
-import java.util.UUID;
+import android.os.Parcel;
+import android.os.Parcelable;
+import com.frio.neptune.utils.Object2D;
 
-public class Object2D {
+public class Object2D implements Parcelable {
 
   private String uid;
   private String type;
@@ -39,11 +39,31 @@ public class Object2D {
     this.color = color;
   }
 
-  public String getUid() {
+  protected Object2D(Parcel parcel) {
+    this.uid = parcel.readString();
+    this.type = parcel.readString();
+    this.color = parcel.createFloatArray();
+  }
+
+  public static final Creator<Object2D> CREATOR =
+      new Creator<Object2D>() {
+
+        @Override
+        public Object2D createFromParcel(Parcel parcel) {
+          return new Object2D(parcel);
+        }
+
+        @Override
+        public Object2D[] newArray(int size) {
+          return new Object2D[size];
+        }
+      };
+
+  public String getUID() {
     return this.uid;
   }
 
-  public void setId(String uid) {
+  public void setUID(String uid) {
     this.uid = uid;
   }
 
@@ -61,5 +81,17 @@ public class Object2D {
 
   public void setColor(float[] color) {
     this.color = color;
+  }
+
+  @Override
+  public int describeContents() {
+    return 0;
+  }
+
+  @Override
+  public void writeToParcel(Parcel parcel, int flags) {
+    parcel.writeString(this.uid);
+    parcel.writeString(this.type);
+    parcel.writeFloatArray(this.color);
   }
 }

@@ -50,9 +50,9 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
+  private ActMainBinding binding;
   private ProjectsAdapter mAdapter;
   private List<Project> mProjectsList = new LinkedList<>();
-  private ActMainBinding binding;
 
   @Override
   protected void onCreate(Bundle bundle) {
@@ -90,9 +90,11 @@ public class MainActivity extends AppCompatActivity {
               (item) -> {
                 switch (item.getItemId()) {
                   case 0:
-                    FilesUtil.delete(this, project.getPath());
-                    refreshProjects();
-                    break;
+                    {
+                      FilesUtil.delete(this, project.getPath());
+                      refreshProjects();
+                      break;
+                    }
                   default:
                     break;
                 }
@@ -101,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
               });
 
           popup.show();
-
           return true;
         });
 
@@ -125,6 +126,7 @@ public class MainActivity extends AppCompatActivity {
           input.setFocusableInTouchMode(true);
           ok.setOnClickListener(
               (otherView) -> {
+                otherView = null;
                 final String name = input.getText().toString().trim();
 
                 if (name == null || name.isEmpty()) {
@@ -135,12 +137,17 @@ public class MainActivity extends AppCompatActivity {
                 createNewProject(name);
                 AndroidUtil.closeKeyboard(this);
                 dialog.dismiss();
+
+                System.gc();
               });
 
           cancel.setOnClickListener(
               (someView) -> {
+                someView = null;
                 AndroidUtil.closeKeyboard(this);
                 dialog.dismiss();
+
+                System.gc();
               });
 
           dialog.show();
@@ -155,11 +162,13 @@ public class MainActivity extends AppCompatActivity {
     File root = new File(getExternalFilesDir("projects").toString());
     File[] listFiles = root.listFiles();
 
-    if (listFiles == null || listFiles.length == 0) {
+    if (listFiles == null || listFiles.length <= 0) {
+      binding.projects.setVisibility(8);
       binding.noProjects.setVisibility(0);
       return;
     }
 
+    binding.projects.setVisibility(0);
     binding.noProjects.setVisibility(8);
 
     for (File file : listFiles) {
@@ -222,4 +231,3 @@ public class MainActivity extends AppCompatActivity {
     super.onStart();
   }
 }
-

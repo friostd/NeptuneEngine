@@ -29,12 +29,18 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.widget.PopupMenu;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import com.frio.neptune.databinding.ActEditorBinding;
 import com.frio.neptune.project.Project;
+import com.frio.neptune.project.adapter.ObjectsAdapter;
 import com.frio.neptune.utils.*;
 import com.frio.neptune.utils.app.*;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,14 +52,16 @@ public class EditorActivity extends AppCompatActivity {
   private GLRenderer renderer;
   private Project mProject;
 
-  /**
-   * Temporarily removed (Doesn't work on some devices).
-   *
-   * <p>private ScaleGestureDetector mScaleDetector;
-   */
-  private float mLastX;
+  private ObjectsAdapter mAdapter;
+  private List<Object2D> mObjectsList = new LinkedList<>();
 
-  private float mLastY;
+  private ScaleGestureDetector mScaleDetector;
+  private float mScaleFactor = 1.0f;
+
+  private String mode = "NONE";
+
+  private float mLastX = 0f;
+  private float mLastY = 0f;
 
   @Override
   protected void onCreate(Bundle bundle) {
@@ -66,18 +74,61 @@ public class EditorActivity extends AppCompatActivity {
   }
 
   protected void main() {
-    mProject = getIntent().getParcelableExtra("project");
+    observer();
 
-    binding.glSurface.setEGLContextClientVersion(3);
+    mProject = getIntent().getParcelableExtra("project");
+    getSupportActionBar().setTitle(mProject.getName());
+
+    binding.surface.setEGLContextClientVersion(3);
     renderer = new GLRenderer(this);
 
-    binding.glSurface.setRenderer(renderer);
-    binding.glSurface.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
+    binding.surface.setRenderer(renderer);
+    binding.surface.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
     renderer.loadObjects(mProject.getPath() + "/scene.world");
-    binding.glSurface.requestRender();
+    binding.surface.requestRender();
 
-    binding.glSurface.setOnTouchListener(
+    mScaleDetector = new ScaleGestureDetector(this, new ScaleListener());
+
+    mAdapter = new ObjectsAdapter(mObjectsList);
+    mAdapter.setOnLongClickListener(
+        (view, pos) -> {
+          PopupMenu popup = new PopupMenu(this, view);
+          Menu menu = popup.getMenu();
+
+          menu.add(0, 0, 0, "Deletar");
+
+          popup.setOnMenuItemClickListener(
+              (item) -> {
+                switch (item.getItemId()) {
+                  case 0:
+                    {
+                      mAdapter.remove(pos);
+                      renderer.removeObject(pos);
+
+                      binding.surface.requestRender();
+                      loadObjects();
+                      break;
+                    }
+                  default:
+                    break;
+                }
+
+                return true;
+              });
+
+          popup.show();
+          return true;
+        });
+
+    binding.objects.setAdapter(mAdapter);
+    binding.objects.setLayoutManager(new LinearLayoutManager(this));
+
+    loadObjects();
+  }
+
+  protected void observer() {
+    binding.surface.setOnTouchListener(
         (view, event) -> {
           float dx = 0;
           float dy = 0;
@@ -92,25 +143,38 @@ public class EditorActivity extends AppCompatActivity {
                 mLastY = y;
                 break;
               }
+
             case MotionEvent.ACTION_MOVE:
               {
-                final float x = event.getX();
-                final float y = event.getY();
+                if (mode != "ZOOM") {
+                  final float x = event.getX();
+                  final float y = event.getY();
 
-                dx = x - mLastX;
-                dy = y - mLastY;
+                  dx = x - mLastX;
+                  dy = y - mLastY;
 
-                Vector3 vector3 = renderer.getCamera().getTransform().getPosition();
-                vector3.set(vector3.getX() + dx / x, vector3.getY() - dy / y, 0);
+                  Vector3 vector3 = renderer.getCamera().getTransform().getPosition();
+                  vector3.set(vector3.getX() + dx / x, vector3.getY() - dy / y, 0);
 
-                binding.glSurface.requestRender();
+                  binding.surface.requestRender();
 
-                mLastX = x;
-                mLastY = y;
+                  mLastX = x;
+                  mLastY = y;
+
+                  mode = "MOVE";
+                }
+
+                break;
+              }
+
+            case MotionEvent.ACTION_UP:
+              {
+                mode = "NONE";
                 break;
               }
           }
 
+          mScaleDetector.onTouchEvent(event);
           return true;
         });
   }
@@ -136,7 +200,9 @@ public class EditorActivity extends AppCompatActivity {
             float[] color = new float[] {1f, 1f, 1f, 1f};
 
             renderer.addNewObject(uid, type, color);
-            binding.glSurface.requestRender();
+            binding.surface.requestRender();
+
+            loadObjects();
           }
 
           return true;
@@ -154,7 +220,7 @@ public class EditorActivity extends AppCompatActivity {
               object.put("type", obj.getType());
               object.put("color", Arrays.toString(obj.getColor()));
 
-              objects.put(obj.getUid(), object);
+              objects.put(obj.getUID(), object);
             }
 
             array.put(objects);
@@ -166,17 +232,55 @@ public class EditorActivity extends AppCompatActivity {
           } finally {
             AndroidUtil.showToast(this, "Mundo salvo com sucesso!");
           }
+
           return true;
         }
       case R.id.resetCamera:
         {
           renderer.getCamera().getTransform().setPosition(0, 0, 0);
-          binding.glSurface.requestRender();
+          binding.surface.requestRender();
           return true;
         }
       default:
         return super.onOptionsItemSelected(item);
     }
   }
-}
 
+  private void loadObjects() {
+    List<Object2D> objects = renderer.getObjectsList();
+    if (objects.size() <= 0) {
+      binding.line.setVisibility(8);
+      return;
+    }
+
+    binding.line.setVisibility(0);
+    mObjectsList.clear();
+
+    for (Object2D object : objects) {
+      mObjectsList.add(new Object2D(object.getUID(), object.getType(), object.getColor()));
+    }
+
+    mObjectsList.sort((p1, p2) -> p1.getType().compareTo(p2.getType()));
+    mAdapter.notifyDataSetChanged();
+  }
+
+  private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+    @Override
+    public boolean onScale(ScaleGestureDetector detector) {
+      mScaleFactor *= detector.getScaleFactor();
+      renderer.getCamera().setZoom(mScaleFactor);
+
+      binding.surface.requestRender();
+      return true;
+    }
+
+    @Override
+    public boolean onScaleBegin(ScaleGestureDetector detector) {
+      detector = null;
+      mode = "ZOOM";
+
+      System.gc();
+      return true;
+    }
+  }
+}

@@ -59,6 +59,11 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
     mCamera = new Camera();
     mCameraPosition = mCamera.getTransform().getPosition();
+
+    unused = null;
+    config = null;
+
+    System.gc();
   }
 
   public void onDrawFrame(GL10 unused) {
@@ -83,6 +88,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
     // Draw objects
 
+    if (mObjectsList.size() == 0) return;
     for (Object2D object : mObjectsList) {
       switch (object.getType()) {
         case "Square":
@@ -94,7 +100,8 @@ public class GLRenderer implements GLSurfaceView.Renderer {
       }
     }
 
-    // AndroidUtil.showToast(context, mObjectsList.size() + " Objetos(s)");
+    unused = null;
+    System.gc();
   }
 
   public void loadObjects(String path) {
@@ -102,6 +109,7 @@ public class GLRenderer implements GLSurfaceView.Renderer {
       JSONObject json = new JSONObject(FilesUtil.readFile(path));
       JSONArray array = json.getJSONArray("objects");
 
+      if (array == null) return;
       JSONObject objects = array.getJSONObject(0);
 
       for (int i = 0; i < objects.length(); i++) {
@@ -130,6 +138,9 @@ public class GLRenderer implements GLSurfaceView.Renderer {
         mCamera.getZoom(),
         -1,
         50);
+
+    unused = null;
+    System.gc();
   }
 
   public List<Object2D> getObjectsList() {
@@ -138,6 +149,10 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
   public void addNewObject(String uid, String type, float[] color) {
     mObjectsList.add(new Object2D(uid, type, color));
+  }
+
+  public void removeObject(int position) {
+    mObjectsList.remove(position);
   }
 
   public Camera getCamera() {

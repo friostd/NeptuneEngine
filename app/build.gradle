@@ -10,7 +10,7 @@ android {
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
         versionCode 1
-        versionName "0.0.1"
+        versionName "0.1.0-alpha"
         resConfigs "en", "pt-rBR"
     }
     

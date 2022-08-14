@@ -117,4 +117,10 @@ public class ProjectsAdapter extends RecyclerView.Adapter<ProjectsAdapter.Holder
   public int getItemCount() {
     return mProjectsList.size();
   }
+  
+  public void remove(int position) {
+    mProjectsList.remove(position);
+    notifyItemRemoved(position);
+    notifyItemRangeRemoved(position, mProjectsList.size());
+  }
 }
