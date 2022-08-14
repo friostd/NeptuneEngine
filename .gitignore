@@ -1,6 +1,6 @@
 .gradle/
 app/build/
-app/*.keystore
+
 lint/intermediates/
 lint/generated/
 lint/outputs/
