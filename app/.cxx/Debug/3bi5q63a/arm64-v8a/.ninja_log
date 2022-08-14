@@ -1,0 +1,5 @@
+# ninja log v5
+54	835	1660507312583337601	CMakeFiles/ndk.dir/world.c.o	cf1d3ef9c1c1db61
+873	1384	1660507313171337601	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/arm64-v8a/libndk.so	b2cdfcfc30c13fba
+55	784	1660507439379337608	CMakeFiles/ndk.dir/world.c.o	cf1d3ef9c1c1db61
+788	1391	1660507440043337608	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/arm64-v8a/libndk.so	b2cdfcfc30c13fba

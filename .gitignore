@@ -1,0 +1,8 @@
+.gradle/
+app/build/
+
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+# lint/reports/

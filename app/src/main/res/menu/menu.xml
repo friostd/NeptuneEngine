@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <item
+        android:id="@+id/save"
+        android:icon="@drawable/ic_save"
+        android:showAsAction="ifRoom|withText"
+        android:title="Salvar"/>
+        <item
+        android:id="@+id/resetCamera"
+        android:title="Resetar câmera"/>
+    <item
+        android:id="@+id/newObj"
+        android:title="Novo objeto">
+        <menu>
+            <item
+                android:id="@+id/square"
+                android:title="Quadrado"/>
+        </menu>
+    </item>
+
+</menu>
