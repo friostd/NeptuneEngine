@@ -25,6 +25,7 @@
 
 package com.frio.neptune.project.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,8 @@ import java.util.List;
 public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> {
 
   private List<Object2D> mObjectsList;
+  private Context mContext;
+
   private ClickListener clickListener;
   private LongClickListener longClickListener;
 
@@ -99,6 +102,8 @@ public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> 
   public ObjectsAdapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ln_object, parent, false);
 
+    mContext = parent.getContext();
+
     return new Holder(view);
   }
 
@@ -110,14 +115,20 @@ public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> 
     String type = object.getType();
     float[] color = object.getColor();
 
-    holder.name.setText(type);
+    switch (type) {
+      case "Square":
+        holder.name.setText(mContext.getString(R.string.square));
+        break;
+      default:
+        break;
+    }
   }
 
   @Override
   public int getItemCount() {
     return mObjectsList.size();
   }
-  
+
   public void remove(int position) {
     mObjectsList.remove(position);
     notifyItemRemoved(position);

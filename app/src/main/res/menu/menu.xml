@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".EditorActivity" >
 
     <item
         android:id="@+id/save"
         android:icon="@drawable/ic_save"
-        android:showAsAction="ifRoom|withText"
-        android:title="Salvar"/>
-        <item
-        android:id="@+id/resetCamera"
-        android:title="Resetar câmera"/>
+        android:orderInCategory="100"
+        android:title="@string/save"
+        app:showAsAction="always"/>
     <item
-        android:id="@+id/newObj"
-        android:title="Novo objeto">
+        android:id="@+id/centralize_camera"
+        android:icon="@drawable/ic_centralize"
+        android:orderInCategory="100"
+        android:title="@string/centralize"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/new_object"
+        android:icon="@drawable/ic_object_plus"
+        android:orderInCategory="100"
+        android:title="@string/new_object"
+        app:showAsAction="always">
         <menu>
             <item
                 android:id="@+id/square"
-                android:title="Quadrado"/>
+                android:title="@string/square"/>
         </menu>
     </item>
 

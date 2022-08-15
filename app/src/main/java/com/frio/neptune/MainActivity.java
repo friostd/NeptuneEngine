@@ -24,10 +24,12 @@
 package com.frio.neptune;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
 import android.widget.TextView;
@@ -59,12 +61,16 @@ public class MainActivity extends AppCompatActivity {
   private ProjectsAdapter mAdapter;
   private List<Project> mProjectsList = new LinkedList<>();
 
+  private boolean ignore = false;
+
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
     this.binding = ActMainBinding.inflate(getLayoutInflater());
     this.setContentView(binding.getRoot());
+
+    this.setSupportActionBar(binding.toolbar);
 
     this.main();
   }
@@ -89,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
 
           PopupMenu popup = new PopupMenu(this, view);
           Menu menu = popup.getMenu();
-          menu.add(0, 0, 0, "Excluir");
+          menu.add(0, 0, 0, getString(R.string.delete));
 
           popup.setOnMenuItemClickListener(
               (item) -> {
@@ -122,17 +128,17 @@ public class MainActivity extends AppCompatActivity {
           View inflater = dialog.getLayoutInflater().inflate(R.layout.ln_new_project, null);
 
           dialog.setView(inflater);
-          dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0x00FFFFFF));
+          dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-          EditText input = inflater.findViewById(R.id.txt_name);
-          TextView ok = inflater.findViewById(R.id.btn_ok);
-          TextView cancel = inflater.findViewById(R.id.btn_cancel);
+          EditText input = inflater.findViewById(R.id.text);
+          Button ok = inflater.findViewById(R.id.ok);
+          Button cancel = inflater.findViewById(R.id.cancel);
 
           input.setFocusableInTouchMode(true);
           ok.setOnClickListener(
               (otherView) -> {
                 otherView = null;
-                final String name = input.getText().toString().trim();
+                final String name = AndroidUtil.removeDiacritics(input.getText().toString().trim());
 
                 if (name == null || name.isEmpty()) {
                   AndroidUtil.showToast(this, "Digite um nome válido");

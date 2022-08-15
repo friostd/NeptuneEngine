@@ -1,0 +1,38 @@
+{
+  "buildFiles": [
+    "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/c/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja",
+      "-C",
+      "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja",
+    "-C",
+    "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "ndk::@6890427a1f51a3e7e1df": {
+      "toolchain": "toolchain",
+      "abi": "x86",
+      "artifactName": "ndk",
+      "output": "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/RelWithDebInfo/5t76w6c6/obj/x86/libndk.so",
+      "runtimeFiles": []
+    }
+  },
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang.lld",
+      "cppCompilerExecutable": "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [
+    "c"
+  ],
+  "cppFileExtensions": []
+}

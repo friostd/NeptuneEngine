@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Neptune Engine</string>
+    <string name="projects">Projetos</string>
+    <string name="no_projects">Sem Projetos</string>
+    <string name="create_project">Criar projeto</string>
+    <string name="name">Nome</string>
+    <string name="cancel">Cancelar</string>
+    <string name="ok">Ok</string>
+    <string name="save">Salvar</string>
+    <string name="saved_successfully">Mundo Salvo com Sucesso!</string>
+    <string name="centralize">Centralizar</string>
+    <string name="new_object">Novo Objeto</string>
+    <string name="square">Quadrado</string>
+    <string name="delete">Deletar</string>
+
+</resources>

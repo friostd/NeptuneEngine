@@ -70,6 +70,8 @@ public class EditorActivity extends AppCompatActivity {
     this.binding = ActEditorBinding.inflate(getLayoutInflater());
     this.setContentView(binding.getRoot());
 
+    this.setSupportActionBar(binding.toolbar);
+
     this.main();
   }
 
@@ -96,7 +98,7 @@ public class EditorActivity extends AppCompatActivity {
           PopupMenu popup = new PopupMenu(this, view);
           Menu menu = popup.getMenu();
 
-          menu.add(0, 0, 0, "Deletar");
+          menu.add(0, 0, 0, getString(R.string.delete));
 
           popup.setOnMenuItemClickListener(
               (item) -> {
@@ -183,8 +185,7 @@ public class EditorActivity extends AppCompatActivity {
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
-    MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.menu, menu);
+    getMenuInflater().inflate(R.menu.menu, menu);
 
     return true;
   }
@@ -230,12 +231,12 @@ public class EditorActivity extends AppCompatActivity {
           } catch (JSONException e) {
             AndroidUtil.throwsException(this, e.getMessage());
           } finally {
-            AndroidUtil.showToast(this, "Mundo salvo com sucesso!");
+            AndroidUtil.showToast(this, getString(R.string.saved_successfully));
           }
 
           return true;
         }
-      case R.id.resetCamera:
+      case R.id.centralize_camera:
         {
           renderer.getCamera().getTransform().setPosition(0, 0, 0);
           binding.surface.requestRender();

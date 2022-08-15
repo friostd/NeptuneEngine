@@ -1,0 +1,2 @@
+ninja: Entering directory `/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a'
+ninja: no work to do.

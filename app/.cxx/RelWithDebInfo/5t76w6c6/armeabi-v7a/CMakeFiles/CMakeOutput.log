@@ -1,0 +1,282 @@
+The target system is: Android - 21 - armv7-a
+The host system is: Android - 4.14.186-24084238 - aarch64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang 
+Build flags: 
+Id flags: -c;--target=armv7-none-linux-androideabi21 
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CMakeCCompilerId.o"
+
+The C compiler identification is Clang, found in "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/3.23.1/CompilerIdC/CMakeCCompilerId.o"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang++ 
+Build flags: 
+Id flags: -c;--target=armv7-none-linux-androideabi21 
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CMakeCXXCompilerId.o"
+
+The CXX compiler identification is Clang, found in "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/3.23.1/CompilerIdCXX/CMakeCXXCompilerId.o"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja cmTC_f3f2c && [1/2] Building C object CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o
+Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)
+Target: armv7-none-linux-android21
+Thread model: posix
+InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin
+ (in-process)
+ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang" -cc1 -triple thumbv7-none-linux-android21 -emit-obj --mrelax-relocations -mnoexecstack -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fno-rounding-math -mconstructor-aliases -munwind-tables -target-cpu generic -target-feature +soft-float-abi -target-feature +vfp2 -target-feature +vfp2sp -target-feature +vfp3 -target-feature +vfp3d16 -target-feature +vfp3d16sp -target-feature +vfp3sp -target-feature -fp16 -target-feature -vfp4 -target-feature -vfp4d16 -target-feature -vfp4d16sp -target-feature -vfp4sp -target-feature -fp-armv8 -target-feature -fp-armv8d16 -target-feature -fp-armv8d16sp -target-feature -fp-armv8sp -target-feature -fullfp16 -target-feature +fp64 -target-feature +d32 -target-feature +neon -target-feature -sha2 -target-feature -aes -target-feature -fp16fml -target-abi aapcs-linux -mfloat-abi soft -fallow-half-arguments-and-returns -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -resource-dir /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1 -dependency-file CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -D NDEBUG -isysroot /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include -O2 -Wformat -fdebug-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fexceptions -vectorize-loops -vectorize-slp -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o -x c /data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/share/cmake-3.23/Modules/CMakeCCompilerABI.c
+clang -cc1 version 14.0.1 based upon LLVM 14.0.1git default target aarch64-linux-android21
+ignoring nonexistent directory "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include
+End of search list.
+[2/2] Linking C executable cmTC_f3f2c
+Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)
+Target: armv7-none-linux-android21
+Thread model: posix
+InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin
+ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/ld" --sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_f3f2c /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21 -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o -latomic -lm /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+  end of search list found
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+  implicit include dirs: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.lld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja cmTC_f3f2c && [1/2] Building C object CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o]
+  ignore line: [Android (8075178  based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)]
+  ignore line: [Target: armv7-none-linux-android21]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin]
+  ignore line: [ (in-process)]
+  ignore line: [ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang" -cc1 -triple thumbv7-none-linux-android21 -emit-obj --mrelax-relocations -mnoexecstack -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fno-rounding-math -mconstructor-aliases -munwind-tables -target-cpu generic -target-feature +soft-float-abi -target-feature +vfp2 -target-feature +vfp2sp -target-feature +vfp3 -target-feature +vfp3d16 -target-feature +vfp3d16sp -target-feature +vfp3sp -target-feature -fp16 -target-feature -vfp4 -target-feature -vfp4d16 -target-feature -vfp4d16sp -target-feature -vfp4sp -target-feature -fp-armv8 -target-feature -fp-armv8d16 -target-feature -fp-armv8d16sp -target-feature -fp-armv8sp -target-feature -fullfp16 -target-feature +fp64 -target-feature +d32 -target-feature +neon -target-feature -sha2 -target-feature -aes -target-feature -fp16fml -target-abi aapcs-linux -mfloat-abi soft -fallow-half-arguments-and-returns -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -resource-dir /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1 -dependency-file CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -D NDEBUG -isysroot /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include -O2 -Wformat -fdebug-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fexceptions -vectorize-loops -vectorize-slp -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o -x c /data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/share/cmake-3.23/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 14.0.1 based upon LLVM 14.0.1git default target aarch64-linux-android21]
+  ignore line: [ignoring nonexistent directory "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+  ignore line: [End of search list.]
+  ignore line: [[2/2] Linking C executable cmTC_f3f2c]
+  ignore line: [Android (8075178  based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)]
+  ignore line: [Target: armv7-none-linux-android21]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin]
+  link line: [ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/ld" --sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_f3f2c /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21 -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o -latomic -lm /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/ld] ==> ignore
+    arg [--sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znoexecstack] ==> ignore
+    arg [-EL] ==> ignore
+    arg [--warn-shared-textrel] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-zmax-page-size=4096] ==> ignore
+    arg [-X] ==> ignore
+    arg [--hash-style=both] ==> ignore
+    arg [--enable-new-dtags] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [armelf_linux_eabi] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/system/bin/linker] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_f3f2c] ==> ignore
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o] ==> obj [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+    arg [--build-id=sha1] ==> ignore
+    arg [--no-rosegment] ==> ignore
+    arg [--fatal-warnings] ==> ignore
+    arg [--no-undefined] ==> ignore
+    arg [--gc-sections] ==> ignore
+    arg [CMakeFiles/cmTC_f3f2c.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-latomic] ==> lib [atomic]
+    arg [-lm] ==> lib [m]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
+    arg [-ldl] ==> lib [dl]
+    arg [-lc] ==> lib [c]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
+    arg [-ldl] ==> lib [dl]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o] ==> obj [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+  remove lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  remove lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+  implicit libs: [atomic;m;-l:libunwind.a;dl;c;-l:libunwind.a;dl]
+  implicit objs: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+  implicit dirs: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja cmTC_9a7b5 && [1/2] Building CXX object CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o
+Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)
+Target: armv7-none-linux-android21
+Thread model: posix
+InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin
+ (in-process)
+ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang++" -cc1 -triple thumbv7-none-linux-android21 -emit-obj --mrelax-relocations -mnoexecstack -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fno-rounding-math -mconstructor-aliases -munwind-tables -target-cpu generic -target-feature +soft-float-abi -target-feature +vfp2 -target-feature +vfp2sp -target-feature +vfp3 -target-feature +vfp3d16 -target-feature +vfp3d16sp -target-feature +vfp3sp -target-feature -fp16 -target-feature -vfp4 -target-feature -vfp4d16 -target-feature -vfp4d16sp -target-feature -vfp4sp -target-feature -fp-armv8 -target-feature -fp-armv8d16 -target-feature -fp-armv8d16sp -target-feature -fp-armv8sp -target-feature -fullfp16 -target-feature +fp64 -target-feature +d32 -target-feature +neon -target-feature -sha2 -target-feature -aes -target-feature -fp16fml -target-abi aapcs-linux -mfloat-abi soft -fallow-half-arguments-and-returns -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -resource-dir /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1 -dependency-file CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -D NDEBUG -isysroot /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1 -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include -O2 -Wformat -fdeprecated-macro -fdebug-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -vectorize-loops -vectorize-slp -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o -x c++ /data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp
+clang -cc1 version 14.0.1 based upon LLVM 14.0.1git default target aarch64-linux-android21
+ignoring nonexistent directory "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi
+ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include
+End of search list.
+[2/2] Linking CXX executable cmTC_9a7b5
+Android (8075178, based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)
+Target: armv7-none-linux-android21
+Thread model: posix
+InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin
+ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/ld" --sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_9a7b5 /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21 -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o -latomic -lm -Bstatic -lc++ -Bdynamic -lm /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi]
+    add: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+  end of search list found
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi]
+  collapse include dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+  implicit include dirs: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld\.lld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja cmTC_9a7b5 && [1/2] Building CXX object CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [Android (8075178  based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)]
+  ignore line: [Target: armv7-none-linux-android21]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin]
+  ignore line: [ (in-process)]
+  ignore line: [ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang++" -cc1 -triple thumbv7-none-linux-android21 -emit-obj --mrelax-relocations -mnoexecstack -disable-free -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model pic -pic-level 2 -pic-is-pie -mframe-pointer=all -fno-rounding-math -mconstructor-aliases -munwind-tables -target-cpu generic -target-feature +soft-float-abi -target-feature +vfp2 -target-feature +vfp2sp -target-feature +vfp3 -target-feature +vfp3d16 -target-feature +vfp3d16sp -target-feature +vfp3sp -target-feature -fp16 -target-feature -vfp4 -target-feature -vfp4d16 -target-feature -vfp4d16sp -target-feature -vfp4sp -target-feature -fp-armv8 -target-feature -fp-armv8d16 -target-feature -fp-armv8d16sp -target-feature -fp-armv8sp -target-feature -fullfp16 -target-feature +fp64 -target-feature +d32 -target-feature +neon -target-feature -sha2 -target-feature -aes -target-feature -fp16fml -target-abi aapcs-linux -mfloat-abi soft -fallow-half-arguments-and-returns -debug-info-kind=constructor -dwarf-version=4 -debugger-tuning=gdb -v -ffunction-sections -fdata-sections -fcoverage-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -resource-dir /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1 -dependency-file CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -D ANDROID -D _FORTIFY_SOURCE=2 -D NDEBUG -isysroot /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1 -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include -internal-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include -internal-externc-isystem /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include -O2 -Wformat -fdeprecated-macro -fdebug-compilation-dir=/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/armeabi-v7a/CMakeFiles/CMakeTmp -ferror-limit 19 -stack-protector 2 -fno-signed-char -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -vectorize-loops -vectorize-slp -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o -x c++ /data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/share/cmake-3.23/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang -cc1 version 14.0.1 based upon LLVM 14.0.1git default target aarch64-linux-android21]
+  ignore line: [ignoring nonexistent directory "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/c++/v1]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/include]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/local/include]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include/arm-linux-androideabi]
+  ignore line: [ /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/include]
+  ignore line: [End of search list.]
+  ignore line: [[2/2] Linking CXX executable cmTC_9a7b5]
+  ignore line: [Android (8075178  based on r437112b) clang version 14.0.1 (https://android.googlesource.com/toolchain/llvm-project)]
+  ignore line: [Target: armv7-none-linux-android21]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin]
+  link line: [ "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/ld" --sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -pie -z noexecstack -EL --warn-shared-textrel -z now -z relro -z max-page-size=4096 -X --hash-style=both --enable-new-dtags --eh-frame-hdr -m armelf_linux_eabi -dynamic-linker /system/bin/linker -o cmTC_9a7b5 /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21 -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib -L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib --build-id=sha1 --no-rosegment --fatal-warnings --no-undefined --gc-sections CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o -latomic -lm -Bstatic -lc++ -Bdynamic -lm /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl -lc /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a -l:libunwind.a -ldl /data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/ld] ==> ignore
+    arg [--sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot] ==> ignore
+    arg [-pie] ==> ignore
+    arg [-znoexecstack] ==> ignore
+    arg [-EL] ==> ignore
+    arg [--warn-shared-textrel] ==> ignore
+    arg [-znow] ==> ignore
+    arg [-zrelro] ==> ignore
+    arg [-zmax-page-size=4096] ==> ignore
+    arg [-X] ==> ignore
+    arg [--hash-style=both] ==> ignore
+    arg [--enable-new-dtags] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [armelf_linux_eabi] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/system/bin/linker] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_9a7b5] ==> ignore
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o] ==> obj [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib]
+    arg [-L/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib] ==> dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+    arg [--build-id=sha1] ==> ignore
+    arg [--no-rosegment] ==> ignore
+    arg [--fatal-warnings] ==> ignore
+    arg [--no-undefined] ==> ignore
+    arg [--gc-sections] ==> ignore
+    arg [CMakeFiles/cmTC_9a7b5.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-latomic] ==> lib [atomic]
+    arg [-lm] ==> lib [m]
+    arg [-Bstatic] ==> search static
+    arg [-lc++] ==> lib [c++]
+    arg [-Bdynamic] ==> search dynamic
+    arg [-lm] ==> lib [m]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
+    arg [-ldl] ==> lib [dl]
+    arg [-lc] ==> lib [c]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a] ==> lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+    arg [-l:libunwind.a] ==> lib [-l:libunwind.a]
+    arg [-ldl] ==> lib [dl]
+    arg [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o] ==> obj [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+  remove lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  remove lib [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/libclang_rt.builtins-arm-android.a]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/../lib] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+  collapse library dir [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib] ==> [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+  implicit libs: [atomic;m;c++;m;-l:libunwind.a;dl;c;-l:libunwind.a;dl]
+  implicit objs: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtbegin_dynamic.o;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21/crtend_android.o]
+  implicit dirs: [/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/lib64/clang/14.0.1/lib/linux/arm;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi/21;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib/arm-linux-androideabi;/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot/usr/lib]
+  implicit fwks: []
+
+

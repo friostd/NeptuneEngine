@@ -30,6 +30,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+import java.text.Normalizer;
 
 public class AndroidUtil {
 
@@ -67,5 +68,12 @@ public class AndroidUtil {
     }
 
     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+  }
+
+  public static String removeDiacritics(String text) {
+    text = Normalizer.normalize(text, Normalizer.Form.NFD);
+    text = text.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+    return text;
   }
 }
