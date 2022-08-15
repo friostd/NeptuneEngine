@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/icon.png" />
+  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/icon.png" width="192px" />
   <h1>Neptune Engine</h1>
 
   <a href="https://github.com/FrioGitHub/NeptuneEngine/releases"><img alt="Latest release of NeptuneEngine" src="https://img.shields.io/github/v/release/FrioGitHub/NeptuneEngine?include_prereleases&label=latest%20release" ></a>
