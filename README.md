@@ -12,8 +12,7 @@
 <h1 align="center">Screenshots</h1>
 
 <div align="center">
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.jpg" width="100%" />
-  <img style="margin-top: 10px;" src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.jpg" width="100%" />
+  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.jpg" width="150px" /><img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.jpg" width="150px" />
 </div>
 
 <h1 align="center">Note</h1>
