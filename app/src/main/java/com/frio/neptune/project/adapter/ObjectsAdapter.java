@@ -35,12 +35,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.frio.neptune.R;
 import com.frio.neptune.utils.Object2D;
+import com.frio.neptune.utils.app.AndroidUtil;
 import java.util.List;
 
 public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> {
 
   private List<Object2D> mObjectsList;
   private Context mContext;
+
+  public int selectedPosition = -1;
 
   private ClickListener clickListener;
   private LongClickListener longClickListener;
@@ -60,7 +63,7 @@ public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> 
   }
 
   public interface ClickListener {
-    void clickListener(int position);
+    void clickListener(View view, int position);
   }
 
   public interface LongClickListener {
@@ -82,14 +85,17 @@ public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> 
       view.setOnClickListener(
           v -> {
             if (clickListener != null) {
-              clickListener.clickListener(getAdapterPosition());
+              clickListener.clickListener(view, getAdapterPosition());
+              
+              selectedPosition = getAdapterPosition();
+              notifyDataSetChanged();
             }
           });
 
       view.setOnLongClickListener(
           vi -> {
             if (longClickListener != null) {
-              longClickListener.longClickListener(vi, getAdapterPosition());
+              longClickListener.longClickListener(view, getAdapterPosition());
             }
 
             return true;
@@ -100,7 +106,8 @@ public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> 
   @NonNull
   @Override
   public ObjectsAdapter.Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ln_object, parent, false);
+    View view =
+        LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_object, parent, false);
 
     mContext = parent.getContext();
 
@@ -114,6 +121,12 @@ public class ObjectsAdapter extends RecyclerView.Adapter<ObjectsAdapter.Holder> 
     String uid = object.getUID();
     String type = object.getType();
     float[] color = object.getColor();
+
+    if (selectedPosition == position) {
+      holder.itemView.setBackgroundColor(0xFF06B006);
+    } else {
+      holder.itemView.setBackgroundColor(0xFF121212);
+    }
 
     switch (type) {
       case "Square":

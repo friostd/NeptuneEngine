@@ -1,3 +1,4 @@
 # ninja log v5
-16	240	1660507323979337601	CMakeFiles/ndk.dir/world.c.o	7675e808757607af
 268	463	1660507324243337601	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/x86/libndk.so	8379c020295e76a
+16	240	1660507323979337601	CMakeFiles/ndk.dir/world.c.o	7675e808757607af
+21	762	1661101448184202863	build.ninja	3117e94b114711fe

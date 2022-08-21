@@ -32,15 +32,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.PopupMenu;
-import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.frio.neptune.databinding.ActMainBinding;
+import com.frio.neptune.databinding.ActivityMainBinding;
 import com.frio.neptune.project.Project;
 import com.frio.neptune.project.adapter.ProjectsAdapter;
 import com.frio.neptune.utils.app.*;
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -52,22 +53,16 @@ import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-  // Used to load the 'ndk' library on application startup.
-  static {
-    System.loadLibrary("ndk");
-  }
+  private ActivityMainBinding binding;
 
-  private ActMainBinding binding;
-  private ProjectsAdapter mAdapter;
+  private ProjectsAdapter mProjectsAdapter;
   private List<Project> mProjectsList = new LinkedList<>();
-
-  private boolean ignore = false;
 
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
-    this.binding = ActMainBinding.inflate(getLayoutInflater());
+    this.binding = ActivityMainBinding.inflate(getLayoutInflater());
     this.setContentView(binding.getRoot());
 
     this.setSupportActionBar(binding.toolbar);
@@ -78,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
   protected void main() {
     observer();
 
-    mAdapter = new ProjectsAdapter(mProjectsList);
-    mAdapter.setOnClickListener(
+    mProjectsAdapter = new ProjectsAdapter(mProjectsList);
+    mProjectsAdapter.setOnClickListener(
         (pos) -> {
           Project project = mProjectsList.get(pos);
 
@@ -89,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
           startActivity(intent);
         });
 
-    mAdapter.setOnLongClickListener(
+    mProjectsAdapter.setOnLongClickListener(
         (view, pos) -> {
           Project project = mProjectsList.get(pos);
 
@@ -102,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                 switch (item.getItemId()) {
                   case 0:
                     {
-                      FilesUtil.delete(this, project.getPath());
+                      FilesUtil.delete(project.getPath());
                       refreshProjects();
                       break;
                     }
@@ -117,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
           return true;
         });
 
-    binding.projects.setAdapter(mAdapter);
+    binding.projects.setAdapter(mProjectsAdapter);
     binding.projects.setLayoutManager(new LinearLayoutManager(this));
   }
 
@@ -125,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
     binding.fab.setOnClickListener(
         (view) -> {
           AlertDialog dialog = new AlertDialog.Builder(this).create();
-          View inflater = dialog.getLayoutInflater().inflate(R.layout.ln_new_project, null);
+          View inflater = dialog.getLayoutInflater().inflate(R.layout.layout_create_project, null);
 
           dialog.setView(inflater);
           dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -138,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
           ok.setOnClickListener(
               (otherView) -> {
                 otherView = null;
+
                 final String name = AndroidUtil.removeDiacritics(input.getText().toString().trim());
 
                 if (name == null || name.isEmpty()) {
@@ -148,17 +144,14 @@ public class MainActivity extends AppCompatActivity {
                 createNewProject(name);
                 AndroidUtil.closeKeyboard(this);
                 dialog.dismiss();
-
-                System.gc();
               });
 
           cancel.setOnClickListener(
               (someView) -> {
                 someView = null;
+
                 AndroidUtil.closeKeyboard(this);
                 dialog.dismiss();
-
-                System.gc();
               });
 
           dialog.show();
@@ -189,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
       }
     }
 
-    mAdapter.notifyDataSetChanged();
+    mProjectsAdapter.notifyDataSetChanged();
   }
 
   private void createNewProject(String name) {
@@ -200,32 +193,44 @@ public class MainActivity extends AppCompatActivity {
     }
 
     String projectPath = getExternalFilesDir("projects") + "/" + name;
+    String date = LocalDate.now(ZoneId.of("America/Sao_Paulo")).toString();
 
     FilesUtil.createDir(projectPath);
-    FilesUtil.writeFile(this, projectPath + "/scene.world", setupProject());
+    FilesUtil.writeFile(this, projectPath + "/scene.world", setupProject(name, date));
 
     refreshProjects();
   }
 
-  private String setupProject() {
+  private String setupProject(String name, String date) {
     JSONObject main = new JSONObject();
 
-    JSONObject object = new JSONObject();
+    JSONObject tempObj = new JSONObject();
+    JSONObject tempWorld = new JSONObject();
     JSONObject objects = new JSONObject();
-    JSONArray array = new JSONArray();
+    JSONObject world = new JSONObject();
+
+    JSONArray objectsArray = new JSONArray();
+    JSONArray worldArray = new JSONArray();
 
     try {
       String uid = UUID.randomUUID().toString().replace("-", "");
       String type = "Square";
       float[] color = new float[] {1f, 0f, 0f, 1f};
 
-      object.put("type", type);
-      object.put("color", Arrays.toString(color));
+      tempObj.put("type", type);
+      tempObj.put("color", Arrays.toString(color));
 
-      objects.put(uid, object);
-      array.put(objects);
+      objects.put(uid, tempObj);
+      objectsArray.put(objects);
 
-      main.put("objects", array);
+      tempWorld.put("name", name);
+      tempWorld.put("creationDate", date);
+
+      worldArray.put(tempWorld);
+
+      main.put("worldSettings", worldArray);
+      main.put("objects", objectsArray);
+
       return main.toString(2);
     } catch (JSONException e) {
       AndroidUtil.showToast(this, e.getMessage());

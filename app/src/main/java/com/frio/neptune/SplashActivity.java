@@ -26,20 +26,20 @@ package com.frio.neptune;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
-import com.frio.neptune.databinding.ActSplashBinding;
+import com.frio.neptune.databinding.ActivitySplashBinding;
 import com.frio.neptune.utils.app.FilesUtil;
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class SplashActivity extends AppCompatActivity {
 
-  private ActSplashBinding binding;
+  private ActivitySplashBinding binding;
 
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
-    this.binding = ActSplashBinding.inflate(getLayoutInflater());
+    this.binding = ActivitySplashBinding.inflate(getLayoutInflater());
     this.setContentView(binding.getRoot());
 
     this.main();
@@ -60,6 +60,6 @@ public class SplashActivity extends AppCompatActivity {
                 finish();
               }
             },
-            1000);
+            2000);
   }
 }

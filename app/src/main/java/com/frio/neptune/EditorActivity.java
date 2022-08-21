@@ -26,14 +26,12 @@ package com.frio.neptune;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
-import android.widget.PopupMenu;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.frio.neptune.databinding.ActEditorBinding;
+import com.frio.neptune.databinding.ActivityEditorBinding;
 import com.frio.neptune.project.Project;
 import com.frio.neptune.project.adapter.ObjectsAdapter;
 import com.frio.neptune.utils.*;
@@ -48,11 +46,11 @@ import org.json.JSONObject;
 
 public class EditorActivity extends AppCompatActivity {
 
-  private ActEditorBinding binding;
+  private ActivityEditorBinding binding;
   private GLRenderer renderer;
   private Project mProject;
 
-  private ObjectsAdapter mAdapter;
+  private ObjectsAdapter mObjectsAdapter;
   private List<Object2D> mObjectsList = new LinkedList<>();
 
   private ScaleGestureDetector mScaleDetector;
@@ -63,11 +61,13 @@ public class EditorActivity extends AppCompatActivity {
   private float mLastX = 0f;
   private float mLastY = 0f;
 
+  private MenuItem mTrashItem;
+
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
 
-    this.binding = ActEditorBinding.inflate(getLayoutInflater());
+    this.binding = ActivityEditorBinding.inflate(getLayoutInflater());
     this.setContentView(binding.getRoot());
 
     this.setSupportActionBar(binding.toolbar);
@@ -91,40 +91,50 @@ public class EditorActivity extends AppCompatActivity {
     binding.surface.requestRender();
 
     mScaleDetector = new ScaleGestureDetector(this, new ScaleListener());
+    mObjectsAdapter = new ObjectsAdapter(mObjectsList);
 
-    mAdapter = new ObjectsAdapter(mObjectsList);
-    mAdapter.setOnLongClickListener(
-        (view, pos) -> {
-          PopupMenu popup = new PopupMenu(this, view);
-          Menu menu = popup.getMenu();
+    /*mObjectsAdapter.setOnLongClickListener(
+    (view, pos) -> {
+      PopupMenu popup = new PopupMenu(this, view);
+      Menu menu = popup.getMenu();
 
-          menu.add(0, 0, 0, getString(R.string.delete));
+      menu.add(0, 0, 0, getString(R.string.delete));
 
-          popup.setOnMenuItemClickListener(
-              (item) -> {
-                switch (item.getItemId()) {
-                  case 0:
-                    {
-                      mAdapter.remove(pos);
-                      renderer.removeObject(pos);
+      popup.setOnMenuItemClickListener(
+          (item) -> {
+            switch (item.getItemId()) {
+              case 0:
+                {
+                  mObjectsAdapter.remove(pos);
+                  renderer.removeObject(pos);
 
-                      binding.surface.requestRender();
-                      loadObjects();
-                      break;
-                    }
-                  default:
-                    break;
+                  binding.surface.requestRender();
+                  loadObjects();
+                  break;
                 }
+              default:
+                break;
+            }
 
-                return true;
-              });
+            return true;
+          });
 
-          popup.show();
-          return true;
+      popup.show();
+      return true;
+    });*/
+
+    mObjectsAdapter.setOnClickListener(
+        (view, pos) -> {
+          if (mObjectsAdapter.selectedPosition == -1) {
+            mTrashItem.setVisible(false);
+          } else {
+            mTrashItem.setVisible(true);
+          }
         });
 
-    binding.objects.setAdapter(mAdapter);
+    binding.objects.setAdapter(mObjectsAdapter);
     binding.objects.setLayoutManager(new LinearLayoutManager(this));
+    binding.objects.setHasFixedSize(true);
 
     loadObjects();
   }
@@ -156,7 +166,7 @@ public class EditorActivity extends AppCompatActivity {
                   dy = y - mLastY;
 
                   Vector3 vector3 = renderer.getCamera().getTransform().getPosition();
-                  vector3.set(vector3.getX() + dx / x, vector3.getY() - dy / y, 0);
+                  vector3.set(vector3.getX() + dx - dy, vector3.getY() - dy - dx, 0);
 
                   binding.surface.requestRender();
 
@@ -186,6 +196,17 @@ public class EditorActivity extends AppCompatActivity {
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu, menu);
+    mTrashItem = menu.findItem(R.id.trash);
+
+    mTrashItem.setVisible(mObjectsAdapter.selectedPosition == -1 ? false : true);
+
+    return true;
+  }
+
+  @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    mTrashItem = menu.findItem(R.id.trash);
+    mTrashItem.setVisible(mObjectsAdapter.selectedPosition == -1 ? false : true);
 
     return true;
   }
@@ -249,6 +270,7 @@ public class EditorActivity extends AppCompatActivity {
 
   private void loadObjects() {
     List<Object2D> objects = renderer.getObjectsList();
+
     if (objects.size() <= 0) {
       binding.line.setVisibility(8);
       return;
@@ -262,7 +284,7 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     mObjectsList.sort((p1, p2) -> p1.getType().compareTo(p2.getType()));
-    mAdapter.notifyDataSetChanged();
+    mObjectsAdapter.notifyDataSetChanged();
   }
 
   private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
@@ -278,9 +300,8 @@ public class EditorActivity extends AppCompatActivity {
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
       detector = null;
-      mode = "ZOOM";
 
-      System.gc();
+      mode = "ZOOM";
       return true;
     }
   }

@@ -100,29 +100,25 @@ public class FilesUtil {
     return new byte[0];
   }
 
-  public static void deleteDirectory(String path) {
-    File file = new File(path);
-    if (file.isDirectory() && file.exists()) {
-      String[] children = file.list();
-      for (int i = 0; i < children.length; i++) {
-        new File(file, children[i]).delete();
+  public static boolean delete(String str) {
+    File file = new File(str);
+
+    if (!file.exists()) return false;
+    if (file.isFile()) return file.delete();
+
+    File[] listFiles = file.listFiles();
+
+    if (listFiles != null) {
+      for (File file2 : listFiles) {
+        if (file2.isDirectory()) {
+          delete(file2.getAbsolutePath());
+        }
+        if (file2.isFile()) {
+          file2.delete();
+        }
       }
     }
-  }
 
-  // Test
-
-  public static void delete(Context context, String path) {
-    File file = new File(path);
-    if (file.exists()) {
-      try {
-        Process process = Runtime.getRuntime().exec("rm -rf " + file.getAbsolutePath());
-        process.waitFor();
-      } catch (IOException e) {
-        AndroidUtil.throwsException(context, e.getMessage());
-      } catch (InterruptedException e) {
-        AndroidUtil.throwsException(context, e.getMessage());
-      }
-    }
+    return file.delete();
   }
 }

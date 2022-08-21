@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.frio.neptune" >
 
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <application
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,8 +18,7 @@
             android:name=".SplashActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="true"
-            android:screenOrientation="sensorLandscape"
-            android:windowSoftInputMode="adjustResize" >
+            android:screenOrientation="sensorLandscape" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,13 +29,12 @@
             android:name=".MainActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="false"
-            android:screenOrientation="sensorLandscape"
-            android:windowSoftInputMode="adjustResize" />
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".EditorActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:screenOrientation="sensorLandscape" />
     </application>
 
 </manifest>
