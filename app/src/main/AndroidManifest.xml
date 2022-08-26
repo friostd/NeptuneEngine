@@ -8,14 +8,14 @@
         android:required="true" />
 
     <application
+        android:name=".AndroidApplication"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:requestLegacyExternalStorage="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_rounded"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="true"
             android:screenOrientation="sensorLandscape" >
@@ -26,12 +26,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="false"
             android:screenOrientation="sensorLandscape" />
         <activity
-            android:name=".EditorActivity"
+            android:name=".activity.EditorActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="false"
             android:screenOrientation="sensorLandscape" />

@@ -1,2 +1,7 @@
 ninja: Entering directory `/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/RelWithDebInfo/5t76w6c6/arm64-v8a'
-ninja: no work to do.
+[1/2] Building C object CMakeFiles/ndk.dir/world.c.o
+/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/c/world.c:3:112: warning: omitting the parameter name in a function definition is a C2x extension [-Wc2x-extensions]
+JNIEXPORT jstring JNICALL Java_com_frio_neptune_world_WorldJNIBridge_load_world(JNIEnv* env, jobject /* this */) {
+                                                                                                               ^
+1 warning generated.
+[2/2] Linking C shared library /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/RelWithDebInfo/5t76w6c6/obj/arm64-v8a/libndk.so

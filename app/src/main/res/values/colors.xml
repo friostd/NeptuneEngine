@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="cyan">#FF303030</color>
-    <color name="background">#FF121212</color>
-    <color name="statusBar">#FF1D1D1D</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="error">#FFCF6679</color>
+    <color name="primaryColor">#121212</color>
+    <color name="primaryVariantColor">#1D1D1D</color>
+    <color name="highlightColor">#85212121</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
 
 </resources>

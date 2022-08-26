@@ -21,32 +21,31 @@
  * SOFTWARE.
 */
 
-// Util
-
 package com.frio.neptune.utils;
 
 public class Camera {
 
-  private Vector3 mPosition;
-  private Transform mTransform;
-
-  private float mCameraZoom = 1.0f;
+  private Vector3 vector3;
+  private float zoom = 1.0f;
 
   public Camera() {
-    this.mPosition = new Vector3(0, 0, 0);
-    this.mTransform = new Transform(mPosition);
-    this.mCameraZoom = 1.f;
+    this.vector3 = new Vector3(0, 0, 0);
+    this.zoom = 1.0f;
   }
-
-  public Transform getTransform() {
-    return this.mTransform;
+  
+  public Vector3 getPosition() {
+    return this.vector3;
   }
 
   public void setZoom(float value) {
-    this.mCameraZoom = Math.clamp(1.f / 10.f, value, 1.f);
+    this.zoom = Math.clamp(1.0f / 10.0f, value, 1.0f);
   }
 
   public float getZoom() {
-    return this.mCameraZoom;
+    return this.zoom;
+  }
+  
+  public void resetPosition() {
+    this.vector3.set(0, 0, 0);
   }
 }

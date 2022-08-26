@@ -1,3 +1,9 @@
 # ninja log v5
-14	267	1660569648277831933	CMakeFiles/ndk.dir/world.c.o	661057f0d0e1e7b3
 295	523	1660569648577831933	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/RelWithDebInfo/5t76w6c6/obj/arm64-v8a/libndk.so	b6a1be5314d93738
+14	267	1660569648277831933	CMakeFiles/ndk.dir/world.c.o	661057f0d0e1e7b3
+29	721	1661288703256571881	build.ninja	2b3297c411d881f
+8	42	0	clean	f942c98d57b1aa5d
+57	1186	1661288985104571897	CMakeFiles/ndk.dir/world.c.o	661057f0d0e1e7b3
+1189	1829	1661288985812571897	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/RelWithDebInfo/5t76w6c6/obj/arm64-v8a/libndk.so	b6a1be5314d93738
+79	1292	1661392767588434072	CMakeFiles/ndk.dir/world.c.o	661057f0d0e1e7b3
+1299	2394	1661392768764434072	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/RelWithDebInfo/5t76w6c6/obj/arm64-v8a/libndk.so	b6a1be5314d93738

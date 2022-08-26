@@ -23,6 +23,8 @@
 
 package com.frio.neptune.utils;
 
+import com.frio.neptune.utils.app.ProjectUtils;
+
 public class Object2D {
 
   private String uid;
@@ -53,6 +55,10 @@ public class Object2D {
 
   public float[] getColor() {
     return this.color;
+  }
+
+  public String getColorString() {
+    return ProjectUtils.convertColor(color);
   }
 
   public void setColor(float[] color) {

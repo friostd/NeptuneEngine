@@ -23,14 +23,7 @@ android {
     }
     
     signingConfigs {
-      debug {
-        storeFile file ("key.keystore")
-        keyAlias "engine"
-        keyPassword "nep22en8"
-        storePassword "nep22en8"
-      }
-      
-      release {
+      global {
         storeFile file ("key.keystore")
         keyAlias "engine"
         keyPassword "nep22en8"
@@ -43,14 +36,14 @@ android {
             minifyEnabled true
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.global
         }
         
         debug {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.global
         }
     }
     
