@@ -15,6 +15,11 @@
         android:roundIcon="@mipmap/ic_launcher_rounded"
         android:theme="@style/AppTheme" >
         <activity
+            android:name=".activity.DebugActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateAlwaysHidden" >
+        </activity>
+        <activity
             android:name=".activity.SplashActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="true"

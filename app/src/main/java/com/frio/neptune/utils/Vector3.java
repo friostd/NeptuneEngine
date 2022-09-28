@@ -21,8 +21,6 @@
  * SOFTWARE.
 */
 
-// Util
-
 package com.frio.neptune.utils;
 
 public class Vector3 {

@@ -1,9 +1,0 @@
-# ninja log v5
-195	408	1660507318967337601	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/armeabi-v7a/libndk.so	dcc8e7abe5c32594
-11	169	1660507318719337601	CMakeFiles/ndk.dir/world.c.o	53f1e894ad5f0dd1
-22	1053	1661101446760202863	build.ninja	f8abdb84c30e0c34
-19	809	1661137867764406276	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/armeabi-v7a/libndk.so	dcc8e7abe5c32594
-34	800	1661192035141334450	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/armeabi-v7a/libndk.so	dcc8e7abe5c32594
-50	175	0	clean	f942c98d57b1aa5d
-20	302	1661290543392571990	CMakeFiles/ndk.dir/world.c.o	53f1e894ad5f0dd1
-314	688	1661290543804571990	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/armeabi-v7a/libndk.so	dcc8e7abe5c32594

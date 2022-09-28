@@ -23,7 +23,6 @@
 
 package com.frio.neptune.activity;
 
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,25 +34,27 @@ import com.frio.neptune.R;
 import com.frio.neptune.adapters.*;
 import com.frio.neptune.databinding.ActivityEditorBinding;
 import com.frio.neptune.opengl.*;
-import com.frio.neptune.utils.*;
+import com.frio.neptune.utils.Object;
+import com.frio.neptune.utils.Project;
+import com.frio.neptune.utils.Vector3;
 import com.frio.neptune.utils.app.*;
 import com.frio.neptune.world.World;
-import java.util.LinkedList;
-import java.util.List;
+import com.itsaky.androidide.logsender.LogSender;
+import java.util.HashSet;
+import java.util.Set;
 
 public class EditorActivity extends AppCompatActivity {
 
   private ActivityEditorBinding binding;
   private GLRenderer renderer;
-  private Project mProject;
+  private String mode = null;
 
+  private Project mProject;
   private ObjectAdapter mObjectsAdapter;
-  private List<Object2D> mObjectsList = new LinkedList<>();
+  private Set<Object> mObjectsList;
 
   private ScaleGestureDetector mScaleDetector;
   private float mScaleFactor = 1.0f;
-
-  private String mode = "NONE";
 
   private float mLastX = 0f;
   private float mLastY = 0f;
@@ -62,6 +63,8 @@ public class EditorActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle bundle) {
+    LogSender.startLogging(this);
+
     super.onCreate(bundle);
 
     this.binding = ActivityEditorBinding.inflate(getLayoutInflater());
@@ -75,19 +78,19 @@ public class EditorActivity extends AppCompatActivity {
   protected void main() {
     observer();
 
+    mObjectsList = new HashSet<>();
+
     mProject = getIntent().getParcelableExtra("project");
     getSupportActionBar().setTitle(mProject.getName());
 
-    binding.surface.setEGLContextClientVersion(3);
-    renderer = new GLRenderer(this);
+    binding.surface.setEGLContextClientVersion(2);
+
+    renderer = new GLRenderer(getApplicationContext());
+    renderer.loadScene(mProject.getWorldPath());
 
     binding.surface.setRenderer(renderer);
-    binding.surface.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
 
-    renderer.loadObjects(mProject.getPath() + "/scene.world");
-    binding.surface.requestRender();
-
-    mScaleDetector = new ScaleGestureDetector(this, new ScaleListener());
+    mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleListener());
     mObjectsAdapter = new ObjectAdapter(mObjectsList);
 
     mObjectsAdapter.setOnClickListener(
@@ -96,11 +99,27 @@ public class EditorActivity extends AppCompatActivity {
         });
 
     binding.objects.setAdapter(mObjectsAdapter);
-    binding.objects.setLayoutManager(new LinearLayoutManager(this));
-    binding.objects.setHasFixedSize(true);
+    binding.objects.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
-    ProjectUtils.loadObjects(this, renderer, mObjectsList);
     mObjectsAdapter.notifyDataSetChanged();
+    binding.objectsCount.setText(renderer.getObjectsCount() + "");
+
+    new Thread(
+            () -> {
+              while (true) {
+                try {
+                  runOnUiThread(
+                      () -> {
+                        getSupportActionBar().setSubtitle(renderer.getFPS() + " FPS");
+                      });
+                  Thread.sleep(100l);
+                } catch (InterruptedException e) {
+                  ExceptionUtils.throwsException(getApplicationContext(), e.getCause());
+                  break;
+                }
+              }
+            })
+        .start();
   }
 
   protected void observer() {
@@ -127,8 +146,6 @@ public class EditorActivity extends AppCompatActivity {
                   Vector3 vector3 = renderer.getCamera().getPosition();
                   vector3.set(vector3.getX() - vx, vector3.getY() + vy, 0);
 
-                  binding.surface.requestRender();
-
                   mLastX = event.getRawX();
                   mLastY = event.getRawY();
 
@@ -140,7 +157,7 @@ public class EditorActivity extends AppCompatActivity {
 
             case MotionEvent.ACTION_UP:
               {
-                mode = "NONE";
+                mode = null;
                 break;
               }
           }
@@ -168,28 +185,30 @@ public class EditorActivity extends AppCompatActivity {
 
         mObjectsAdapter.remove(mObjectsAdapter.getSelectedPosition());
         renderer.removeObject(mObjectsAdapter.getSelectedPosition());
+        ProjectUtils.updateObjects(renderer, mObjectsList);
 
-        binding.surface.requestRender();
         mObjectsAdapter.resetSelection();
         mObjectsAdapter.notifyDataSetChanged();
+
+        binding.objectsCount.setText(renderer.getObjectsCount() + "");
 
         return true;
       case R.id.square:
         ProjectUtils.createNewSquare(renderer);
-        binding.surface.requestRender();
 
-        ProjectUtils.loadObjects(this, renderer, mObjectsList);
+        ProjectUtils.updateObjects(renderer, mObjectsList);
         mObjectsAdapter.notifyDataSetChanged();
+
+        binding.objectsCount.setText(renderer.getObjectsCount() + "");
 
         return true;
       case R.id.save:
-        World.saveWorld(this, mProject, renderer);
-        AndroidUtil.showToast(this, getString(R.string.saved_successfully));
+        World.saveWorld(getApplicationContext(), mProject, renderer);
+        AndroidUtil.showToast(getApplicationContext(), getString(R.string.saved_successfully));
 
         return true;
       case R.id.centralize_camera:
         renderer.getCamera().resetPosition();
-        binding.surface.requestRender();
 
         return true;
       default:
@@ -203,15 +222,13 @@ public class EditorActivity extends AppCompatActivity {
       mScaleFactor *= detector.getScaleFactor();
       renderer.getCamera().setZoom(mScaleFactor);
 
-      binding.surface.requestRender();
       return true;
     }
 
     @Override
     public boolean onScaleBegin(ScaleGestureDetector detector) {
-      detector = null;
-
       mode = "ZOOM";
+
       return true;
     }
   }

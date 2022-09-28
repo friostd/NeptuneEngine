@@ -24,13 +24,10 @@ package com.frio.neptune.world;
 
 import android.content.Context;
 import com.frio.neptune.opengl.GLRenderer;
-import com.frio.neptune.utils.Object2D;
+import com.frio.neptune.utils.Object;
 import com.frio.neptune.utils.Project;
-import com.frio.neptune.utils.app.AndroidUtil;
 import com.frio.neptune.utils.app.FilesUtil;
 import com.frio.neptune.utils.app.ProjectUtils;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import org.json.JSONArray;
@@ -40,7 +37,7 @@ import org.json.JSONObject;
 public class World {
 
   private Project project;
-  private Set<Object2D> objectList;
+  private Set<Object> objectList;
 
   public World(Project project) {
     this.objectList = new ConcurrentSkipListSet<>();
@@ -93,13 +90,19 @@ public class World {
     JSONObject world = new JSONObject();
 
     try {
-      for (Object2D obj : renderer.getObjectsList()) {
-        JSONObject object = new JSONObject();
-        object.put("type", obj.getType());
-        object.put("color", obj.getColorString());
+      renderer.getObjectsList().stream()
+          .forEach(
+              obj -> {
+                try {
+                  JSONObject object = new JSONObject();
+                  object.put("type", obj.getType());
+                  object.put("color", obj.getColorString());
 
-        objects.put(obj.getUID(), object);
-      }
+                  objects.put(obj.getUID(), object);
+                } catch (JSONException e) {
+                  e.printStackTrace();
+                }
+              });
 
       JSONArray objectsArray = new JSONArray();
       JSONArray worldArray = new JSONArray();

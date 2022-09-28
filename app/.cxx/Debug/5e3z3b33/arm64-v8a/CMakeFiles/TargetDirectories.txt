@@ -1,3 +1,0 @@
-/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/5e3z3b33/arm64-v8a/CMakeFiles/ndk.dir
-/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/5e3z3b33/arm64-v8a/CMakeFiles/edit_cache.dir
-/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/5e3z3b33/arm64-v8a/CMakeFiles/rebuild_cache.dir

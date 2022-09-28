@@ -25,9 +25,9 @@ package com.frio.neptune.world;
 
 public final class WorldJNIBridge {
 
-  static {
+  /*static {
     System.loadLibrary("ndk");
   }
 
-  public native String load_world();
+  public native String load_world();*/
 }

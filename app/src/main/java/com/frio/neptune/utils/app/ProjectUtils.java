@@ -2,14 +2,13 @@ package com.frio.neptune.utils.app;
 
 import android.content.Context;
 import com.frio.neptune.opengl.GLRenderer;
-import com.frio.neptune.utils.Object2D;
-import com.frio.neptune.utils.app.AndroidUtil;
+import com.frio.neptune.utils.Object;
 import com.frio.neptune.world.World;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 public class ProjectUtils {
@@ -54,14 +53,20 @@ public class ProjectUtils {
     renderer.addNewObject(uid, type, color);
   }
 
-  public static void loadObjects(Context context, GLRenderer renderer, List<Object2D> list) {
-    if (renderer.getObjectsList().size() <= 0) return;
+  public static int getObjectsCount(GLRenderer renderer) {
+    return renderer.getObjectsList().size();
+  }
+
+  public static void updateObjects(GLRenderer renderer, Set<Object> list) {
+    renderer.isAllowedToRender = false;
     list.clear();
 
-    for (Object2D object : renderer.getObjectsList()) {
-      list.add(new Object2D(object.getUID(), object.getType(), object.getColor()));
-    }
+    list.stream()
+        .forEach(
+            object -> {
+              list.add(new Object(object.getUID(), object.getType(), object.getColor()));
+            });
 
-    list.sort((p1, p2) -> p1.getType().compareTo(p2.getType()));
+    renderer.isAllowedToRender = true;
   }
 }

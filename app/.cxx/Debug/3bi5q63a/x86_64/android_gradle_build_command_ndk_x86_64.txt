@@ -1,7 +1,0 @@
-Executable : /data/data/com.itsaky.androidide/files/home/android-sdk/cmake/3.23.1/bin/ninja
-arguments : 
--C
-/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/3bi5q63a/x86_64
-ndk
-jvmArgs : 
-

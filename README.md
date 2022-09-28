@@ -12,8 +12,15 @@
 <h1 align="center">Screenshots</h1>
 
 <div align="center">
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.jpg" width="150px" /><img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.jpg" width="150px" />
+  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.jpg" width="100%" />
+  <img style="margin-top: 8px;" src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.jpg" width="100%" />
 </div>
+
+<h1 align="center">Thanks to</h1>
+
+<a href="https://github.com/KKD4yv1d">KKD4yv1d</a> for contributing to the project<br>
+<a href="https://github.com/Neiken">Neiken</a> for contributing to the project<br>
+<a href="https://github.com/MatheusTGamerPro">MatheusTGP</a> for contributing to the project
 
 <h1 align="center">Note</h1>
 

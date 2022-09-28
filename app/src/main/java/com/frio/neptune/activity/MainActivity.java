@@ -26,6 +26,7 @@ package com.frio.neptune.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.PopupMenu;
@@ -41,6 +42,7 @@ import java.io.File;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
 
   private ProjectAdapter mProjectsAdapter;
   private List<Project> mProjectsList = new LinkedList<>();
-
-  public static MainActivity instance = new MainActivity();
 
   @Override
   protected void onCreate(Bundle bundle) {
@@ -104,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
 
     binding.projects.setAdapter(mProjectsAdapter);
     binding.projects.setLayoutManager(new GridLayoutManager(this, 3));
+    
+    binding.root.setOnHoverListener(new MouseListener());
   }
 
   protected void observer() {
@@ -126,15 +128,15 @@ public class MainActivity extends AppCompatActivity {
                   AndroidUtil.showToast(this, "Digite um nome válido");
                   return;
                 }
-                
+
                 if (ProjectUtils.isExists(this, name)) {
                   AndroidUtil.showToast(this, "Projeto já existente");
                   return;
                 }
-                
+
                 ProjectUtils.createNewProject(this, name, ProjectUtils.getDateNow());
                 AndroidUtil.closeKeyboard(this);
-                
+
                 refreshProjects();
               });
 
@@ -165,7 +167,8 @@ public class MainActivity extends AppCompatActivity {
 
     for (File file : listFiles) {
       if (file.isDirectory()) {
-        mProjectsList.add(new Project(file.getName(), file.getAbsolutePath(), ProjectUtils.getDateNow()));
+        mProjectsList.add(
+            new Project(file.getName(), file.getAbsolutePath(), ProjectUtils.getDateNow()));
         Collections.sort(mProjectsList, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
       }
     }
@@ -178,5 +181,15 @@ public class MainActivity extends AppCompatActivity {
     refreshProjects();
 
     super.onStart();
+  }
+
+  private class MouseListener implements View.OnHoverListener {
+    @Override
+    public boolean onHover(View view, MotionEvent motionEvent) {
+      String position = motionEvent.getX() + "  " + motionEvent.getY();
+      getSupportActionBar().setTitle(position);
+
+      return false;
+    }
   }
 }

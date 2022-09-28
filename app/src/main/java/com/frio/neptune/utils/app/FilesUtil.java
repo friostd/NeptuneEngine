@@ -21,8 +21,6 @@
  * SOFTWARE.
 */
 
-// App util
-
 package com.frio.neptune.utils.app;
 
 import android.content.Context;
@@ -92,7 +90,7 @@ public class FilesUtil {
     try {
       FileInputStream stream = new FileInputStream(path);
 
-      // TODO
+      // TODO: ala man
     } catch (Exception e) {
       Log.e("FileUtil#readRawFile", "Can't read the file " + path, e);
     }

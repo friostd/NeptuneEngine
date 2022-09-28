@@ -1,3 +1,0 @@
-ninja: Entering directory `/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/5e3z3b33/x86'
-[1/2] Building CXX object CMakeFiles/ndk.dir/native-lib.cpp.o
-[2/2] Linking CXX shared library /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/5e3z3b33/obj/x86/libndk.so

@@ -30,16 +30,16 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
+import com.frio.neptune.utils.app.ExceptionUtils;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.Normalizer;
 
 public class AndroidUtil {
 
   public static void showToast(Context context, String message) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-  }
-
-  public static void throwsException(Context context, String exception) {
-    FilesUtil.writeFile(context, context.getExternalFilesDir("logs") + "/log.txt", exception);
   }
 
   public static void write(Context context, String file, String message) {
@@ -75,5 +75,21 @@ public class AndroidUtil {
     text = text.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
 
     return text;
+  }
+
+  public static String readAssets(Context context, String name) {
+    try {
+      InputStream is = context.getAssets().open(name);
+      ByteArrayOutputStream result = new ByteArrayOutputStream();
+      byte[] buffer = new byte[1024];
+      for (int length; (length = is.read(buffer)) != -1; ) {
+        result.write(buffer, 0, length);
+      }
+
+      return result.toString("UTF-8");
+    } catch (IOException e) {
+      ExceptionUtils.throwsException(context, e.fillInStackTrace());
+      return null;
+    }
   }
 }

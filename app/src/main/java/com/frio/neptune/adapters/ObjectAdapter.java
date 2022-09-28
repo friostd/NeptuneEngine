@@ -21,8 +21,6 @@
  * SOFTWARE.
 */
 
-// Util
-
 package com.frio.neptune.adapters;
 
 import android.content.Context;
@@ -34,39 +32,40 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.frio.neptune.R;
-import com.frio.neptune.utils.Object2D;
-import java.util.List;
+import com.frio.neptune.utils.Object;
+import java.util.Map;
+import java.util.Set;
 
 public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
 
-  private List<Object2D> mObjectsList;
+  private Set<Object> mObjectsList;
   private Context mContext;
 
   private int selectedPosition = -1;
 
-  private ClickListener clickListener;
-  private LongClickListener longClickListener;
+  private ClickListener onClickListener;
+  private LongClickListener onLongClickListener;
 
-  public ObjectAdapter(List<Object2D> list) {
+  public ObjectAdapter(Set<Object> list) {
     this.mObjectsList = list;
   }
 
   public void setOnClickListener(ClickListener listener) {
-    this.clickListener = listener;
+    this.onClickListener = listener;
   }
 
-  public boolean setOnLongClickListener(LongClickListener listener) {
-    this.longClickListener = listener;
+  public boolean setOnLongClickSetener(LongClickListener listener) {
+    this.onLongClickListener = listener;
 
     return true;
   }
 
   public interface ClickListener {
-    void clickListener(View view, int position);
+    void notify(View view, int position);
   }
 
   public interface LongClickListener {
-    boolean longClickListener(View view, int position);
+    boolean notify(View view, int position);
   }
 
   public class Holder extends RecyclerView.ViewHolder {
@@ -83,8 +82,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
       view.setTag(view);
       view.setOnClickListener(
           v -> {
-            if (clickListener != null) {
-              clickListener.clickListener(view, getAdapterPosition());
+            if (onClickListener != null) {
+              onClickListener.notify(view, getAdapterPosition());
 
               selectedPosition = getAdapterPosition();
               notifyDataSetChanged();
@@ -93,8 +92,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
 
       view.setOnLongClickListener(
           vi -> {
-            if (longClickListener != null) {
-              longClickListener.longClickListener(view, getAdapterPosition());
+            if (onLongClickListener != null) {
+              onLongClickListener.notify(view, getAdapterPosition());
             }
 
             return true;
@@ -115,7 +114,8 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
 
   @Override
   public void onBindViewHolder(@NonNull ObjectAdapter.Holder holder, int position) {
-    Object2D object = mObjectsList.get(position);
+    Object[] items = mObjectsList.toArray(new Object[mObjectsList.size()]);
+    Object object = items[position];
 
     String uid = object.getUID();
     String type = object.getType();
@@ -127,13 +127,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
       holder.itemView.setBackgroundColor(0xFF121212);
     }
 
-    switch (type) {
-      case "Square":
-        holder.name.setText(mContext.getString(R.string.square));
-        break;
-      default:
-        break;
-    }
+    holder.name.setText(mContext.getString(R.string.square));
   }
 
   @Override

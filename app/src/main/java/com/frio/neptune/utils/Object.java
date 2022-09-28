@@ -21,26 +21,47 @@
  * SOFTWARE.
 */
 
-package com.frio.neptune;
+package com.frio.neptune.utils;
 
-import android.app.Application;
-import com.frio.neptune.utils.app.ExceptionUtils;
+import com.frio.neptune.utils.app.ProjectUtils;
 
-public class AndroidApplication extends Application implements Thread.UncaughtExceptionHandler {
+public class Object {
 
-  private Thread.UncaughtExceptionHandler mDefaultExceptionHandler;
+  private String uid;
+  private String type;
+  private float[] color;
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
+  public Object(String uid, String type, float[] color) {
+    this.uid = uid;
+    this.type = type;
+    this.color = color;
   }
 
-  @Override
-  public void uncaughtException(Thread thread, Throwable throwable) {
-    new Thread(
-            () -> {
-              ExceptionUtils.throwsException(getBaseContext(), throwable);
-            })
-        .start();
+  public String getUID() {
+    return this.uid;
+  }
+
+  public void setUID(String uid) {
+    this.uid = uid;
+  }
+
+  public String getType() {
+    return this.type;
+  }
+
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  public float[] getColor() {
+    return this.color;
+  }
+
+  public String getColorString() {
+    return ProjectUtils.convertColor(color);
+  }
+
+  public void setColor(float[] color) {
+    this.color = color;
   }
 }

@@ -21,11 +21,11 @@
  * SOFTWARE.
 */
 
-// Shapes
-
 package com.frio.neptune.opengl;
 
-import android.opengl.GLES32;
+import static android.opengl.GLES32.*;
+
+import android.content.Context;
 import android.opengl.Matrix;
 import com.frio.neptune.utils.Vector3;
 import java.nio.ByteBuffer;
@@ -38,21 +38,6 @@ public class Square {
   private FloatBuffer mVertexBuffer;
   private ShortBuffer mDrawListBuffer;
 
-  private final String VERTEX_SHADER_CODE =
-      "uniform mat4 projectionMatrix;"
-          + "attribute vec4 vPosition;"
-          + "uniform mat4 model;"
-          + "void main() {"
-          + "  gl_Position = projectionMatrix * model * vPosition;"
-          + "}";
-
-  private final String FRAGMENT_SHADER_CODE =
-      "precision mediump float;"
-          + "uniform vec4 vColor;"
-          + "void main() {"
-          + "  gl_FragColor = vColor;"
-          + "}";
-
   private int mProjectionMatrixHandle;
 
   private static final float SQUARE_COORDS[] = {
@@ -61,6 +46,22 @@ public class Square {
     0.25f, -0.25f, 0.0f,
     0.25f, 0.25f, 0.0f
   };
+
+  private final String FRAGMENT_SHADER =
+      "precision mediump float;\n"
+          + "uniform vec4 vColor;\n"
+          + "void main() {\n"
+          + "gl_FragColor = vColor;\n"
+          + "}";
+
+  private final String VERTEX_SHADER =
+      "uniform mat4 projectionMatrix;\n"
+          + "attribute vec4 vPosition;\n"
+          + "uniform mat4 model;\n"
+          + "uniform vec4 vColor;\n"
+          + "void main() {\n"
+          + "gl_Position = projectionMatrix * model * vPosition;\n"
+          + "}";
 
   private final short DRAW_ORDER[] = {0, 1, 2, 0, 2, 3};
 
@@ -76,7 +77,11 @@ public class Square {
   private Vector3 mScale = new Vector3(1, 1, 1);
   private Vector3 mRotation = new Vector3(0, 0, 0);
 
-  public Square() {
+  private Context context;
+
+  public Square(Context context) {
+    this.context = context;
+
     ByteBuffer bb = ByteBuffer.allocateDirect(SQUARE_COORDS.length * 4);
 
     bb.order(ByteOrder.nativeOrder());
@@ -91,18 +96,28 @@ public class Square {
     mDrawListBuffer.put(DRAW_ORDER);
     mDrawListBuffer.position(0);
 
-    int vertexShader = GLRenderer.loadShader(GLES32.GL_VERTEX_SHADER, VERTEX_SHADER_CODE);
-    int fragmentShader = GLRenderer.loadShader(GLES32.GL_FRAGMENT_SHADER, FRAGMENT_SHADER_CODE);
+    int vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-    mProgram = GLES32.glCreateProgram();
+    glShaderSource(vertexShader, VERTEX_SHADER);
+    glShaderSource(fragmentShader, FRAGMENT_SHADER);
 
-    GLES32.glAttachShader(mProgram, vertexShader);
-    GLES32.glAttachShader(mProgram, fragmentShader);
+    glCompileShader(vertexShader);
+    glCompileShader(fragmentShader);
 
-    GLES32.glLinkProgram(mProgram);
+    mProgram = glCreateProgram();
+    glAttachShader(mProgram, vertexShader);
+    glAttachShader(mProgram, fragmentShader);
+
+    glLinkProgram(mProgram);
   }
 
   public void draw(float[] projectionMatrix, float[] color) {
+    int buffers[] = new int[2];
+    glGenBuffers(2, buffers, 0);
+    int vbo = buffers[0];
+    int ibo = buffers[1];
+
     float positionM[] = new float[16];
     Matrix.setIdentityM(positionM, 0);
     Matrix.translateM(positionM, 0, mPosition.getX(), mPosition.getY(), mPosition.getZ());
@@ -121,27 +136,38 @@ public class Square {
     Matrix.multiplyMM(model, 0, scaleM, 0, rotationM, 0);
     Matrix.multiplyMM(model, 0, model, 0, positionM, 0);
 
-    GLES32.glUseProgram(mProgram);
+    glUseProgram(mProgram);
 
-    mPositionHandle = GLES32.glGetAttribLocation(mProgram, "vPosition");
+    mPositionHandle = glGetAttribLocation(mProgram, "vPosition");
 
-    GLES32.glEnableVertexAttribArray(mPositionHandle);
+    glEnableVertexAttribArray(mPositionHandle);
+    glVertexAttribPointer(mPositionHandle, 3, GL_FLOAT, false, 12, mVertexBuffer);
+    mColorHandle = glGetUniformLocation(mProgram, "vColor");
 
-    GLES32.glVertexAttribPointer(mPositionHandle, 3, GLES32.GL_FLOAT, false, 12, mVertexBuffer);
+    glUniform4fv(mColorHandle, 1, color, 0);
+    mProjectionMatrixHandle = glGetUniformLocation(mProgram, "projectionMatrix");
 
-    mColorHandle = GLES32.glGetUniformLocation(mProgram, "vColor");
+    glUniformMatrix4fv(mProjectionMatrixHandle, 1, false, projectionMatrix, 0);
+    mModelHandle = glGetUniformLocation(mProgram, "model");
+    glUniformMatrix4fv(mModelHandle, 1, false, model, 0);
 
-    GLES32.glUniform4fv(mColorHandle, 1, color, 0);
+    glDrawArrays(GL_TRIANGLE_FAN, 0, VERTEX_COUNT);
+    glDisableVertexAttribArray(mPositionHandle);
 
-    mProjectionMatrixHandle = GLES32.glGetUniformLocation(mProgram, "projectionMatrix");
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glVertexAttribPointer(
+        mPositionHandle, 3, GL_FLOAT, false, 0, 0); // <----- 0, because "vbo" is bound
+    glEnableVertexAttribArray(mPositionHandle);
 
-    GLES32.glUniformMatrix4fv(mProjectionMatrixHandle, 1, false, projectionMatrix, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+    glDrawElements(
+        GL_TRIANGLE_FAN,
+        DRAW_ORDER.length,
+        GL_UNSIGNED_SHORT,
+        0); // <----- 0, because "ibo" is bound
 
-    mModelHandle = GLES32.glGetUniformLocation(mProgram, "model");
-    GLES32.glUniformMatrix4fv(mModelHandle, 1, false, model, 0);
-
-    GLES32.glDrawArrays(GLES32.GL_TRIANGLE_FAN, 0, VERTEX_COUNT);
-
-    GLES32.glDisableVertexAttribArray(mPositionHandle);
+    glDisableVertexAttribArray(mPositionHandle);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
   }
 }

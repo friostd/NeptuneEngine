@@ -1,9 +1,0 @@
-# ninja log v5
-788	1391	1660507440043337608	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/arm64-v8a/libndk.so	b2cdfcfc30c13fba
-55	784	1660507439379337608	CMakeFiles/ndk.dir/world.c.o	cf1d3ef9c1c1db61
-71	1285	1661101445212202863	build.ninja	27476058a4c69e44
-76	2362	1661137866148406276	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/arm64-v8a/libndk.so	b2cdfcfc30c13fba
-146	1945	1661192033617334450	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/arm64-v8a/libndk.so	b2cdfcfc30c13fba
-27	107	0	clean	f942c98d57b1aa5d
-141	1392	1661290541668571990	CMakeFiles/ndk.dir/world.c.o	cf1d3ef9c1c1db61
-1401	2206	1661290542468571990	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/3bi5q63a/obj/arm64-v8a/libndk.so	b2cdfcfc30c13fba

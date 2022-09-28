@@ -1,7 +1,0 @@
-# ninja log v5
-17	3087	1660504184995337414	CMakeFiles/ndk.dir/native-lib.cpp.o	bc3f5029282627d7
-3121	3545	1660504185479337414	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/5e3z3b33/obj/arm64-v8a/libndk.so	96179679ba2197b1
-41	2578	1660504429363337429	CMakeFiles/ndk.dir/native-lib.cpp.o	bc3f5029282627d7
-2582	3198	1660504430047337429	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/5e3z3b33/obj/arm64-v8a/libndk.so	96179679ba2197b1
-92	2901	1660504915475337458	CMakeFiles/ndk.dir/native-lib.cpp.o	bc3f5029282627d7
-2905	3582	1660504916211337458	/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/build/intermediates/cxx/Debug/5e3z3b33/obj/arm64-v8a/libndk.so	96179679ba2197b1

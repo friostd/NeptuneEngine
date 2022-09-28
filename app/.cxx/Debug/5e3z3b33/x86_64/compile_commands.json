@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/5e3z3b33/x86_64",
-  "command": "/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/bin/clang++ --target=x86_64-none-linux-android21 --sysroot=/data/data/com.itsaky.androidide/files/home/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-aarch64/sysroot -Dndk_EXPORTS -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security -fexceptions -frtti -stdlib=libc++ -g  -fno-limit-debug-info -fPIC -o CMakeFiles/ndk.dir/native-lib.cpp.o -c /storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/cpp/native-lib.cpp",
-  "file": "/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/cpp/native-lib.cpp"
-}
-]

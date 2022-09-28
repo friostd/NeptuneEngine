@@ -1,2 +1,0 @@
-ninja: Entering directory `/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/.cxx/Debug/3bi5q63a/x86'
-ninja: no work to do.

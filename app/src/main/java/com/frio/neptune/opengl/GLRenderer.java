@@ -27,10 +27,13 @@ import android.content.Context;
 import android.opengl.GLES32;
 import android.opengl.GLSurfaceView;
 import android.opengl.Matrix;
-import com.frio.neptune.utils.*;
+import com.frio.neptune.utils.Camera;
+import com.frio.neptune.utils.Object;
+import com.frio.neptune.utils.Vector3;
 import com.frio.neptune.utils.app.*;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ConcurrentModificationException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 import org.json.JSONArray;
@@ -42,66 +45,71 @@ public class GLRenderer implements GLSurfaceView.Renderer {
   private final float[] PROJECTION_MATRIX = new float[16];
   private float mRatio;
 
-  private List<Object2D> mObject2DsList = new LinkedList<Object2D>();
+  private Set<Object> mObjectsList;
 
   private Camera mCamera;
   private Vector3 mCameraPosition;
 
+  private float x, y, z;
+  private float zoom;
+
   private Context context;
 
+  private int averageFPS;
+  private int currentFrame;
+  private long lastTime;
+
+  public boolean isAllowedToRender = true;
+  private Square square;
+
   public GLRenderer(Context context) {
-    this.context = context;
+    mObjectsList = new HashSet<>();
+    context = context;
   }
 
   public void onSurfaceCreated(GL10 unused, EGLConfig config) {
+    if (!isAllowedToRender) return;
+
     GLES32.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     mCamera = new Camera();
     mCameraPosition = mCamera.getPosition();
 
-    unused = null;
-    config = null;
+    square = new Square(context);
   }
 
   public void onDrawFrame(GL10 unused) {
+    if (!isAllowedToRender) return;
+
     GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
 
-    Matrix.orthoM(
-        PROJECTION_MATRIX,
-        0,
-        -mRatio / mCamera.getZoom(),
-        mRatio / mCamera.getZoom(),
-        -1 / mCamera.getZoom(),
-        1 / mCamera.getZoom(),
-        -1,
-        50);
+    x = mCameraPosition.getX();
+    y = mCameraPosition.getY();
+    z = mCameraPosition.getZ();
+    zoom = mCamera.getZoom();
 
-    Matrix.translateM(
-        PROJECTION_MATRIX,
-        0,
-        mCameraPosition.getX(),
-        mCameraPosition.getY(),
-        mCameraPosition.getZ());
+    Matrix.orthoM(PROJECTION_MATRIX, 0, -mRatio / zoom, mRatio / zoom, -1 / zoom, 1 / zoom, -1, 50);
+    Matrix.translateM(PROJECTION_MATRIX, 0, x, y, z);
 
-    // Draw objects
+    mObjectsList.stream()
+        .forEach(
+            object -> {
+              square.draw(PROJECTION_MATRIX, object.getColor());
+            });
 
-    if (mObject2DsList.size() == 0) return;
-    for (Object2D object : mObject2DsList) {
-      switch (object.getType()) {
-        case "Square":
-          Square square = new Square();
-          square.draw(PROJECTION_MATRIX, object.getColor());
-          break;
-        default:
-          break;
-      }
+    if (lastTime + 1000 < System.currentTimeMillis()) {
+      lastTime = System.currentTimeMillis();
+      averageFPS = currentFrame;
+      currentFrame = 0;
+      return;
     }
 
-    unused = null;
-    System.gc();
+    currentFrame++;
   }
 
-  public void loadObjects(String path) {
+  public void loadScene(String path) {
+    isAllowedToRender = false;
+
     try {
       JSONObject json = new JSONObject(FilesUtil.readFile(path));
       JSONArray array = json.getJSONArray("objects");
@@ -117,43 +125,52 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
         addNewObject(objects.names().getString(i), object.getString("type"), color);
       }
+
+      isAllowedToRender = true;
     } catch (JSONException e) {
-      AndroidUtil.throwsException(context, e.getMessage());
+      ExceptionUtils.throwsException(context, e);
+      isAllowedToRender = false;
+
+    } catch (ConcurrentModificationException e) {
+      ExceptionUtils.throwsException(context, e);
+      throw new RuntimeException();
     }
   }
 
   public void onSurfaceChanged(GL10 unused, int width, int height) {
+    if (!isAllowedToRender) return;
     GLES32.glViewport(0, 0, width, height);
     mRatio = (float) width / height;
 
-    Matrix.orthoM(
-        PROJECTION_MATRIX,
-        0,
-        -mRatio * mCamera.getZoom(),
-        mRatio * mCamera.getZoom(),
-        -mCamera.getZoom(),
-        mCamera.getZoom(),
-        -1,
-        50);
-
-    unused = null;
-    System.gc();
+    Matrix.orthoM(PROJECTION_MATRIX, 0, -mRatio * zoom, mRatio * z, -zoom, zoom, -1, 50);
   }
 
-  public List<Object2D> getObjectsList() {
-    return this.mObject2DsList;
+  public Set<Object> getObjectsList() {
+    return this.mObjectsList;
+  }
+
+  public int getObjectsCount() {
+    return this.mObjectsList.size();
   }
 
   public void addNewObject(String uid, String type, float[] color) {
-    mObject2DsList.add(new Object2D(uid, type, color));
+    mObjectsList.add(new Object(uid, type, color));
   }
 
   public void removeObject(int position) {
-    mObject2DsList.remove(position);
+    mObjectsList.remove(position);
   }
 
   public Camera getCamera() {
     return mCamera;
+  }
+
+  public Context getContext() {
+    return context;
+  }
+
+  public int getFPS() {
+    return averageFPS;
   }
 
   public static int loadShader(int type, String shaderCode) {
