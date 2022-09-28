@@ -79,61 +79,51 @@ public class GLRenderer implements GLSurfaceView.Renderer {
   }
 
   public void onDrawFrame(GL10 unused) {
-    if (!isAllowedToRender) return;
+    try {
+      GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
 
-    GLES32.glClear(GLES32.GL_COLOR_BUFFER_BIT);
+      x = mCameraPosition.getX();
+      y = mCameraPosition.getY();
+      z = mCameraPosition.getZ();
+      zoom = mCamera.getZoom();
 
-    x = mCameraPosition.getX();
-    y = mCameraPosition.getY();
-    z = mCameraPosition.getZ();
-    zoom = mCamera.getZoom();
+      Matrix.orthoM(PROJECTION_MATRIX, 0, -mRatio / zoom, mRatio / zoom, -1 / zoom, 1 / zoom, -1, 50);
+      Matrix.translateM(PROJECTION_MATRIX, 0, x, y, z);
 
-    Matrix.orthoM(PROJECTION_MATRIX, 0, -mRatio / zoom, mRatio / zoom, -1 / zoom, 1 / zoom, -1, 50);
-    Matrix.translateM(PROJECTION_MATRIX, 0, x, y, z);
+      mObjectsList.stream()
+          .forEach(
+              object -> {
+                square.draw(PROJECTION_MATRIX, object.getColor());
+              });
 
-    mObjectsList.stream()
-        .forEach(
-            object -> {
-              square.draw(PROJECTION_MATRIX, object.getColor());
-            });
+      if (lastTime + 1000 < System.currentTimeMillis()) {
+        lastTime = System.currentTimeMillis();
+        averageFPS = currentFrame;
+        currentFrame = 0;
+        return;
+      }
 
-    if (lastTime + 1000 < System.currentTimeMillis()) {
-      lastTime = System.currentTimeMillis();
-      averageFPS = currentFrame;
-      currentFrame = 0;
-      return;
+      currentFrame++;
+    } catch (Exception e) {
+      ExceptionUtils.throwsException(e);
+      throw new RuntimeException();
     }
-
-    currentFrame++;
   }
 
   public void loadScene(String path) {
-    isAllowedToRender = false;
+    JSONObject json = new JSONObject(FilesUtil.readFile(path));
+    JSONArray array = json.getJSONArray("objects");
 
-    try {
-      JSONObject json = new JSONObject(FilesUtil.readFile(path));
-      JSONArray array = json.getJSONArray("objects");
+    if (array == null) return;
+    JSONObject objects = array.getJSONObject(0);
 
-      if (array == null) return;
-      JSONObject objects = array.getJSONObject(0);
+    for (int i = 0; i < objects.length(); i++) {
+      JSONObject object = objects.getJSONObject(objects.names().getString(i));
 
-      for (int i = 0; i < objects.length(); i++) {
-        JSONObject object = objects.getJSONObject(objects.names().getString(i));
+      float[] color =
+          AndroidUtil.toArray(object.getString("color").replace("[", "").replace("]", ""));
 
-        float[] color =
-            AndroidUtil.toArray(object.getString("color").replace("[", "").replace("]", ""));
-
-        addNewObject(objects.names().getString(i), object.getString("type"), color);
-      }
-
-      isAllowedToRender = true;
-    } catch (JSONException e) {
-      ExceptionUtils.throwsException(context, e);
-      isAllowedToRender = false;
-
-    } catch (ConcurrentModificationException e) {
-      ExceptionUtils.throwsException(context, e);
-      throw new RuntimeException();
+      addNewObject(objects.names().getString(i), object.getString("type"), color);
     }
   }
 

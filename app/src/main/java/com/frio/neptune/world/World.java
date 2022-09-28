@@ -118,7 +118,8 @@ public class World {
       main.put("settings", worldArray);
       main.accumulate("objects", objectsArray);
       FilesUtil.writeFile(context, project.getWorldPath(), main.toString(2));
-    } catch (JSONException e) {
+    } catch (Exception e) {
+      ExceptionUtils.throwsException(e);
       e.printStackTrace();
     }
   }

@@ -58,15 +58,17 @@ public class ProjectUtils {
   }
 
   public static void updateObjects(GLRenderer renderer, Set<Object> list) {
-    renderer.isAllowedToRender = false;
-    list.clear();
+    try {
+      list.clear();
 
-    list.stream()
-        .forEach(
-            object -> {
-              list.add(new Object(object.getUID(), object.getType(), object.getColor()));
-            });
+      list.stream()
+          .forEach(
+              object -> {
+                list.add(new Object(object.getUID(), object.getType(), object.getColor()));
+              });
+    } catch (Exception e) {
+      ExceptionUtils.throwsException(e);
 
-    renderer.isAllowedToRender = true;
+    }
   }
 }
