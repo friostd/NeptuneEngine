@@ -202,6 +202,8 @@ public class EditorActivity extends AppCompatActivity {
         ProjectUtils.updateObjects(this, renderer, mObjectsList);
         mObjectsAdapter.notifyDataSetChanged();
 
+        binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
+
         return true;
       case R.id.save:
         World.saveWorld(getApplicationContext(), mProject, renderer);
