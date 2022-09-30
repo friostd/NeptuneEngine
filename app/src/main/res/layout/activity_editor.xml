@@ -37,9 +37,7 @@
         <TextView
             android:id="@+id/objectsCount"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_width="wrap_content" />
         
         <androidx.core.widget.NestedScrollView
             android:layout_height="match_parent"
