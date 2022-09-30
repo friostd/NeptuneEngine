@@ -33,12 +33,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.frio.neptune.R;
 import com.frio.neptune.utils.Object;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
 
-  private Set<Object> mObjectsList;
+  private List<Object> mObjectsList;
   private Context mContext;
 
   private int selectedPosition = -1;
@@ -46,7 +47,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
   private ClickListener onClickListener;
   private LongClickListener onLongClickListener;
 
-  public ObjectAdapter(Set<Object> list) {
+  public ObjectAdapter(List<Object> list) {
     this.mObjectsList = list;
   }
 
@@ -114,8 +115,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
 
   @Override
   public void onBindViewHolder(@NonNull ObjectAdapter.Holder holder, int position) {
-    Object[] items = mObjectsList.toArray(new Object[mObjectsList.size()]);
-    Object object = items[position];
+    Object object = mObjectsList.get(position);
 
     String uid = object.getUID();
     String type = object.getType();

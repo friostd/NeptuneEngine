@@ -104,8 +104,6 @@ public class MainActivity extends AppCompatActivity {
 
     binding.projects.setAdapter(mProjectsAdapter);
     binding.projects.setLayoutManager(new GridLayoutManager(this, 3));
-    
-    binding.root.setOnHoverListener(new MouseListener());
   }
 
   protected void observer() {
@@ -181,15 +179,5 @@ public class MainActivity extends AppCompatActivity {
     refreshProjects();
 
     super.onStart();
-  }
-
-  private class MouseListener implements View.OnHoverListener {
-    @Override
-    public boolean onHover(View view, MotionEvent motionEvent) {
-      String position = motionEvent.getX() + "  " + motionEvent.getY();
-      getSupportActionBar().setTitle(position);
-
-      return false;
-    }
   }
 }

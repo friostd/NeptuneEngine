@@ -40,8 +40,8 @@ import com.frio.neptune.utils.Vector3;
 import com.frio.neptune.utils.app.*;
 import com.frio.neptune.world.World;
 import com.itsaky.androidide.logsender.LogSender;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EditorActivity extends AppCompatActivity {
 
@@ -51,7 +51,7 @@ public class EditorActivity extends AppCompatActivity {
 
   private Project mProject;
   private ObjectAdapter mObjectsAdapter;
-  private Set<Object> mObjectsList;
+  private List<Object> mObjectsList;
 
   private ScaleGestureDetector mScaleDetector;
   private float mScaleFactor = 1.0f;
@@ -64,7 +64,6 @@ public class EditorActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle bundle) {
     LogSender.startLogging(this);
-
     super.onCreate(bundle);
 
     this.binding = ActivityEditorBinding.inflate(getLayoutInflater());
@@ -78,7 +77,7 @@ public class EditorActivity extends AppCompatActivity {
   protected void main() {
     observer();
 
-    mObjectsList = new HashSet<>();
+    mObjectsList = new ArrayList<Object>();
 
     mProject = getIntent().getParcelableExtra("project");
     getSupportActionBar().setTitle(mProject.getName());
@@ -130,6 +129,8 @@ public class EditorActivity extends AppCompatActivity {
               {
                 mLastX = event.getRawX();
                 mLastY = event.getRawY();
+                
+                // binding.surface.requestPointerCapture();
 
                 mode = "DOWN";
                 break;
@@ -185,7 +186,7 @@ public class EditorActivity extends AppCompatActivity {
 
         mObjectsAdapter.remove(mObjectsAdapter.getSelectedPosition());
         renderer.removeObject(mObjectsAdapter.getSelectedPosition());
-        ProjectUtils.updateObjects(renderer, mObjectsList);
+        ProjectUtils.updateObjects(mObjectsList);
 
         mObjectsAdapter.resetSelection();
         mObjectsAdapter.notifyDataSetChanged();
@@ -195,10 +196,9 @@ public class EditorActivity extends AppCompatActivity {
         return true;
       case R.id.square:
         ProjectUtils.createNewSquare(renderer);
+        ProjectUtils.updateObjects(mObjectsList);
 
-        ProjectUtils.updateObjects(renderer, mObjectsList);
         mObjectsAdapter.notifyDataSetChanged();
-
         binding.objectsCount.setText(renderer.getObjectsCount() + "");
 
         return true;

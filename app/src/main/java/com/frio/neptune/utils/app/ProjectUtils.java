@@ -8,6 +8,7 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
@@ -57,18 +58,11 @@ public class ProjectUtils {
     return renderer.getObjectsList().size();
   }
 
-  public static void updateObjects(GLRenderer renderer, Set<Object> list) {
-    try {
-      list.clear();
+  public static void updateObjects(List<Object> list) {
+    list.clear();
 
-      list.stream()
-          .forEach(
-              object -> {
-                list.add(new Object(object.getUID(), object.getType(), object.getColor()));
-              });
-    } catch (Exception e) {
-      ExceptionUtils.throwsException(e);
-
+    for (int x = 0; x < list.size(); x++) {
+      list.add(new Object(list.get(x).getUID(), list.get(x).getType(), list.get(x).getColor()));
     }
   }
 }

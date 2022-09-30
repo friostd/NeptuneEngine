@@ -1,23 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.Material3.Dark.NoActionBar">
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="colorPrimaryDark">@color/primaryColor</item>
-        <item name="colorAccent">@color/primaryColor</item>
-        <item name="colorSurface">@color/primaryColor</item>
-        <item name="colorButtonNormal">@color/primaryColor</item>
-        <item name="colorControlNormal">@color/white</item>
-        <item name="colorControlHighlight">@color/white</item>
-        <item name="windowActionModeOverlay">true</item>
-        <item name="windowActionBarOverlay">true</item>
+    <style name="AppTheme" parent="Theme.Material3.DynamicColors.Dark">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:textCursorDrawable">@drawable/cursor_drawable</item>
         <item name="android:windowBackground">@color/primaryColor</item>
         <item name="android:popupMenuStyle">@style/AppTheme.PopupMenu</item>
     </style>
 
-    <style name="AppTheme.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="colorPrimary">@color/primaryColor</item>
-        <item name="android:textColorHint">@color/white</item>
+    <style name="AppTheme.TextInputLayout" parent="">
+        <item name="colorPrimary">@color/white</item>
+        <item name="boxStrokeColor">@color/white</item>
         <item name="hintTextColor">@color/white</item>
     </style>
 

@@ -20,7 +20,7 @@
             android:windowSoftInputMode="stateAlwaysHidden" >
         </activity>
         <activity
-            android:name=".activity.SplashActivity"
+            android:name=".activity.MainActivity"
             android:configChanges="screenSize|uiMode"
             android:exported="true"
             android:screenOrientation="sensorLandscape" >
@@ -30,11 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".activity.MainActivity"
-            android:configChanges="screenSize|uiMode"
-            android:exported="false"
-            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".activity.EditorActivity"
             android:configChanges="screenSize|uiMode"

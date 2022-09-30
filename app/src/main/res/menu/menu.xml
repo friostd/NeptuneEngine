@@ -23,10 +23,18 @@
         android:orderInCategory="100"
         android:title="@string/centralize"
         app:showAsAction="always"/>
+        
     <item
-        android:id="@+id/square"
-        android:icon="@drawable/ic_cube"
+        android:id="@+id/new_object"
+        android:icon="@drawable/ic_object_plus"
         android:orderInCategory="100"
-        android:title="@string/square"
-        app:showAsAction="always"/>
+        android:title="@string/new_object"
+        android:showAsAction="always">
+        <menu>
+            <item
+                android:id="@+id/square"
+                android:icon="@drawable/ic_cube"
+                android:title="@string/square"/>
+        </menu>
+    </item>
 </menu>
