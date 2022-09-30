@@ -97,11 +97,12 @@ public class EditorActivity extends AppCompatActivity {
           mTrashItem.setVisible(true);
         });
 
-    binding.objects.setAdapter(mObjectsAdapter);
     binding.objects.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+    binding.objects.setAdapter(mObjectsAdapter);
 
+    ProjectUtils.updateObjects(this, renderer, mObjectsList);
     mObjectsAdapter.notifyDataSetChanged();
-    binding.objectsCount.setText(renderer.getObjectsCount() + "");
+    binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
 
     new Thread(
             () -> {
@@ -186,20 +187,22 @@ public class EditorActivity extends AppCompatActivity {
 
         mObjectsAdapter.remove(mObjectsAdapter.getSelectedPosition());
         renderer.removeObject(mObjectsAdapter.getSelectedPosition());
-        ProjectUtils.updateObjects(mObjectsList);
-
+        
+        ProjectUtils.updateObjects(this, renderer, mObjectsList);
         mObjectsAdapter.resetSelection();
         mObjectsAdapter.notifyDataSetChanged();
 
-        binding.objectsCount.setText(renderer.getObjectsCount() + "");
+        binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
 
         return true;
       case R.id.square:
         ProjectUtils.createNewSquare(renderer);
-        ProjectUtils.updateObjects(mObjectsList);
+        binding.surface.requestRender();
 
+        ProjectUtils.updateObjects(this, renderer, mObjectsList);
         mObjectsAdapter.notifyDataSetChanged();
-        binding.objectsCount.setText(renderer.getObjectsCount() + "");
+
+        binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
 
         return true;
       case R.id.save:

@@ -58,11 +58,22 @@ public class ProjectUtils {
     return renderer.getObjectsList().size();
   }
 
-  public static void updateObjects(List<Object> list) {
+  /*public static void updateObjects(List<Object> list) {
     list.clear();
 
     for (int x = 0; x < list.size(); x++) {
       list.add(new Object(list.get(x).getUID(), list.get(x).getType(), list.get(x).getColor()));
     }
+  }*/
+  
+  public static void updateObjects(Context context, GLRenderer renderer, List<Object> list) {
+    if (renderer.getObjectsList().size() <= 0) return;
+    list.clear();
+
+    for (Object object : renderer.getObjectsList()) {
+      list.add(new Object(object.getUID(), object.getType(), object.getColor()));
+    }
+
+    list.sort((p1, p2) -> p1.getType().compareTo(p2.getType()));
   }
 }
