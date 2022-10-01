@@ -18,14 +18,14 @@ public class ProjectUtils {
   public static final float[] defaultObjectColor = new float[] {1, 0, 0, 1};
   public static final float[] newObjectColor = new float[] {1, 1, 1, 1};
 
-  public static void createNewProject(Context context, String name, String date) {
+  public static void createNewProject(Context context, String name, String version, String date) {
     File file = new File(context.getExternalFilesDir("projects").getAbsolutePath() + "/" + name);
 
     if (file.exists()) return;
 
     FilesUtil.createDir(file.getAbsolutePath());
     FilesUtil.writeFile(
-        context, file.getAbsolutePath() + "/scene.world", World.createNewWorld(name, date));
+        context, file.getAbsolutePath() + "/scene.world", World.createNewWorld(version, date));
   }
 
   public static boolean isExists(Context context, String name) {
@@ -58,14 +58,6 @@ public class ProjectUtils {
     return renderer.getObjectsList().size();
   }
 
-  /*public static void updateObjects(List<Object> list) {
-    list.clear();
-
-    for (int x = 0; x < list.size(); x++) {
-      list.add(new Object(list.get(x).getUID(), list.get(x).getType(), list.get(x).getColor()));
-    }
-  }*/
-  
   public static void updateObjects(Context context, GLRenderer renderer, List<Object> list) {
     if (renderer.getObjectsList().size() <= 0) return;
     list.clear();

@@ -39,7 +39,6 @@ import com.frio.neptune.utils.Project;
 import com.frio.neptune.utils.Vector3;
 import com.frio.neptune.utils.app.*;
 import com.frio.neptune.world.World;
-import com.itsaky.androidide.logsender.LogSender;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,7 +62,6 @@ public class EditorActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle bundle) {
-    LogSender.startLogging(this);
     super.onCreate(bundle);
 
     this.binding = ActivityEditorBinding.inflate(getLayoutInflater());
@@ -130,8 +128,6 @@ public class EditorActivity extends AppCompatActivity {
               {
                 mLastX = event.getRawX();
                 mLastY = event.getRawY();
-                
-                // binding.surface.requestPointerCapture();
 
                 mode = "DOWN";
                 break;
@@ -141,9 +137,10 @@ public class EditorActivity extends AppCompatActivity {
               {
                 if (mode != "ZOOM") {
                   int dpi = getResources().getDisplayMetrics().densityDpi;
+                  float zoom = 1f / renderer.getCamera().getZoom();
 
-                  float vx = (mLastX - event.getRawX()) / dpi;
-                  float vy = (mLastY - event.getRawY()) / dpi;
+                  float vx = (mLastX - event.getRawX()) / dpi * zoom;
+                  float vy = (mLastY - event.getRawY()) / dpi * zoom;
 
                   Vector3 vector3 = renderer.getCamera().getPosition();
                   vector3.set(vector3.getX() - vx, vector3.getY() + vy, 0);

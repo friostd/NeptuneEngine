@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
   private ProjectAdapter mProjectsAdapter;
   private List<Project> mProjectsList = new LinkedList<>();
 
+  private String version = "0.2.0-alpha";
+
   @Override
   protected void onCreate(Bundle bundle) {
     super.onCreate(bundle);
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                   return;
                 }
 
-                ProjectUtils.createNewProject(this, name, ProjectUtils.getDateNow());
+                ProjectUtils.createNewProject(this, name, version, ProjectUtils.getDateNow());
                 AndroidUtil.closeKeyboard(this);
 
                 refreshProjects();
@@ -166,11 +168,12 @@ public class MainActivity extends AppCompatActivity {
     for (File file : listFiles) {
       if (file.isDirectory()) {
         mProjectsList.add(
-            new Project(file.getName(), file.getAbsolutePath(), ProjectUtils.getDateNow()));
-        Collections.sort(mProjectsList, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
+            new Project(
+                file.getName(), "0.1.0-Alpha", file.getAbsolutePath(), ProjectUtils.getDateNow()));
       }
     }
 
+    Collections.sort(mProjectsList, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
     mProjectsAdapter.notifyDataSetChanged();
   }
 

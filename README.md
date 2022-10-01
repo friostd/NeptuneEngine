@@ -2,27 +2,22 @@
   <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/icon.png" width="192px" />
   <h1>Neptune Engine</h1>
 
-  <a href="https://github.com/FrioGitHub/NeptuneEngine/releases"><img alt="Latest release of NeptuneEngine" src="https://img.shields.io/github/v/release/FrioGitHub/NeptuneEngine?include_prereleases&label=latest%20release" ></a>
-  <a href="https://github.com/mkenney/software-guides/blob/master/STABILITY-BADGES.md#alpha"><img src="https://img.shields.io/badge/stability-alpha-f4d03f.svg" alt="Alpha"></a>
-  <img alt="Downloads" src="https://img.shields.io/github/downloads/FrioGitHub/NeptuneEngine/total?label=Downloads" />
-</div>
+  <img alt="Latest Release" src="https://img.shields.io/github/v/release/FrioGitHub/NeptuneEngine?color=green&label=Latest%20Release&style=for-the-badge"><br>
+  <img alt="Vulnerabilities" src="https://img.shields.io/snyk/vulnerabilities/github/FrioGitHub/NeptuneEngine?color=green&style=for-the-badge"><br>
+  <img alt="CodeFactor" src="https://img.shields.io/codefactor/grade/github/FrioGitHub/NeptuneEngine?color=green&style=for-the-badge"><br>
+  <img alt="Downloads" src="https://img.shields.io/github/downloads/FrioGitHub/NeptuneEngine/total?color=green&style=for-the-badge">
+ </div>
 
- - Neptune Engine is an simple game engine written in Java for Android devices using OpenGL ES
+Neptune Engine is an simple game engine written in Java for Android devices using OpenGL ES
 
-<h1 align="center">Screenshots</h1>
+<h1>Screenshots</h1>
 
 <div align="center">
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.jpg" width="100%" />
-  <img style="margin-top: 8px;" src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.jpg" width="100%" />
+  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.png" width="100%" />
+  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.png" width="100%" />
 </div>
 
-<h1 align="center">Thanks to</h1>
-
-<a href="https://github.com/KKD4yv1d">KKD4yv1d</a> for contributing to the project<br>
-<a href="https://github.com/Neiken">Neiken</a> for contributing to the project<br>
-<a href="https://github.com/MatheusTGamerPro">MatheusTGP</a> for contributing to the project
-
-<h1 align="center">Note</h1>
+<h1>Warning</h1>
 
 > **Warning**:
 > This game engine is currently in development!

@@ -10,8 +10,8 @@ android {
         applicationId rootProject.ext.appId
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
-        versionCode 1
-        versionName "0.1.0-alpha"
+        versionCode 2
+        versionName "0.2.0-alpha"
         resConfigs "en", "pt-rBR"
     }
     
@@ -26,9 +26,8 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.global
         }
         
@@ -58,6 +57,4 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.6.1'
-    implementation 'com.airbnb.android:lottie:5.2.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.1'
 }

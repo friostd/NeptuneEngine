@@ -23,23 +23,27 @@
 
 package com.frio.neptune.utils;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Project implements Parcelable {
 
   private String name;
+  private String version;
   private String path;
   private String date;
 
-  public Project(String name, String path, String date) {
+  public Project(String name, String version, String path, String date) {
     this.name = name;
+    this.version = version;
     this.path = path;
     this.date = date;
   }
 
   protected Project(Parcel parcel) {
     this.name = parcel.readString();
+    this.version = parcel.readString();
     this.path = parcel.readString();
     this.date = parcel.readString();
   }
@@ -59,17 +63,21 @@ public class Project implements Parcelable {
       };
 
   public String getName() {
-    return this.name;
+    return name;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public String getVersion() {
+    return this.version;
+  }
+
+  public void setVersion(String version) {
+    this.version = version;
   }
 
   public String getPath() {
     return this.path;
   }
-  
+
   public String getWorldPath() {
     return this.path + "/scene.world";
   }
@@ -77,11 +85,11 @@ public class Project implements Parcelable {
   public void setPath(String path) {
     this.path = path;
   }
-  
+
   public void setDate(String date) {
     this.date = date;
   }
-  
+
   public String getDate() {
     return this.date;
   }
@@ -94,6 +102,7 @@ public class Project implements Parcelable {
   @Override
   public void writeToParcel(Parcel parcel, int flags) {
     parcel.writeString(this.name);
+    parcel.writeString(this.version);
     parcel.writeString(this.path);
     parcel.writeString(this.date);
   }

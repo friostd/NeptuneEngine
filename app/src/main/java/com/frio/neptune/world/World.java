@@ -48,7 +48,7 @@ public class World {
     return null; // TODO
   }
 
-  public static String createNewWorld(String name, String date) {
+  public static String createNewWorld(String version, String date) {
     JSONObject main = new JSONObject();
 
     JSONObject tempObject = new JSONObject();
@@ -70,8 +70,8 @@ public class World {
       objects.put(uid, tempObject);
       objectsArray.put(objects);
 
-      tempWorld.put("name", name);
       tempWorld.put("date", date);
+      tempWorld.put("version", version);
 
       worldArray.put(tempWorld);
 
@@ -90,26 +90,25 @@ public class World {
     JSONObject world = new JSONObject();
 
     try {
-      renderer.getObjectsList().stream()
-          .forEach(
-              obj -> {
-                try {
-                  JSONObject object = new JSONObject();
-                  object.put("type", obj.getType());
-                  object.put("color", obj.getColorString());
+      for (int x = 0; x < renderer.getObjectsList().size(); x++) {
+        try {
+          Object obj = renderer.getObjectsList().get(x);
+          JSONObject object = new JSONObject();
+          object.put("type", obj.getType());
+          object.put("color", obj.getColorString());
 
-                  objects.put(obj.getUID(), object);
-                } catch (JSONException e) {
-                  e.printStackTrace();
-                }
-              });
+          objects.put(obj.getUID(), object);
+        } catch (JSONException e) {
+          e.printStackTrace();
+        }
+      }
 
       JSONArray objectsArray = new JSONArray();
       JSONArray worldArray = new JSONArray();
 
       objectsArray.put(objects);
-      world.put("name", project.getName());
       world.put("date", project.getDate());
+      world.put("version", project.getVersion());
 
       worldArray.put(world);
 
