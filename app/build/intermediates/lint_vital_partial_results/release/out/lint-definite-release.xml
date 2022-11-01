@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 7.2.0" type="incidents">
+
+    <incident
+        id="UnknownId"
+        severity="fatal"
+        message="The id &quot;`layoutObjects`&quot; is not defined anywhere.">
+        <location
+            file="${:app*release*sourceProvider*0*resDir*0}/layout/activity_editor.xml"
+            line="93"
+            column="5"
+            startOffset="3092"
+            endLine="93"
+            endColumn="60"
+            endOffset="3147"/>
+    </incident>
+
+</incidents>

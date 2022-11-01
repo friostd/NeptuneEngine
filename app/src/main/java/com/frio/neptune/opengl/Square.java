@@ -27,6 +27,7 @@ import static android.opengl.GLES32.*;
 
 import android.content.Context;
 import android.opengl.Matrix;
+import com.frio.neptune.utils.Object;
 import com.frio.neptune.utils.Vector3;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
@@ -78,6 +79,7 @@ public class Square {
   private Vector3 mRotation = new Vector3(0, 0, 0);
 
   private Context context;
+  private float[] projectionMatrix = new float[16];
 
   public Square(Context context) {
     this.context = context;
@@ -112,7 +114,7 @@ public class Square {
     glLinkProgram(mProgram);
   }
 
-  public void draw(float[] projectionMatrix, float[] color) {
+  public void draw(Object object) {
     int buffers[] = new int[2];
     glGenBuffers(2, buffers, 0);
     int vbo = buffers[0];
@@ -144,7 +146,7 @@ public class Square {
     glVertexAttribPointer(mPositionHandle, 3, GL_FLOAT, false, 12, mVertexBuffer);
     mColorHandle = glGetUniformLocation(mProgram, "vColor");
 
-    glUniform4fv(mColorHandle, 1, color, 0);
+    glUniform4fv(mColorHandle, 1, object.getColor(), 0);
     mProjectionMatrixHandle = glGetUniformLocation(mProgram, "projectionMatrix");
 
     glUniformMatrix4fv(mProjectionMatrixHandle, 1, false, projectionMatrix, 0);
@@ -155,16 +157,11 @@ public class Square {
     glDisableVertexAttribArray(mPositionHandle);
 
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
-    glVertexAttribPointer(
-        mPositionHandle, 3, GL_FLOAT, false, 0, 0); // <----- 0, because "vbo" is bound
+    glVertexAttribPointer(mPositionHandle, 3, GL_FLOAT, false, 0, 0);
     glEnableVertexAttribArray(mPositionHandle);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
-    glDrawElements(
-        GL_TRIANGLE_FAN,
-        DRAW_ORDER.length,
-        GL_UNSIGNED_SHORT,
-        0); // <----- 0, because "ibo" is bound
+    glDrawElements(GL_TRIANGLE_FAN, DRAW_ORDER.length, GL_UNSIGNED_SHORT, 0);
 
     glDisableVertexAttribArray(mPositionHandle);
     glBindBuffer(GL_ARRAY_BUFFER, 0);

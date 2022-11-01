@@ -24,23 +24,50 @@
 package com.frio.neptune;
 
 import android.app.Application;
-import com.frio.neptune.utils.app.ExceptionUtils;
+import android.content.Context;
+import android.os.Handler;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.io.Writer;
 
-public class AndroidApplication extends Application implements Thread.UncaughtExceptionHandler {
+public class AndroidApplication extends Application {
 
-  private Thread.UncaughtExceptionHandler mDefaultExceptionHandler;
+  private Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
+
+  public static Context applicationContext;
+  public static volatile Handler applicationHandler;
 
   @Override
   public void onCreate() {
+    this.uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
+
+    Thread.setDefaultUncaughtExceptionHandler(
+        (thread, ex) -> {
+          String error = getStackTrace(ex);
+
+          uncaughtExceptionHandler.uncaughtException(thread, ex);
+        });
+
     super.onCreate();
+
+    applicationContext = this;
+    applicationHandler = new Handler(applicationContext.getMainLooper());
   }
 
-  @Override
-  public void uncaughtException(Thread thread, Throwable throwable) {
-    new Thread(
-            () -> {
-              ExceptionUtils.throwsException(getBaseContext(), throwable);
-            })
-        .start();
+  private String getStackTrace(Throwable th) {
+    final Writer result = new StringWriter();
+
+    final PrintWriter printWriter = new PrintWriter(result);
+    Throwable cause = th;
+
+    while (cause != null) {
+      cause.printStackTrace(printWriter);
+      cause = cause.getCause();
+    }
+
+    final String stacktraceAsString = result.toString();
+    printWriter.close();
+
+    return stacktraceAsString;
   }
 }

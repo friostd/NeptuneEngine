@@ -43,6 +43,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
   private Context mContext;
 
   private int selectedPosition = -1;
+  private boolean selected = false;
 
   private ClickListener onClickListener;
   private LongClickListener onLongClickListener;
@@ -86,6 +87,7 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
             if (onClickListener != null) {
               onClickListener.notify(view, getAdapterPosition());
 
+              selected = true;
               selectedPosition = getAdapterPosition();
               notifyDataSetChanged();
             }
@@ -117,22 +119,22 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
   public void onBindViewHolder(@NonNull ObjectAdapter.Holder holder, int position) {
     Object object = mObjectsList.get(position);
 
-    String uid = object.getUID();
-    String type = object.getType();
-    float[] color = object.getColor();
-
     if (selectedPosition == position) {
       holder.itemView.setBackgroundColor(0xFF06B006);
     } else {
       holder.itemView.setBackgroundColor(0xFF121212);
     }
 
-    holder.name.setText(mContext.getString(R.string.square));
+    holder.name.setText(object.getName());
   }
 
   @Override
   public int getItemCount() {
     return mObjectsList.size();
+  }
+
+  public Object get(int position) {
+    return mObjectsList.get(position);
   }
 
   public void remove(int position) {
@@ -145,7 +147,12 @@ public class ObjectAdapter extends RecyclerView.Adapter<ObjectAdapter.Holder> {
     return selectedPosition;
   }
 
+  public boolean isSelected() {
+    return this.selected;
+  }
+
   public void resetSelection() {
     selectedPosition = -1;
+    selected = false;
   }
 }

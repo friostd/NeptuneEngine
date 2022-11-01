@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "com.frio.neptune.app-mergeReleaseResources-24:/layout/activity_main.xml",
+        "source": "com.frio.neptune.app-main-26:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-mergeReleaseResources-24:/layout/layout_create_project.xml",
+        "source": "com.frio.neptune.app-main-26:/layout/layout_create_project.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-mergeReleaseResources-24:/layout/layout_project.xml",
+        "source": "com.frio.neptune.app-main-26:/layout/layout_project.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-mergeReleaseResources-24:/layout/layout_object.xml",
+        "source": "com.frio.neptune.app-main-26:/layout/layout_object.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-mergeReleaseResources-24:/layout/activity_editor.xml",
+        "source": "com.frio.neptune.app-main-26:/layout/activity_editor.xml"
+    }
+]

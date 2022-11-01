@@ -26,8 +26,8 @@ import android.content.Context;
 import com.frio.neptune.opengl.GLRenderer;
 import com.frio.neptune.utils.Object;
 import com.frio.neptune.utils.Project;
-import com.frio.neptune.utils.app.FilesUtil;
-import com.frio.neptune.utils.app.ProjectUtils;
+import com.frio.neptune.utils.app.FileUtil;
+import com.frio.neptune.utils.app.ProjectUtil;
 import java.util.Set;
 import java.util.concurrent.ConcurrentSkipListSet;
 import org.json.JSONArray;
@@ -60,11 +60,13 @@ public class World {
     JSONArray worldArray = new JSONArray();
 
     try {
-      String uid = ProjectUtils.generateUID();
-      String type = ProjectUtils.defaultObjectName;
-      String color = ProjectUtils.convertColor(ProjectUtils.defaultObjectColor);
+      String name = ProjectUtil.defaultObjectName;
+      String uid = ProjectUtil.generateUUID();
+      String position = ProjectUtil.convertArray(ProjectUtil.defaultObjectPosition);
+      String color = ProjectUtil.convertArray(ProjectUtil.defaultObjectColor);
 
-      tempObject.put("type", type);
+      tempObject.put("name", name);
+      tempObject.put("position", position);
       tempObject.put("color", color);
 
       objects.put(uid, tempObject);
@@ -85,19 +87,20 @@ public class World {
     }
   }
 
-  public static void saveWorld(Context context, Project project, GLRenderer renderer) {
+  public static void saveWorld(Project project, GLRenderer renderer) {
     JSONObject objects = new JSONObject();
     JSONObject world = new JSONObject();
 
     try {
-      for (int x = 0; x < renderer.getObjectsList().size(); x++) {
+      for (int i = 0; i < renderer.getObjectsList().size(); i++) {
         try {
-          Object obj = renderer.getObjectsList().get(x);
+          Object obj = renderer.getObjectsList().get(i);
           JSONObject object = new JSONObject();
-          object.put("type", obj.getType());
+          object.put("name", obj.getName());
+          object.put("position", obj.getPositionString());
           object.put("color", obj.getColorString());
 
-          objects.put(obj.getUID(), object);
+          objects.put(obj.getUUID(), object);
         } catch (JSONException e) {
           e.printStackTrace();
         }
@@ -116,7 +119,8 @@ public class World {
 
       main.put("settings", worldArray);
       main.accumulate("objects", objectsArray);
-      FilesUtil.writeFile(context, project.getWorldPath(), main.toString(2));
+
+      FileUtil.writeFile(project.getWorldPath(), main.toString(2));
     } catch (JSONException e) {
       e.printStackTrace();
     }

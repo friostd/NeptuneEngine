@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Neptune Engine</string>
-    <string name="projects">Projects</string>
-    <string name="no_projects">No Projects</string>
-    <string name="create_project">Create Project</string>
-    <string name="name">Name</string>
-    <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
-    <string name="trash">Remove Object</string>
-    <string name="save">Save World</string>
-    <string name="saved_successfully">World Saved Successfully!</string>
-    <string name="centralize">Centralize Camera</string>
-    <string name="new_object">New Object</string>
-    <string name="square">Square</string>
-    <string name="delete">Delete</string>
+  <string name="app_name">Neptune Engine</string>
+  <string name="projects">Projects</string>
+  <string name="no_projects">No projects</string>
+  <string name="create_project">Create project</string>
+  <string name="name">Name</string>
+  <string name="cancel">Cancel</string>
+  <string name="ok">Ok</string>
+  <string name="trash">Remove object</string>
+  <string name="save">Save world</string>
+  <string name="saved_successfully">World saved successfully!</string>
+  <string name="centralize">Center camera</string>
+  <string name="new_object">New object</string>
+  <string name="square">Square</string>
+  <string name="delete">Delete</string>
+  <string name="edit">Edit</string>
+
+  <string name="digits_valid_name">Please enter a valid name.</string>
+  <string name="project_already_exists">This project already exists.</string>
 
 </resources>

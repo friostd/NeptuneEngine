@@ -21,8 +21,6 @@
  * SOFTWARE.
 */
 
-// App util
-
 package com.frio.neptune.utils.app;
 
 import android.app.Activity;
@@ -30,7 +28,6 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import com.frio.neptune.utils.app.ExceptionUtils;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,10 +37,6 @@ public class AndroidUtil {
 
   public static void showToast(Context context, String message) {
     Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-  }
-
-  public static void write(Context context, String file, String message) {
-    FilesUtil.writeFile(context, context.getExternalFilesDir("logs") + file, message);
   }
 
   public static float[] toArray(String string) {
@@ -87,8 +80,8 @@ public class AndroidUtil {
       }
 
       return result.toString("UTF-8");
-    } catch (IOException e) {
-      ExceptionUtils.throwsException(context, e.fillInStackTrace());
+    } catch (IOException exception) {
+      ExceptionUtil.throwsException(exception);
       return null;
     }
   }

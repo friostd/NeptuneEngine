@@ -1,0 +1,130 @@
+[
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/layout_layout_project.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/layout/layout_project.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-mdpi_ic_launcher_rounded.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-mdpi/ic_launcher_rounded.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxxhdpi_ic_launcher_rounded.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xxxhdpi/ic_launcher_rounded.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_object_plus.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_object_plus.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/layout_layout_create_project.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/layout/layout_create_project.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxhdpi_ic_launcher_rounded.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xxhdpi/ic_launcher_rounded.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_cube.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_cube.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_rounded_dialog.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/rounded_dialog.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/layout_layout_object.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/layout/layout_object.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xhdpi_ic_launcher_rounded.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xhdpi/ic_launcher_rounded.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_menu.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_menu.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/layout_activity_main.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_save.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_save.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/layout_activity_editor.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/layout/activity_editor.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-anydpi-v26_ic_launcher_rounded.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-anydpi-v26/ic_launcher_rounded.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_add.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_add.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_cursor_drawable.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/cursor_drawable.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_trash.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_trash.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/drawable_ic_centralize.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/drawable/ic_centralize.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-hdpi_ic_launcher_rounded.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-hdpi/ic_launcher_rounded.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/menu_menu.xml.flat",
+        "source": "com.frio.neptune.app-main-26:/menu/menu.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.frio.neptune.app-merged_res-25:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.frio.neptune.app-main-26:/mipmap-hdpi/ic_launcher.png"
+    }
+]

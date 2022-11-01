@@ -32,7 +32,7 @@ public class Camera {
     this.vector3 = new Vector3(0, 0, 0);
     this.zoom = 1.0f;
   }
-  
+
   public Vector3 getPosition() {
     return this.vector3;
   }
@@ -44,7 +44,7 @@ public class Camera {
   public float getZoom() {
     return this.zoom;
   }
-  
+
   public void resetPosition() {
     this.vector3.set(0, 0, 0);
   }

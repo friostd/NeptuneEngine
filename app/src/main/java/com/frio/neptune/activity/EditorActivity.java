@@ -28,17 +28,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import com.frio.neptune.R;
 import com.frio.neptune.adapters.*;
 import com.frio.neptune.databinding.ActivityEditorBinding;
 import com.frio.neptune.opengl.*;
+import com.frio.neptune.utils.*;
 import com.frio.neptune.utils.Object;
-import com.frio.neptune.utils.Project;
-import com.frio.neptune.utils.Vector3;
 import com.frio.neptune.utils.app.*;
 import com.frio.neptune.world.World;
+import com.itsaky.androidide.logsender.LogSender;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class EditorActivity extends AppCompatActivity {
   private String mode = null;
 
   private Project mProject;
+  private ProjectUtil mProjectUtil;
   private ObjectAdapter mObjectsAdapter;
   private List<Object> mObjectsList;
 
@@ -62,6 +65,7 @@ public class EditorActivity extends AppCompatActivity {
 
   @Override
   protected void onCreate(Bundle bundle) {
+    LogSender.startLogging(this);
     super.onCreate(bundle);
 
     this.binding = ActivityEditorBinding.inflate(getLayoutInflater());
@@ -86,19 +90,46 @@ public class EditorActivity extends AppCompatActivity {
     renderer.loadScene(mProject.getWorldPath());
 
     binding.surface.setRenderer(renderer);
-
+    
+    mProjectUtil = new ProjectUtil(renderer);
     mScaleDetector = new ScaleGestureDetector(getApplicationContext(), new ScaleListener());
     mObjectsAdapter = new ObjectAdapter(mObjectsList);
 
     mObjectsAdapter.setOnClickListener(
         (view, pos) -> {
           mTrashItem.setVisible(true);
+          binding.propertyLayout.setVisibility(0);
+
+          Object object = mObjectsAdapter.get(pos);
+
+          EditText etName = binding.objectName;
+          etName.setText(object.getName());
+          etName.setSelection(etName.getSelectionEnd());
+
+          etName.setOnEditorActionListener(
+              (v, actionId, event) -> {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_ACTION_GO) {
+                  String text = etName.getText().toString().trim();
+
+                  if (text.isEmpty()) {
+                    etName.setText(object.getName());
+                    etName.setSelection(etName.getSelectionEnd());
+                  } else {
+                    object.setName(text);
+                    renderer.getObjectsList().set(pos, object);
+                    mObjectsAdapter.notifyDataSetChanged();
+                  }
+                }
+
+                return handled;
+              });
         });
 
     binding.objects.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
     binding.objects.setAdapter(mObjectsAdapter);
 
-    ProjectUtils.updateObjects(this, renderer, mObjectsList);
+    mProjectUtil.updateObjects(mObjectsList);
     mObjectsAdapter.notifyDataSetChanged();
     binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
 
@@ -111,8 +142,8 @@ public class EditorActivity extends AppCompatActivity {
                         getSupportActionBar().setSubtitle(renderer.getFPS() + " FPS");
                       });
                   Thread.sleep(100l);
-                } catch (InterruptedException e) {
-                  ExceptionUtils.throwsException(getApplicationContext(), e.getCause());
+                } catch (InterruptedException exception) {
+                  ExceptionUtil.throwsException(exception);
                   break;
                 }
               }
@@ -166,8 +197,6 @@ public class EditorActivity extends AppCompatActivity {
         });
   }
 
-  // @Override methods
-
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.menu, menu);
@@ -184,26 +213,27 @@ public class EditorActivity extends AppCompatActivity {
 
         mObjectsAdapter.remove(mObjectsAdapter.getSelectedPosition());
         renderer.removeObject(mObjectsAdapter.getSelectedPosition());
-        
-        ProjectUtils.updateObjects(this, renderer, mObjectsList);
+
+        mProjectUtil.updateObjects(mObjectsList);
         mObjectsAdapter.resetSelection();
+        binding.propertyLayout.setVisibility(8);
         mObjectsAdapter.notifyDataSetChanged();
 
         binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
 
         return true;
       case R.id.square:
-        ProjectUtils.createNewSquare(renderer);
+        mProjectUtil.createNewSquare();
         binding.surface.requestRender();
 
-        ProjectUtils.updateObjects(this, renderer, mObjectsList);
+        mProjectUtil.updateObjects(mObjectsList);
         mObjectsAdapter.notifyDataSetChanged();
 
         binding.objectsCount.setText(String.valueOf(renderer.getObjectsCount()));
 
         return true;
       case R.id.save:
-        World.saveWorld(getApplicationContext(), mProject, renderer);
+        World.saveWorld(mProject, renderer);
         AndroidUtil.showToast(getApplicationContext(), getString(R.string.saved_successfully));
 
         return true;

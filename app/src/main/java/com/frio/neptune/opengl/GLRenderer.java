@@ -86,8 +86,8 @@ public class GLRenderer implements GLSurfaceView.Renderer {
     Matrix.orthoM(PROJECTION_MATRIX, 0, -mRatio / zoom, mRatio / zoom, -1 / zoom, 1 / zoom, -1, 50);
     Matrix.translateM(PROJECTION_MATRIX, 0, x, y, z);
 
-    for (int x = 0; x < mObjectsList.size(); x++) {
-      square.draw(PROJECTION_MATRIX, mObjectsList.get(x).getColor());
+    for (Object object : getObjectsList()) {
+      square.draw(object);
     }
 
     if (lastTime + 1000 < System.currentTimeMillis()) {
@@ -102,22 +102,24 @@ public class GLRenderer implements GLSurfaceView.Renderer {
 
   public void loadScene(String path) {
     try {
-      JSONObject json = new JSONObject(FilesUtil.readFile(path));
+      JSONObject json = new JSONObject(FileUtil.readFile(path));
       JSONArray array = json.getJSONArray("objects");
 
       if (array == null) return;
       JSONObject objects = array.getJSONObject(0);
 
       for (int i = 0; i < objects.length(); i++) {
-        JSONObject object = objects.getJSONObject(objects.names().getString(i));
+        String uuid = objects.names().getString(i);
+        JSONObject object = objects.getJSONObject(uuid);
 
-        float[] color =
-            AndroidUtil.toArray(object.getString("color").replace("[", "").replace("]", ""));
+        String name = object.getString("name").toString();
+        float[] position = AndroidUtil.toArray(object.getString("position"));
+        float[] color = AndroidUtil.toArray(object.getString("color"));
 
-        addNewObject(objects.names().getString(i), object.getString("type"), color);
+        addNewObject(name, uuid, position, color);
       }
-    } catch (JSONException e) {
-      ExceptionUtils.throwsException(context, e);
+    } catch (JSONException exception) {
+      ExceptionUtil.throwsException(exception);
     }
   }
 
@@ -136,8 +138,12 @@ public class GLRenderer implements GLSurfaceView.Renderer {
     return this.mObjectsList.size();
   }
 
-  public void addNewObject(String uid, String type, float[] color) {
-    mObjectsList.add(new Object(uid, type, color));
+  public void addNewObject(String uuid, float[] position, float[] color) {
+    mObjectsList.add(new Object(uuid, position, color));
+  }
+
+  public void addNewObject(String name, String uuid, float[] position, float[] color) {
+    mObjectsList.add(new Object(name, uuid, position, color));
   }
 
   public void removeObject(int position) {

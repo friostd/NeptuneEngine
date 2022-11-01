@@ -1,0 +1,102 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.frio.neptune"
+4    android:versionCode="2"
+5    android:versionName="0.2.0-alpha" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="21"
+8-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="32" />
+9-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml
+10
+11    <uses-feature
+11-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:7:3-9:31
+12        android:glEsVersion="0x00020000"
+12-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:8:5-37
+13        android:required="true" />
+13-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:9:5-28
+14
+15    <application
+15-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:11:3-40:17
+16        android:name="com.frio.neptune.AndroidApplication"
+16-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:12:5-39
+17        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+17-->[androidx.core:core:1.7.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/e7f8a98212e6f706008df53350663e33/transformed/core-1.7.0/AndroidManifest.xml:24:18-86
+18        android:debuggable="true"
+19        android:hardwareAccelerated="true"
+19-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:13:5-39
+20        android:icon="@mipmap/ic_launcher"
+20-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:14:5-39
+21        android:label="@string/app_name"
+21-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:15:5-37
+22        android:roundIcon="@mipmap/ic_launcher_rounded"
+22-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:16:5-52
+23        android:theme="@style/AppTheme" >
+23-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:17:5-36
+24        <activity
+24-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:18:5-28:16
+25            android:name="com.frio.neptune.activity.MainActivity"
+25-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:19:7-44
+26            android:configChanges="screenSize|uiMode"
+26-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:20:7-48
+27            android:exported="true"
+27-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:21:7-30
+28            android:screenOrientation="sensorLandscape" >
+28-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:22:7-50
+29            <intent-filter>
+29-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:23:7-27:23
+30                <action android:name="android.intent.action.MAIN" />
+30-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:24:9-61
+30-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:24:17-58
+31
+32                <category android:name="android.intent.category.LAUNCHER" />
+32-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:26:9-69
+32-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:26:19-66
+33            </intent-filter>
+34        </activity>
+35        <activity
+35-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:29:5-33:53
+36            android:name="com.frio.neptune.activity.EditorActivity"
+36-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:30:7-46
+37            android:configChanges="screenSize|uiMode"
+37-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:31:7-48
+38            android:exported="false"
+38-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:32:7-31
+39            android:screenOrientation="sensorLandscape" />
+39-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:33:7-50
+40        <activity
+40-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:35:5-39:52
+41            android:name="com.frio.neptune.DebugActivity"
+41-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:36:7-36
+42            android:configChanges="screenSize|uiMode"
+42-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:37:7-48
+43            android:exported="false"
+43-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:38:7-31
+44            android:screenOrientation="sensorPortrait" />
+44-->/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app/src/main/AndroidManifest.xml:39:7-49
+45
+46        <provider
+46-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:26:9-34:20
+47            android:name="androidx.startup.InitializationProvider"
+47-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:27:13-67
+48            android:authorities="com.frio.neptune.androidx-startup"
+48-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:28:13-68
+49            android:exported="false" >
+49-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:29:13-37
+50            <meta-data
+50-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:31:13-33:52
+51                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+51-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:32:17-75
+52                android:value="androidx.startup" />
+52-->[androidx.emoji2:emoji2:1.0.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4f535a023a867df8d00acb7c626ac076/transformed/emoji2-1.0.0/AndroidManifest.xml:33:17-49
+53            <meta-data
+53-->[androidx.lifecycle:lifecycle-process:2.4.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4bc698de746d218b156a4981fafb653e/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:31:13-33:52
+54                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+54-->[androidx.lifecycle:lifecycle-process:2.4.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4bc698de746d218b156a4981fafb653e/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:32:17-78
+55                android:value="androidx.startup" />
+55-->[androidx.lifecycle:lifecycle-process:2.4.0] /data/data/com.itsaky.androidide/files/home/.gradle/caches/transforms-3/4bc698de746d218b156a4981fafb653e/transformed/lifecycle-process-2.4.0/AndroidManifest.xml:33:17-49
+56        </provider>
+57    </application>
+58
+59</manifest>

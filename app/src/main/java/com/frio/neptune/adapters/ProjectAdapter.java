@@ -25,30 +25,27 @@ package com.frio.neptune.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.frio.neptune.R;
-import com.frio.neptune.activity.MainActivity;
 import com.frio.neptune.utils.Project;
-import com.frio.neptune.utils.app.FilesUtil;
-import java.util.List;
+import com.frio.neptune.utils.app.ProjectUtil;
+import java.util.Set;
 
 public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.Holder> {
 
-  private List<Project> mProjectsList;
+  private Set<Project> mProjectsList;
   private ClickListener clickListener;
   private MenuClickListener menuClickListener;
 
   private Context mContext;
   public ImageView more;
 
-  public ProjectAdapter(List<Project> list) {
+  public ProjectAdapter(Set<Project> list) {
     mProjectsList = list;
   }
 
@@ -86,7 +83,7 @@ public class ProjectAdapter extends RecyclerView.Adapter<ProjectAdapter.Holder> 
 
   @Override
   public void onBindViewHolder(@NonNull ProjectAdapter.Holder holder, int position) {
-    Project project = mProjectsList.get(position);
+    Project project = ProjectUtil.get(mProjectsList, position);
 
     String name = project.getName();
     String path = project.getPath();

@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-mergeDebugResources-24:/layout/layout_object.xml",
+        "source": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-main-27:/layout/layout_object.xml"
+    },
+    {
+        "merged": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-mergeDebugResources-24:/layout/layout_project.xml",
+        "source": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-main-27:/layout/layout_project.xml"
+    },
+    {
+        "merged": "com.frio.neptune.app-mergeDebugResources-24:/layout/activity_editor.xml",
+        "source": "com.frio.neptune.app-main-27:/layout/activity_editor.xml"
+    },
+    {
+        "merged": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-mergeDebugResources-24:/layout/activity_editor.xml",
+        "source": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-main-27:/layout/activity_editor.xml"
+    },
+    {
+        "merged": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-mergeDebugResources-24:/layout/activity_main.xml",
+        "source": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-main-27:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-mergeDebugResources-24:/layout/layout_create_project.xml",
+        "source": "/data/data/com.itsaky.androidide/files/home/.gradle/daemon/7.4.2/com.frio.neptune.app-main-27:/layout/layout_create_project.xml"
+    }
+]

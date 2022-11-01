@@ -23,34 +23,43 @@
 
 package com.frio.neptune.utils;
 
-import com.frio.neptune.utils.app.ProjectUtils;
+import com.frio.neptune.utils.app.ProjectUtil;
 
 public class Object {
 
-  private String uid;
-  private String type;
+  private String name;
+  private String uuid;
+  private float[] position;
   private float[] color;
 
-  public Object(String uid, String type, float[] color) {
-    this.uid = uid;
-    this.type = type;
+  public Object(String name, String uuid, float[] position, float[] color) {
+    this.name = name;
+    this.uuid = uuid;
+    this.position = position;
     this.color = color;
   }
 
-  public String getUID() {
-    return this.uid;
+  public Object(String uuid, float[] position, float[] color) {
+    this.name = "Object";
+    this.uuid = uuid;
+    this.position = position;
+    this.color = color;
   }
 
-  public void setUID(String uid) {
-    this.uid = uid;
+  public String getName() {
+    return this.name;
   }
 
-  public String getType() {
-    return this.type;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public void setType(String type) {
-    this.type = type;
+  public String getUUID() {
+    return this.uuid;
+  }
+
+  public void setUUID(String uid) {
+    this.uuid = uid;
   }
 
   public float[] getColor() {
@@ -58,10 +67,22 @@ public class Object {
   }
 
   public String getColorString() {
-    return ProjectUtils.convertColor(color);
+    return ProjectUtil.convertArray(color);
   }
 
   public void setColor(float[] color) {
     this.color = color;
+  }
+
+  public float[] getPosition() {
+    return this.position;
+  }
+
+  public String getPositionString() {
+    return ProjectUtil.convertArray(position);
+  }
+
+  public void setPosition(float[] position) {
+    this.position = position;
   }
 }

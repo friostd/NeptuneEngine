@@ -1,0 +1,18 @@
+<lint-module
+    format="1"
+    dir="/storage/emulated/0/AndroidIDEProjects/NeptuneEngine/app"
+    name=":app"
+    type="APP"
+    maven="Neptune Engine:app:"
+    gradle="7.2.0"
+    buildFolder="build"
+    bootClassPath="/data/data/com.itsaky.androidide/files/home/android-sdk/platforms/android-32/android.jar:/data/data/com.itsaky.androidide/files/home/android-sdk/build-tools/33.0.0/core-lambda-stubs.jar"
+    javaSourceLevel="1.8"
+    compileTarget="android-32"
+    neverShrinking="true">
+  <lintOptions
+      absolutePaths="true"
+      checkReleaseBuilds="true"
+      explainIssues="true"/>
+  <variant name="release"/>
+</lint-module>

@@ -26,7 +26,6 @@ package com.frio.neptune.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.PopupMenu;
@@ -39,17 +38,22 @@ import com.frio.neptune.utils.*;
 import com.frio.neptune.utils.app.*;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.io.File;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Objects;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
 
   private ActivityMainBinding binding;
 
   private ProjectAdapter mProjectsAdapter;
-  private List<Project> mProjectsList = new LinkedList<>();
+  private Set<Project> mProjectsList = new LinkedHashSet<>();
+
+  private ProjectUtil mProjectUtil;
 
   private String version = "0.2.0-alpha";
 
@@ -71,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     mProjectsAdapter = new ProjectAdapter(mProjectsList);
     mProjectsAdapter.setOnClickListener(
         (pos) -> {
-          Project project = mProjectsList.get(pos);
+          Project project = ProjectUtil.get(mProjectsList, pos);
 
           Intent intent = new Intent(MainActivity.this, EditorActivity.class);
           intent.putExtra("project", project);
@@ -84,14 +88,19 @@ public class MainActivity extends AppCompatActivity {
           PopupMenu popup = new PopupMenu(this, view);
           Menu menu = popup.getMenu();
           menu.add(0, 0, 0, getString(R.string.delete));
+          menu.add(0, 1, 0, getString(R.string.edit));
 
           popup.setOnMenuItemClickListener(
               (item) -> {
                 switch (item.getItemId()) {
                   case 0:
                     {
-                      FilesUtil.delete(mProjectsList.get(pos).getPath());
+                      FileUtil.delete(ProjectUtil.get(mProjectsList, pos).getPath());
                       refreshProjects();
+                      break;
+                    }
+                  case 1:
+                    {
                       break;
                     }
                   default:
@@ -106,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
 
     binding.projects.setAdapter(mProjectsAdapter);
     binding.projects.setLayoutManager(new GridLayoutManager(this, 3));
+
+    mProjectUtil = new ProjectUtil();
   }
 
   protected void observer() {
@@ -125,16 +136,16 @@ public class MainActivity extends AppCompatActivity {
                 final String name = AndroidUtil.removeDiacritics(input.getText().toString().trim());
 
                 if (name == null || name.isEmpty()) {
-                  AndroidUtil.showToast(this, "Digite um nome válido");
+                  AndroidUtil.showToast(this, getString(R.string.digits_valid_name));
                   return;
                 }
 
-                if (ProjectUtils.isExists(this, name)) {
-                  AndroidUtil.showToast(this, "Projeto já existente");
+                if (mProjectUtil.isExists(this, name)) {
+                  AndroidUtil.showToast(this, getString(R.string.project_already_exists));
                   return;
                 }
 
-                ProjectUtils.createNewProject(this, name, version, ProjectUtils.getDateNow());
+                mProjectUtil.createNewProject(this, name, version, ProjectUtil.getDateNow());
                 AndroidUtil.closeKeyboard(this);
 
                 refreshProjects();
@@ -152,35 +163,45 @@ public class MainActivity extends AppCompatActivity {
 
   public void refreshProjects() {
     mProjectsList.clear();
+    String p = getExternalFilesDir("projects").toString();
 
-    File root = new File(getExternalFilesDir("projects").toString());
-    File[] listFiles = root.listFiles();
+    try {
+      Set<File> set =
+          Files.list(Paths.get(p))
+              .filter(Files::isDirectory)
+              .map(Path::toFile)
+              .collect(Collectors.toSet());
 
-    if (listFiles == null || listFiles.length <= 0) {
-      binding.projects.setVisibility(8);
-      binding.noProjects.setVisibility(0);
-      return;
-    }
+      set.stream()
+          .forEach(
+              file -> {
+                String name = file.getName();
+                String path = file.getAbsolutePath();
+                String date = ProjectUtil.getDateNow();
 
-    binding.projects.setVisibility(0);
-    binding.noProjects.setVisibility(8);
+                mProjectsList.add(new Project(name, version, path, date));
+              });
 
-    for (File file : listFiles) {
-      if (file.isDirectory()) {
-        mProjectsList.add(
-            new Project(
-                file.getName(), "0.1.0-Alpha", file.getAbsolutePath(), ProjectUtils.getDateNow()));
+      if (mProjectsList.isEmpty()) {
+        binding.projects.setVisibility(8);
+        binding.noProjects.setVisibility(0);
+        return;
       }
-    }
 
-    Collections.sort(mProjectsList, (p1, p2) -> p1.getName().compareToIgnoreCase(p2.getName()));
-    mProjectsAdapter.notifyDataSetChanged();
+      binding.projects.setVisibility(0);
+      binding.noProjects.setVisibility(8);
+
+      mProjectsList.stream().sorted((p1, p2) -> p1.getDate().compareTo(p2.getDate()));
+      mProjectsAdapter.notifyDataSetChanged();
+    } catch (IOException exception) {
+      ExceptionUtil.throwsException(exception);
+    }
   }
 
   @Override
   protected void onStart() {
-    refreshProjects();
-
     super.onStart();
+
+    refreshProjects();
   }
 }
