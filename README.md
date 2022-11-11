@@ -15,9 +15,14 @@
 
 <hr />
 
-<b>Neptune Engine is an simple game engine written in Java for Android devices using OpenGL ES</b>
+**Neptune Engine is an simple game engine written in Java for Android devices using OpenGL ES**
+
+**This engine was made inspired by the [ITsMagic Engine]**
 
 <hr />
+
+[ITsMagic Engine]: https://play.google.com/store/apps/details?id=com.itsmagic.enginestable
+
 
 <h1>Screenshots</h1>
 
