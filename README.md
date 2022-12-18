@@ -4,13 +4,13 @@
 </div>
 
 <div align="left">
-  <img alt="Latest Release" src="https://img.shields.io/github/v/release/FrioGitHub/NeptuneEngine?color=green&label=Latest%20Release&style=for-the-badge"><br>
-  <img alt="Vulnerabilities" src="https://img.shields.io/snyk/vulnerabilities/github/FrioGitHub/NeptuneEngine?color=green&style=for-the-badge"><br>
-  <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/FrioGitHub/NeptuneEngine/master?color=green&style=for-the-badge"><br>
-  <img alt="Downloads" src="https://img.shields.io/github/downloads/FrioGitHub/NeptuneEngine/total?color=green&style=for-the-badge"><br>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/FrioGitHub/NeptuneEngine?color=green&style=for-the-badge"><br>
-  <img alt="License" src="https://img.shields.io/github/license/FrioGitHub/NeptuneEngine?color=green&style=for-the-badge"><br>
-  <img alt="Workflow Status" src="https://img.shields.io/github/workflow/status/FrioGitHub/NeptuneEngine/Android%20CI/master?color=green&style=for-the-badge">
+  <img alt="Latest Release" src="https://img.shields.io/github/v/release/friosts/NeptuneEngine?color=green&label=Latest%20Release&style=for-the-badge"><br>
+  <img alt="Vulnerabilities" src="https://img.shields.io/snyk/vulnerabilities/github/friostd/NeptuneEngine?color=green&style=for-the-badge"><br>
+  <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/friostd/NeptuneEngine/master?color=green&style=for-the-badge"><br>
+  <img alt="Downloads" src="https://img.shields.io/github/downloads/friostd/NeptuneEngine/total?color=green&style=for-the-badge"><br>
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/friostd/NeptuneEngine?color=green&style=for-the-badge"><br>
+  <img alt="License" src="https://img.shields.io/github/license/friostd/NeptuneEngine?color=green&style=for-the-badge"><br>
+  <img alt="Workflow Status" src="https://img.shields.io/github/workflow/status/friostd/NeptuneEngine/Android%20CI/master?color=green&style=for-the-badge">
 </div>
 
 <hr />
