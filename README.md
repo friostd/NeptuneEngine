@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Neptune Engine</h1>
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/icon.png" width="192px" /><hr/>
+  <img src="https://github.com/friostd/NeptuneEngine/blob/master/resources/icon.png" width="192px" /><hr/>
 </div>
 
 <div align="left">
@@ -27,8 +27,8 @@
 <h1>Screenshots</h1>
 
 <div align="center">
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo1.png" width="100%" />
-  <img src="https://github.com/FrioGitHub/NeptuneEngine/blob/master/resources/demo2.png" width="100%" />
+  <img src="https://github.com/friostd/NeptuneEngine/blob/master/resources/demo1.png" width="100%" />
+  <img src="https://github.com/friostd/NeptuneEngine/blob/master/resources/demo2.png" width="100%" />
 </div>
 
 <h1>Warning</h1>
