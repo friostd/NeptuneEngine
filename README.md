@@ -4,7 +4,7 @@
 </div>
 
 <div align="left">
-  <img alt="Latest Release" src="https://img.shields.io/github/v/release/friosts/NeptuneEngine?color=green&label=Latest%20Release&style=for-the-badge"><br>
+  <img alt="Latest Release" src="https://img.shields.io/github/v/release/friostd/NeptuneEngine?color=green&label=Latest%20Release&style=for-the-badge"><br>
   <img alt="Vulnerabilities" src="https://img.shields.io/snyk/vulnerabilities/github/friostd/NeptuneEngine?color=green&style=for-the-badge"><br>
   <img alt="CodeFactor Grade" src="https://img.shields.io/codefactor/grade/github/friostd/NeptuneEngine/master?color=green&style=for-the-badge"><br>
   <img alt="Downloads" src="https://img.shields.io/github/downloads/friostd/NeptuneEngine/total?color=green&style=for-the-badge"><br>
