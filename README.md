@@ -10,21 +10,22 @@
   <img alt="Downloads" src="https://img.shields.io/github/downloads/friostd/NeptuneEngine/total?color=green&style=for-the-badge"><br>
   <img alt="Repository size" src="https://img.shields.io/github/repo-size/friostd/NeptuneEngine?color=green&style=for-the-badge"><br>
   <img alt="License" src="https://img.shields.io/github/license/friostd/NeptuneEngine?color=green&style=for-the-badge"><br>
-  <img alt="Workflow Status" src="https://img.shields.io/github/workflow/status/friostd/NeptuneEngine/Android%20CI/master?color=green&style=for-the-badge">
 </div>
 
 <hr />
 
 **Neptune Engine is an simple game engine written in Java for Android devices using OpenGL ES**
 
-**This engine was made inspired by the [ITsMagic Engine]**
+**Will be available in the playstore in the future.**
+
+**This engine was made inspired by [ITsMagic Engine]**
 
 <hr />
 
 [ITsMagic Engine]: https://play.google.com/store/apps/details?id=com.itsmagic.enginestable
 
 
-<h1>Screenshots</h1>
+<h1>Demo</h1>
 
 <div align="center">
   <img src="https://github.com/friostd/NeptuneEngine/blob/master/resources/demo1.png" width="100%" />
