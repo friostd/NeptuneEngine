@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="primaryColor">#121212</color>
     <color name="primaryVariantColor">#1D1D1D</color>
-    <color name="highlightColor">#85212121</color>
+    <color name="hintColor">#FFC5C6CF</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-
 </resources>

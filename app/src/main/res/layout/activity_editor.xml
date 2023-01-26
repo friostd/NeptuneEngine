@@ -1,74 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context=".EditorActivity">
-    
+    android:layout_height="match_parent"
+    tools:context=".activity.EditorActivity">
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:elevation="0dp"
         app:layout_constraintTop_toTopOf="parent">
-        
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/AppTheme.Toolbar"
-            android:elevation="0dp"
-            android:layout_height="?attr/actionBarSize"
             android:layout_width="match_parent"
-            app:popupTheme="@style/AppTheme.PopupMenu"/>
-        
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="0dp"
+            app:popupTheme="@style/AppTheme.PopupMenu" />
+
     </com.google.android.material.appbar.AppBarLayout>
-    
+
     <LinearLayout
         android:id="@+id/layoutObjects"
-        android:layout_height="0dp"
         android:layout_width="200dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/surface"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBar">
-        
+
         <TextView
             android:id="@+id/objectsCount"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-        
+            android:layout_gravity="end" />
+
         <androidx.core.widget.NestedScrollView
-            android:layout_height="match_parent"
-            android:layout_width="match_parent">
-            
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/objects"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"/>
-        
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
         </androidx.core.widget.NestedScrollView>
-        
+
     </LinearLayout>
-    
+
     <android.opengl.GLSurfaceView
         android:id="@+id/surface"
-        android:layout_height="0dp"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/separator"
-        app:layout_constraintTop_toBottomOf="@+id/appBar"/>
-    
+        app:layout_constraintTop_toBottomOf="@+id/appBar"
+        app:layout_constraintVertical_bias="0.0" />
+
     <View
         android:id="@+id/separator"
-        android:layout_height="0dp"
         android:layout_width="5dp"
+        android:layout_height="0dp"
+        android:background="@color/primaryVariantColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/surface"
         app:layout_constraintStart_toEndOf="@+id/layoutObjects"
-        app:layout_constraintTop_toBottomOf="@+id/appBar"
-        android:background="@color/primaryVariantColor"/>
+        app:layout_constraintTop_toBottomOf="@+id/appBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

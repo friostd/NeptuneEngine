@@ -3,25 +3,25 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    namespace 'com.frio.neptune'
+    compileSdk 33
     buildToolsVersion "33.0.0"
 
     defaultConfig {
         applicationId rootProject.ext.appId
         minSdk rootProject.ext.minSdk
         targetSdk rootProject.ext.targetSdk
-        versionCode 2
-        versionName "0.2.0-alpha"
-        resConfigs "en", "pt-rBR"
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
     }
-    
+
     signingConfigs {
-      global {
-        storeFile file ("key.keystore")
-        keyAlias "engine"
-        keyPassword "nep22en8"
-        storePassword "nep22en8"
-      }
+        global {
+            storeFile file("key.keystore")
+            keyAlias "engine"
+            keyPassword "nep22en8"
+            storePassword "nep22en8"
+        }
     }
 
     buildTypes {
@@ -30,7 +30,7 @@ android {
             shrinkResources false
             signingConfig signingConfigs.global
         }
-        
+
         debug {
             minifyEnabled false
             shrinkResources false
@@ -38,23 +38,25 @@ android {
             signingConfig signingConfigs.global
         }
     }
-    
+
     compileOptions {
-		sourceCompatibility JavaVersion.VERSION_1_8
-		targetCompatibility JavaVersion.VERSION_1_8
-	}
-    
-    lint {
-      abortOnError false
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        coreLibraryDesugaringEnabled true
     }
-	
-	buildFeatures {
+
+    lint {
+        abortOnError false
+    }
+
+    buildFeatures {
         viewBinding true
     }
 }
 
 dependencies {
-    implementation 'androidx.appcompat:appcompat:1.4.2'
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.2.2'
 }

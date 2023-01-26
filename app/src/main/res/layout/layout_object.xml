@@ -4,29 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:clickable="true" >
+    android:clickable="true"
+    android:focusable="true">
 
     <ImageView
         android:id="@+id/icon"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_margin="8dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_cube"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/ic_cube" />
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/icon"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="8dp"
         android:text="@string/name"
         android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/icon"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".EditorActivity" >
+    tools:context=".EditorActivity">
 
     <item
         android:id="@+id/trash"
@@ -10,31 +10,31 @@
         android:orderInCategory="100"
         android:title="@string/trash"
         android:visible="false"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/save"
         android:icon="@drawable/ic_save"
         android:orderInCategory="100"
         android:title="@string/save"
-        app:showAsAction="always"/>
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/centralize_camera"
         android:icon="@drawable/ic_centralize"
         android:orderInCategory="100"
         android:title="@string/centralize"
-        app:showAsAction="always"/>
-        
+        app:showAsAction="always" />
+
     <item
         android:id="@+id/new_object"
         android:icon="@drawable/ic_object_plus"
         android:orderInCategory="100"
         android:title="@string/new_object"
-        android:showAsAction="always">
+        app:showAsAction="always">
         <menu>
             <item
                 android:id="@+id/square"
                 android:icon="@drawable/ic_cube"
-                android:title="@string/square"/>
+                android:title="@string/square" />
         </menu>
     </item>
 </menu>

@@ -1,17 +1,18 @@
 /*
- * MIT License
- * Copyright (c) 2022 FrioGitHub
-
+ * Copyright (c) 2022-2023 friostd.
+ *
+ * This file is part of Neptune Engine
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
-
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
-
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -19,7 +20,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-*/
+ */
 
 // App util
 
@@ -30,66 +31,44 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
-import com.frio.neptune.utils.app.ExceptionUtils;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.text.Normalizer;
 
 public class AndroidUtil {
 
-  public static void showToast(Context context, String message) {
-    Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
-  }
-
-  public static void write(Context context, String file, String message) {
-    FilesUtil.writeFile(context, context.getExternalFilesDir("logs") + file, message);
-  }
-
-  public static float[] toArray(String string) {
-    String[] strArray = string.split(", ");
-
-    float[] numbers = new float[strArray.length];
-    for (int i = 0; i < strArray.length; ++i) {
-      float number = Float.parseFloat(strArray[i]);
-      numbers[i] = number;
+    public static void showToast(Context context, String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    return numbers;
-  }
+    public static float[] toArray(String string) {
+        String[] strArray = string.split(", ");
 
-  public static void closeKeyboard(Activity activity) {
-    InputMethodManager imm =
-        (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-    View view = activity.getCurrentFocus();
+        float[] numbers = new float[strArray.length];
+        for (int i = 0; i < strArray.length; ++i) {
+            float number = Float.parseFloat(strArray[i]);
+            numbers[i] = number;
+        }
 
-    if (view == null) {
-      view = new View(activity);
+        return numbers;
     }
 
-    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-  }
+    public static void closeKeyboard(Activity activity) {
+        InputMethodManager imm =
+                (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = activity.getCurrentFocus();
 
-  public static String removeDiacritics(String text) {
-    text = Normalizer.normalize(text, Normalizer.Form.NFD);
-    text = text.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+        if (view == null) {
+            view = new View(activity);
+        }
 
-    return text;
-  }
-
-  public static String readAssets(Context context, String name) {
-    try {
-      InputStream is = context.getAssets().open(name);
-      ByteArrayOutputStream result = new ByteArrayOutputStream();
-      byte[] buffer = new byte[1024];
-      for (int length; (length = is.read(buffer)) != -1; ) {
-        result.write(buffer, 0, length);
-      }
-
-      return result.toString("UTF-8");
-    } catch (IOException e) {
-      ExceptionUtils.throwsException(context, e.fillInStackTrace());
-      return null;
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-  }
+
+    public static String removeDiacritics(String text) {
+        text = Normalizer.normalize(text, Normalizer.Form.NFD);
+        text = text.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+
+        return text;
+    }
+
 }
